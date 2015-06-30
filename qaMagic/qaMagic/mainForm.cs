@@ -104,7 +104,19 @@ namespace qaMagic
         {  //MAGIC
             Button newFieldBtn = new Button();
             newFieldBtn.Size = new Size(350, 40);
-            int newLocationY = locationY + deltaY * tBtn;
+            int maxY = 0;
+            foreach (Button b in leftBtn)
+            {
+                if (b != null && b.Location.Y > maxY)
+                    maxY = b.Location.Y;
+                    
+            }
+            int newLocationY;
+            if (tBtn == 0)
+                newLocationY = locationY;
+            else
+                newLocationY = maxY + deltaY;
+
             newFieldBtn.Location = new Point(locationX, newLocationY);
             AddBtn.Location = new Point(locationX, newLocationY + deltaY);
             newFieldBtn.Visible = true;

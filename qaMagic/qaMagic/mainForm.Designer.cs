@@ -35,19 +35,6 @@
             this.InfoL = new System.Windows.Forms.Label();
             this.NameL = new System.Windows.Forms.Label();
             this.RightPanel = new System.Windows.Forms.Panel();
-            this.OptionsPanel = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.OptOKBtn = new System.Windows.Forms.Button();
-            this.OptPathBtn = new System.Windows.Forms.Button();
-            this.OptEncodeCB = new System.Windows.Forms.ComboBox();
-            this.OptDivCB = new System.Windows.Forms.ComboBox();
-            this.OptFormatCB = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.DescriptionL = new System.Windows.Forms.Label();
             this.ParametresPanel = new System.Windows.Forms.Panel();
             this.ParDelBtn = new System.Windows.Forms.Button();
             this.ParNameL = new System.Windows.Forms.Label();
@@ -72,20 +59,37 @@
             this.ParDateCB = new System.Windows.Forms.ComboBox();
             this.ParDateFormatL = new System.Windows.Forms.Label();
             this.ParOKBtn = new System.Windows.Forms.Button();
+            this.OptionsPanel = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.OptOKBtn = new System.Windows.Forms.Button();
+            this.OptPathBtn = new System.Windows.Forms.Button();
+            this.OptEncodeCB = new System.Windows.Forms.ComboBox();
+            this.OptDivCB = new System.Windows.Forms.ComboBox();
+            this.OptFormatCB = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.DescriptionL = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.GenerateBtn = new System.Windows.Forms.Button();
             this.OptionsBtn = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.ParDateFrom = new System.Windows.Forms.TextBox();
+            this.ParDateTo = new System.Windows.Forms.TextBox();
             this.LeftPanel.SuspendLayout();
             this.TopPanel.SuspendLayout();
             this.RightPanel.SuspendLayout();
-            this.OptionsPanel.SuspendLayout();
             this.ParametresPanel.SuspendLayout();
             this.StringPanel.SuspendLayout();
             this.SeqPanel.SuspendLayout();
             this.RangePanel.SuspendLayout();
             this.DatePanel.SuspendLayout();
+            this.OptionsPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -164,167 +168,17 @@
             this.RightPanel.Size = new System.Drawing.Size(820, 484);
             this.RightPanel.TabIndex = 2;
             // 
-            // OptionsPanel
-            // 
-            this.OptionsPanel.Controls.Add(this.textBox1);
-            this.OptionsPanel.Controls.Add(this.label8);
-            this.OptionsPanel.Controls.Add(this.OptOKBtn);
-            this.OptionsPanel.Controls.Add(this.OptPathBtn);
-            this.OptionsPanel.Controls.Add(this.OptEncodeCB);
-            this.OptionsPanel.Controls.Add(this.OptDivCB);
-            this.OptionsPanel.Controls.Add(this.OptFormatCB);
-            this.OptionsPanel.Controls.Add(this.label6);
-            this.OptionsPanel.Controls.Add(this.label5);
-            this.OptionsPanel.Controls.Add(this.label4);
-            this.OptionsPanel.Controls.Add(this.label2);
-            this.OptionsPanel.Location = new System.Drawing.Point(72, 54);
-            this.OptionsPanel.Name = "OptionsPanel";
-            this.OptionsPanel.Size = new System.Drawing.Size(708, 408);
-            this.OptionsPanel.TabIndex = 2;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(275, 313);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(170, 35);
-            this.textBox1.TabIndex = 10;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(36, 305);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(229, 60);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "Выберите количество \r\nгенерируемых строк";
-            // 
-            // OptOKBtn
-            // 
-            this.OptOKBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OptOKBtn.Location = new System.Drawing.Point(588, 340);
-            this.OptOKBtn.Name = "OptOKBtn";
-            this.OptOKBtn.Size = new System.Drawing.Size(105, 54);
-            this.OptOKBtn.TabIndex = 8;
-            this.OptOKBtn.Text = "ОК";
-            this.OptOKBtn.UseVisualStyleBackColor = true;
-            this.OptOKBtn.Click += new System.EventHandler(this.OptOKBtn_Click);
-            // 
-            // OptPathBtn
-            // 
-            this.OptPathBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OptPathBtn.Location = new System.Drawing.Point(275, 237);
-            this.OptPathBtn.Name = "OptPathBtn";
-            this.OptPathBtn.Size = new System.Drawing.Size(143, 47);
-            this.OptPathBtn.TabIndex = 7;
-            this.OptPathBtn.Text = "Выбрать";
-            this.OptPathBtn.UseVisualStyleBackColor = true;
-            this.OptPathBtn.Click += new System.EventHandler(this.OptPathBtn_Click);
-            // 
-            // OptEncodeCB
-            // 
-            this.OptEncodeCB.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OptEncodeCB.FormattingEnabled = true;
-            this.OptEncodeCB.Items.AddRange(new object[] {
-            "UTF-8",
-            "UTF-16",
-            "ANSI",
-            "Unicode",
-            "CP-1251"});
-            this.OptEncodeCB.Location = new System.Drawing.Point(274, 163);
-            this.OptEncodeCB.Name = "OptEncodeCB";
-            this.OptEncodeCB.Size = new System.Drawing.Size(171, 38);
-            this.OptEncodeCB.TabIndex = 6;
-            // 
-            // OptDivCB
-            // 
-            this.OptDivCB.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OptDivCB.FormattingEnabled = true;
-            this.OptDivCB.Items.AddRange(new object[] {
-            ". точка",
-            ", запятая",
-            "; точка с запятой",
-            " пробел",
-            " табуляция"});
-            this.OptDivCB.Location = new System.Drawing.Point(275, 104);
-            this.OptDivCB.Name = "OptDivCB";
-            this.OptDivCB.Size = new System.Drawing.Size(171, 38);
-            this.OptDivCB.TabIndex = 5;
-            // 
-            // OptFormatCB
-            // 
-            this.OptFormatCB.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OptFormatCB.FormattingEnabled = true;
-            this.OptFormatCB.Items.AddRange(new object[] {
-            "CSV"});
-            this.OptFormatCB.Location = new System.Drawing.Point(275, 53);
-            this.OptFormatCB.Name = "OptFormatCB";
-            this.OptFormatCB.Size = new System.Drawing.Size(171, 38);
-            this.OptFormatCB.TabIndex = 4;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(36, 228);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(161, 60);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Выберите путь \r\nсохранения";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(36, 166);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(213, 30);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Выберите кодировку";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(36, 112);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(232, 30);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Выберите разделитель";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(36, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(186, 30);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Выберите формат";
-            // 
-            // DescriptionL
-            // 
-            this.DescriptionL.AutoSize = true;
-            this.DescriptionL.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DescriptionL.Location = new System.Drawing.Point(58, 12);
-            this.DescriptionL.Name = "DescriptionL";
-            this.DescriptionL.Size = new System.Drawing.Size(109, 30);
-            this.DescriptionL.TabIndex = 1;
-            this.DescriptionL.Text = "Описание";
-            this.DescriptionL.Visible = false;
-            // 
             // ParametresPanel
             // 
+            this.ParametresPanel.Controls.Add(this.StringPanel);
+            this.ParametresPanel.Controls.Add(this.RangePanel);
+            this.ParametresPanel.Controls.Add(this.SeqPanel);
+            this.ParametresPanel.Controls.Add(this.DatePanel);
             this.ParametresPanel.Controls.Add(this.ParDelBtn);
             this.ParametresPanel.Controls.Add(this.ParNameL);
             this.ParametresPanel.Controls.Add(this.ParNameTB);
             this.ParametresPanel.Controls.Add(this.ParTypeL);
             this.ParametresPanel.Controls.Add(this.ParCB);
-            this.ParametresPanel.Controls.Add(this.StringPanel);
-            this.ParametresPanel.Controls.Add(this.SeqPanel);
-            this.ParametresPanel.Controls.Add(this.RangePanel);
-            this.ParametresPanel.Controls.Add(this.DatePanel);
             this.ParametresPanel.Controls.Add(this.ParOKBtn);
             this.ParametresPanel.Location = new System.Drawing.Point(57, 38);
             this.ParametresPanel.Name = "ParametresPanel";
@@ -520,6 +374,10 @@
             // 
             // DatePanel
             // 
+            this.DatePanel.Controls.Add(this.ParDateTo);
+            this.DatePanel.Controls.Add(this.ParDateFrom);
+            this.DatePanel.Controls.Add(this.label10);
+            this.DatePanel.Controls.Add(this.label9);
             this.DatePanel.Controls.Add(this.ParDateCB);
             this.DatePanel.Controls.Add(this.ParDateFormatL);
             this.DatePanel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -542,7 +400,7 @@
             "YYYY.DD.MM",
             "YY.MM.DD",
             "YY.DD.MM"});
-            this.ParDateCB.Location = new System.Drawing.Point(226, 58);
+            this.ParDateCB.Location = new System.Drawing.Point(221, 14);
             this.ParDateCB.Name = "ParDateCB";
             this.ParDateCB.Size = new System.Drawing.Size(184, 38);
             this.ParDateCB.TabIndex = 21;
@@ -551,7 +409,7 @@
             // 
             this.ParDateFormatL.AutoSize = true;
             this.ParDateFormatL.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ParDateFormatL.Location = new System.Drawing.Point(60, 58);
+            this.ParDateFormatL.Location = new System.Drawing.Point(55, 14);
             this.ParDateFormatL.Name = "ParDateFormatL";
             this.ParDateFormatL.Size = new System.Drawing.Size(139, 30);
             this.ParDateFormatL.TabIndex = 20;
@@ -567,6 +425,156 @@
             this.ParOKBtn.Text = "ОК";
             this.ParOKBtn.UseVisualStyleBackColor = true;
             this.ParOKBtn.Click += new System.EventHandler(this.ParOKBtn_Click);
+            // 
+            // OptionsPanel
+            // 
+            this.OptionsPanel.Controls.Add(this.textBox1);
+            this.OptionsPanel.Controls.Add(this.label8);
+            this.OptionsPanel.Controls.Add(this.OptOKBtn);
+            this.OptionsPanel.Controls.Add(this.OptPathBtn);
+            this.OptionsPanel.Controls.Add(this.OptEncodeCB);
+            this.OptionsPanel.Controls.Add(this.OptDivCB);
+            this.OptionsPanel.Controls.Add(this.OptFormatCB);
+            this.OptionsPanel.Controls.Add(this.label6);
+            this.OptionsPanel.Controls.Add(this.label5);
+            this.OptionsPanel.Controls.Add(this.label4);
+            this.OptionsPanel.Controls.Add(this.label2);
+            this.OptionsPanel.Location = new System.Drawing.Point(72, 54);
+            this.OptionsPanel.Name = "OptionsPanel";
+            this.OptionsPanel.Size = new System.Drawing.Size(708, 408);
+            this.OptionsPanel.TabIndex = 2;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(275, 313);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(170, 35);
+            this.textBox1.TabIndex = 10;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(36, 305);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(229, 60);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Выберите количество \r\nгенерируемых строк";
+            // 
+            // OptOKBtn
+            // 
+            this.OptOKBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.OptOKBtn.Location = new System.Drawing.Point(588, 340);
+            this.OptOKBtn.Name = "OptOKBtn";
+            this.OptOKBtn.Size = new System.Drawing.Size(105, 54);
+            this.OptOKBtn.TabIndex = 8;
+            this.OptOKBtn.Text = "ОК";
+            this.OptOKBtn.UseVisualStyleBackColor = true;
+            this.OptOKBtn.Click += new System.EventHandler(this.OptOKBtn_Click);
+            // 
+            // OptPathBtn
+            // 
+            this.OptPathBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.OptPathBtn.Location = new System.Drawing.Point(275, 237);
+            this.OptPathBtn.Name = "OptPathBtn";
+            this.OptPathBtn.Size = new System.Drawing.Size(143, 47);
+            this.OptPathBtn.TabIndex = 7;
+            this.OptPathBtn.Text = "Выбрать";
+            this.OptPathBtn.UseVisualStyleBackColor = true;
+            this.OptPathBtn.Click += new System.EventHandler(this.OptPathBtn_Click);
+            // 
+            // OptEncodeCB
+            // 
+            this.OptEncodeCB.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.OptEncodeCB.FormattingEnabled = true;
+            this.OptEncodeCB.Items.AddRange(new object[] {
+            "UTF-8",
+            "UTF-16",
+            "ANSI",
+            "Unicode",
+            "CP-1251"});
+            this.OptEncodeCB.Location = new System.Drawing.Point(274, 163);
+            this.OptEncodeCB.Name = "OptEncodeCB";
+            this.OptEncodeCB.Size = new System.Drawing.Size(171, 38);
+            this.OptEncodeCB.TabIndex = 6;
+            // 
+            // OptDivCB
+            // 
+            this.OptDivCB.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.OptDivCB.FormattingEnabled = true;
+            this.OptDivCB.Items.AddRange(new object[] {
+            ". точка",
+            ", запятая",
+            "; точка с запятой",
+            " пробел",
+            " табуляция"});
+            this.OptDivCB.Location = new System.Drawing.Point(275, 104);
+            this.OptDivCB.Name = "OptDivCB";
+            this.OptDivCB.Size = new System.Drawing.Size(171, 38);
+            this.OptDivCB.TabIndex = 5;
+            // 
+            // OptFormatCB
+            // 
+            this.OptFormatCB.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.OptFormatCB.FormattingEnabled = true;
+            this.OptFormatCB.Items.AddRange(new object[] {
+            "CSV"});
+            this.OptFormatCB.Location = new System.Drawing.Point(275, 53);
+            this.OptFormatCB.Name = "OptFormatCB";
+            this.OptFormatCB.Size = new System.Drawing.Size(171, 38);
+            this.OptFormatCB.TabIndex = 4;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(36, 228);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(161, 60);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Выберите путь \r\nсохранения";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(36, 166);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(213, 30);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Выберите кодировку";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(36, 112);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(232, 30);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Выберите разделитель";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(36, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(186, 30);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Выберите формат";
+            // 
+            // DescriptionL
+            // 
+            this.DescriptionL.AutoSize = true;
+            this.DescriptionL.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DescriptionL.Location = new System.Drawing.Point(58, 12);
+            this.DescriptionL.Name = "DescriptionL";
+            this.DescriptionL.Size = new System.Drawing.Size(109, 30);
+            this.DescriptionL.TabIndex = 1;
+            this.DescriptionL.Text = "Описание";
+            this.DescriptionL.Visible = false;
             // 
             // panel1
             // 
@@ -604,6 +612,38 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Title = "Открыть";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(18, 76);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(231, 30);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "Диапазон годов дат от";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(341, 76);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(36, 30);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "до";
+            // 
+            // ParDateFrom
+            // 
+            this.ParDateFrom.Location = new System.Drawing.Point(257, 76);
+            this.ParDateFrom.Name = "ParDateFrom";
+            this.ParDateFrom.Size = new System.Drawing.Size(77, 35);
+            this.ParDateFrom.TabIndex = 24;
+            // 
+            // ParDateTo
+            // 
+            this.ParDateTo.Location = new System.Drawing.Point(383, 76);
+            this.ParDateTo.Name = "ParDateTo";
+            this.ParDateTo.Size = new System.Drawing.Size(77, 35);
+            this.ParDateTo.TabIndex = 25;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -622,8 +662,6 @@
             this.TopPanel.PerformLayout();
             this.RightPanel.ResumeLayout(false);
             this.RightPanel.PerformLayout();
-            this.OptionsPanel.ResumeLayout(false);
-            this.OptionsPanel.PerformLayout();
             this.ParametresPanel.ResumeLayout(false);
             this.ParametresPanel.PerformLayout();
             this.StringPanel.ResumeLayout(false);
@@ -634,6 +672,8 @@
             this.RangePanel.PerformLayout();
             this.DatePanel.ResumeLayout(false);
             this.DatePanel.PerformLayout();
+            this.OptionsPanel.ResumeLayout(false);
+            this.OptionsPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -690,6 +730,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox ParDateTo;
+        private System.Windows.Forms.TextBox ParDateFrom;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
     }
 }
 
