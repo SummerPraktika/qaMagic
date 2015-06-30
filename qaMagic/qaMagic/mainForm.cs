@@ -12,7 +12,7 @@ namespace qaMagic
 {
     public partial class mainForm : Form
     {
-        private int locationX = 45, locationY = 27, deltaY = 40; // Исходные параметры для кнопок в панели слева
+        private int locationX = 20, locationY = 25, deltaY = 40; // Исходные параметры для кнопок - в панели слева
         //private FieldNode[] fileNode = new FieldNode[60]; - массив параметров, НУЖЕН КЛАСС ПАРАМЕТРОВ, конструкторы ниже
         private Button[] leftBtn = new Button[60]; // массив всех кнопок
         int tBtn = 0; //текущий номер кнопки 
@@ -34,6 +34,7 @@ namespace qaMagic
 
             ParametresPanel.Location = new Point(ParametresPanel.Location.X, 40);
             clickedBtnIndex = -1;
+            leftButtonsColorClear();
         }
 
 
@@ -65,22 +66,22 @@ namespace qaMagic
         {
             if (ParCB.SelectedIndex == 0)
             {
-                //FieldNode fieldNode.Add = new FieldNode(int type, string filename);
+                //FieldNode fieldNode.Add(FieldNode(int type, string filename));
             }
             if (ParCB.SelectedIndex == 1)
             {
-                //FieldNode fieldNode.Add = new FieldNode(int type, int from, int to);
+                //FieldNode fieldNode.Add(FieldNode(int type, int from, int to));
             }
             if (ParCB.SelectedIndex == 2)
             {
-                //FieldNode fieldNode.Add = new FieldNode(int type, string dateformat);
+                //FieldNode fieldNode.Add(FieldNode(int type, string dateformat));
             }
             if (ParCB.SelectedIndex == 3)
             {
-                //FieldNode fieldNode.Add = new FieldNode(int type, int from, int step);
+                //FieldNode fieldNode.Add(FieldNode(int type, int from, int step));
             }
             clearParametresPanel();
-            descriptionShow();
+            nothingShow();
             if (clickedBtnIndex == -1) // если мы добавляем поле
                 NewButton();
             else                       // если мы изменяем поле
@@ -132,7 +133,7 @@ namespace qaMagic
             Button temp = (Button)sender;
             temp.BackColor = Color.Aqua;
 
-            ParametresPanel.Location = new Point(ParametresPanel.Location.X, 140);
+            ParametresPanel.Location = new Point(ParametresPanel.Location.X, 100);
             descriptionShow();
         }
 
@@ -223,6 +224,7 @@ namespace qaMagic
         private void OptionsBtn_Click(object sender, EventArgs e)
         {
             optionsShow();
+            leftButtonsColorClear();
         }
 
         private void OptPathBtn_Click(object sender, EventArgs e)
@@ -238,5 +240,14 @@ namespace qaMagic
             nothingShow();
         }
         /* ОПЦИИ END */
+
+        private void leftButtonsColorClear() // Сброс цвета кнопок в панели слева
+        {
+            foreach (Button b in leftBtn)
+            {
+                if (b != null)
+                    b.BackColor = Color.Azure;
+            }
+        }
     }
 }
