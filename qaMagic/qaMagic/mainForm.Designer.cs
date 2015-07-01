@@ -36,28 +36,32 @@
             this.NameL = new System.Windows.Forms.Label();
             this.RightPanel = new System.Windows.Forms.Panel();
             this.ParametresPanel = new System.Windows.Forms.Panel();
-            this.ParDelBtn = new System.Windows.Forms.Button();
-            this.ParNameL = new System.Windows.Forms.Label();
-            this.ParNameTB = new System.Windows.Forms.TextBox();
-            this.ParTypeL = new System.Windows.Forms.Label();
-            this.ParCB = new System.Windows.Forms.ComboBox();
             this.StringPanel = new System.Windows.Forms.Panel();
             this.ParStringL = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.SeqPanel = new System.Windows.Forms.Panel();
-            this.ParSeqStep = new System.Windows.Forms.TextBox();
-            this.ParSequence2L = new System.Windows.Forms.Label();
-            this.ParSeqFrom = new System.Windows.Forms.TextBox();
-            this.ParSequenceL = new System.Windows.Forms.Label();
             this.RangePanel = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.ParRangeTo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ParRangeFrom = new System.Windows.Forms.TextBox();
             this.ParRangeL = new System.Windows.Forms.Label();
+            this.SeqPanel = new System.Windows.Forms.Panel();
+            this.ParSeqStep = new System.Windows.Forms.TextBox();
+            this.ParSequence2L = new System.Windows.Forms.Label();
+            this.ParSeqFrom = new System.Windows.Forms.TextBox();
+            this.ParSequenceL = new System.Windows.Forms.Label();
             this.DatePanel = new System.Windows.Forms.Panel();
+            this.ParDateTo = new System.Windows.Forms.TextBox();
+            this.ParDateFrom = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.ParDateCB = new System.Windows.Forms.ComboBox();
             this.ParDateFormatL = new System.Windows.Forms.Label();
+            this.ParDelBtn = new System.Windows.Forms.Button();
+            this.ParNameL = new System.Windows.Forms.Label();
+            this.ParNameTB = new System.Windows.Forms.TextBox();
+            this.ParTypeL = new System.Windows.Forms.Label();
+            this.ParCB = new System.Windows.Forms.ComboBox();
             this.ParOKBtn = new System.Windows.Forms.Button();
             this.OptionsPanel = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -77,17 +81,13 @@
             this.OptionsBtn = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.ParDateFrom = new System.Windows.Forms.TextBox();
-            this.ParDateTo = new System.Windows.Forms.TextBox();
             this.LeftPanel.SuspendLayout();
             this.TopPanel.SuspendLayout();
             this.RightPanel.SuspendLayout();
             this.ParametresPanel.SuspendLayout();
             this.StringPanel.SuspendLayout();
-            this.SeqPanel.SuspendLayout();
             this.RangePanel.SuspendLayout();
+            this.SeqPanel.SuspendLayout();
             this.DatePanel.SuspendLayout();
             this.OptionsPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -165,8 +165,9 @@
             this.RightPanel.Controls.Add(this.DescriptionL);
             this.RightPanel.Location = new System.Drawing.Point(443, 94);
             this.RightPanel.Name = "RightPanel";
-            this.RightPanel.Size = new System.Drawing.Size(820, 484);
+            this.RightPanel.Size = new System.Drawing.Size(571, 327);
             this.RightPanel.TabIndex = 2;
+            this.RightPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.RightPanel_Paint);
             // 
             // ParametresPanel
             // 
@@ -182,9 +183,214 @@
             this.ParametresPanel.Controls.Add(this.ParOKBtn);
             this.ParametresPanel.Location = new System.Drawing.Point(57, 38);
             this.ParametresPanel.Name = "ParametresPanel";
-            this.ParametresPanel.Size = new System.Drawing.Size(711, 364);
+            this.ParametresPanel.Size = new System.Drawing.Size(555, 364);
             this.ParametresPanel.TabIndex = 0;
             this.ParametresPanel.Visible = false;
+            // 
+            // StringPanel
+            // 
+            this.StringPanel.Controls.Add(this.ParStringL);
+            this.StringPanel.Controls.Add(this.button1);
+            this.StringPanel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.StringPanel.Location = new System.Drawing.Point(46, 179);
+            this.StringPanel.Name = "StringPanel";
+            this.StringPanel.Size = new System.Drawing.Size(514, 106);
+            this.StringPanel.TabIndex = 24;
+            this.StringPanel.Visible = false;
+            // 
+            // ParStringL
+            // 
+            this.ParStringL.AutoSize = true;
+            this.ParStringL.Location = new System.Drawing.Point(17, 38);
+            this.ParStringL.Name = "ParStringL";
+            this.ParStringL.Size = new System.Drawing.Size(328, 30);
+            this.ParStringL.TabIndex = 4;
+            this.ParStringL.Text = "Выберите файл с набором строк";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(366, 31);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 45);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Открыть файл";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // RangePanel
+            // 
+            this.RangePanel.Controls.Add(this.label3);
+            this.RangePanel.Controls.Add(this.ParRangeTo);
+            this.RangePanel.Controls.Add(this.label1);
+            this.RangePanel.Controls.Add(this.ParRangeFrom);
+            this.RangePanel.Controls.Add(this.ParRangeL);
+            this.RangePanel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RangePanel.Location = new System.Drawing.Point(86, 156);
+            this.RangePanel.Name = "RangePanel";
+            this.RangePanel.Size = new System.Drawing.Size(583, 151);
+            this.RangePanel.TabIndex = 26;
+            this.RangePanel.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(156, 32);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 30);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "От";
+            // 
+            // ParRangeTo
+            // 
+            this.ParRangeTo.Location = new System.Drawing.Point(215, 94);
+            this.ParRangeTo.Name = "ParRangeTo";
+            this.ParRangeTo.Size = new System.Drawing.Size(160, 35);
+            this.ParRangeTo.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(156, 97);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 30);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "До";
+            // 
+            // ParRangeFrom
+            // 
+            this.ParRangeFrom.Location = new System.Drawing.Point(215, 29);
+            this.ParRangeFrom.Name = "ParRangeFrom";
+            this.ParRangeFrom.Size = new System.Drawing.Size(160, 35);
+            this.ParRangeFrom.TabIndex = 4;
+            // 
+            // ParRangeL
+            // 
+            this.ParRangeL.AutoSize = true;
+            this.ParRangeL.Location = new System.Drawing.Point(18, 32);
+            this.ParRangeL.Name = "ParRangeL";
+            this.ParRangeL.Size = new System.Drawing.Size(107, 30);
+            this.ParRangeL.TabIndex = 0;
+            this.ParRangeL.Text = "Диапазон";
+            // 
+            // SeqPanel
+            // 
+            this.SeqPanel.Controls.Add(this.ParSeqStep);
+            this.SeqPanel.Controls.Add(this.ParSequence2L);
+            this.SeqPanel.Controls.Add(this.ParSeqFrom);
+            this.SeqPanel.Controls.Add(this.ParSequenceL);
+            this.SeqPanel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SeqPanel.Location = new System.Drawing.Point(71, 159);
+            this.SeqPanel.Name = "SeqPanel";
+            this.SeqPanel.Size = new System.Drawing.Size(546, 129);
+            this.SeqPanel.TabIndex = 25;
+            this.SeqPanel.Visible = false;
+            // 
+            // ParSeqStep
+            // 
+            this.ParSeqStep.Location = new System.Drawing.Point(265, 78);
+            this.ParSeqStep.Name = "ParSeqStep";
+            this.ParSeqStep.Size = new System.Drawing.Size(150, 35);
+            this.ParSeqStep.TabIndex = 9;
+            // 
+            // ParSequence2L
+            // 
+            this.ParSequence2L.AutoSize = true;
+            this.ParSequence2L.Location = new System.Drawing.Point(57, 78);
+            this.ParSequence2L.Name = "ParSequence2L";
+            this.ParSequence2L.Size = new System.Drawing.Size(92, 30);
+            this.ParSequence2L.TabIndex = 1;
+            this.ParSequence2L.Text = "с шагом";
+            // 
+            // ParSeqFrom
+            // 
+            this.ParSeqFrom.Location = new System.Drawing.Point(265, 20);
+            this.ParSeqFrom.Name = "ParSeqFrom";
+            this.ParSeqFrom.Size = new System.Drawing.Size(150, 35);
+            this.ParSeqFrom.TabIndex = 8;
+            // 
+            // ParSequenceL
+            // 
+            this.ParSequenceL.AutoSize = true;
+            this.ParSequenceL.Location = new System.Drawing.Point(8, 23);
+            this.ParSequenceL.Name = "ParSequenceL";
+            this.ParSequenceL.Size = new System.Drawing.Size(240, 30);
+            this.ParSequenceL.TabIndex = 0;
+            this.ParSequenceL.Text = "Последовательность от";
+            // 
+            // DatePanel
+            // 
+            this.DatePanel.Controls.Add(this.ParDateTo);
+            this.DatePanel.Controls.Add(this.ParDateFrom);
+            this.DatePanel.Controls.Add(this.label10);
+            this.DatePanel.Controls.Add(this.label9);
+            this.DatePanel.Controls.Add(this.ParDateCB);
+            this.DatePanel.Controls.Add(this.ParDateFormatL);
+            this.DatePanel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DatePanel.Location = new System.Drawing.Point(56, 171);
+            this.DatePanel.Name = "DatePanel";
+            this.DatePanel.Size = new System.Drawing.Size(471, 136);
+            this.DatePanel.TabIndex = 23;
+            this.DatePanel.Visible = false;
+            // 
+            // ParDateTo
+            // 
+            this.ParDateTo.Location = new System.Drawing.Point(383, 76);
+            this.ParDateTo.Name = "ParDateTo";
+            this.ParDateTo.Size = new System.Drawing.Size(77, 35);
+            this.ParDateTo.TabIndex = 25;
+            // 
+            // ParDateFrom
+            // 
+            this.ParDateFrom.Location = new System.Drawing.Point(257, 76);
+            this.ParDateFrom.Name = "ParDateFrom";
+            this.ParDateFrom.Size = new System.Drawing.Size(77, 35);
+            this.ParDateFrom.TabIndex = 24;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(341, 76);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(36, 30);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "до";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(18, 76);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(231, 30);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "Диапазон годов дат от";
+            // 
+            // ParDateCB
+            // 
+            this.ParDateCB.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ParDateCB.FormattingEnabled = true;
+            this.ParDateCB.Items.AddRange(new object[] {
+            "DD.MM.YYYY",
+            "MM.DD.YYYY",
+            "DD.MM.YY",
+            "MM.DD.YY",
+            "YYYY.MM.DD",
+            "YYYY.DD.MM",
+            "YY.MM.DD",
+            "YY.DD.MM"});
+            this.ParDateCB.Location = new System.Drawing.Point(221, 14);
+            this.ParDateCB.Name = "ParDateCB";
+            this.ParDateCB.Size = new System.Drawing.Size(184, 38);
+            this.ParDateCB.TabIndex = 21;
+            // 
+            // ParDateFormatL
+            // 
+            this.ParDateFormatL.AutoSize = true;
+            this.ParDateFormatL.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ParDateFormatL.Location = new System.Drawing.Point(55, 14);
+            this.ParDateFormatL.Name = "ParDateFormatL";
+            this.ParDateFormatL.Size = new System.Drawing.Size(139, 30);
+            this.ParDateFormatL.TabIndex = 20;
+            this.ParDateFormatL.Text = "Формат даты";
             // 
             // ParDelBtn
             // 
@@ -242,179 +448,6 @@
             this.ParCB.TabIndex = 29;
             this.ParCB.SelectedIndexChanged += new System.EventHandler(this.ParCB_SelectedIndexChanged);
             // 
-            // StringPanel
-            // 
-            this.StringPanel.Controls.Add(this.ParStringL);
-            this.StringPanel.Controls.Add(this.button1);
-            this.StringPanel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.StringPanel.Location = new System.Drawing.Point(46, 179);
-            this.StringPanel.Name = "StringPanel";
-            this.StringPanel.Size = new System.Drawing.Size(514, 106);
-            this.StringPanel.TabIndex = 24;
-            this.StringPanel.Visible = false;
-            // 
-            // ParStringL
-            // 
-            this.ParStringL.AutoSize = true;
-            this.ParStringL.Location = new System.Drawing.Point(17, 38);
-            this.ParStringL.Name = "ParStringL";
-            this.ParStringL.Size = new System.Drawing.Size(328, 30);
-            this.ParStringL.TabIndex = 4;
-            this.ParStringL.Text = "Выберите файл с набором строк";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(366, 31);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 45);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Открыть файл";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // SeqPanel
-            // 
-            this.SeqPanel.Controls.Add(this.ParSeqStep);
-            this.SeqPanel.Controls.Add(this.ParSequence2L);
-            this.SeqPanel.Controls.Add(this.ParSeqFrom);
-            this.SeqPanel.Controls.Add(this.ParSequenceL);
-            this.SeqPanel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SeqPanel.Location = new System.Drawing.Point(71, 159);
-            this.SeqPanel.Name = "SeqPanel";
-            this.SeqPanel.Size = new System.Drawing.Size(546, 129);
-            this.SeqPanel.TabIndex = 25;
-            this.SeqPanel.Visible = false;
-            // 
-            // ParSeqStep
-            // 
-            this.ParSeqStep.Location = new System.Drawing.Point(265, 78);
-            this.ParSeqStep.Name = "ParSeqStep";
-            this.ParSeqStep.Size = new System.Drawing.Size(150, 35);
-            this.ParSeqStep.TabIndex = 9;
-            // 
-            // ParSequence2L
-            // 
-            this.ParSequence2L.AutoSize = true;
-            this.ParSequence2L.Location = new System.Drawing.Point(57, 78);
-            this.ParSequence2L.Name = "ParSequence2L";
-            this.ParSequence2L.Size = new System.Drawing.Size(92, 30);
-            this.ParSequence2L.TabIndex = 1;
-            this.ParSequence2L.Text = "с шагом";
-            // 
-            // ParSeqFrom
-            // 
-            this.ParSeqFrom.Location = new System.Drawing.Point(265, 20);
-            this.ParSeqFrom.Name = "ParSeqFrom";
-            this.ParSeqFrom.Size = new System.Drawing.Size(150, 35);
-            this.ParSeqFrom.TabIndex = 8;
-            // 
-            // ParSequenceL
-            // 
-            this.ParSequenceL.AutoSize = true;
-            this.ParSequenceL.Location = new System.Drawing.Point(8, 23);
-            this.ParSequenceL.Name = "ParSequenceL";
-            this.ParSequenceL.Size = new System.Drawing.Size(240, 30);
-            this.ParSequenceL.TabIndex = 0;
-            this.ParSequenceL.Text = "Последовательность от";
-            // 
-            // RangePanel
-            // 
-            this.RangePanel.Controls.Add(this.label3);
-            this.RangePanel.Controls.Add(this.ParRangeTo);
-            this.RangePanel.Controls.Add(this.label1);
-            this.RangePanel.Controls.Add(this.ParRangeFrom);
-            this.RangePanel.Controls.Add(this.ParRangeL);
-            this.RangePanel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RangePanel.Location = new System.Drawing.Point(86, 156);
-            this.RangePanel.Name = "RangePanel";
-            this.RangePanel.Size = new System.Drawing.Size(583, 151);
-            this.RangePanel.TabIndex = 26;
-            this.RangePanel.Visible = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(156, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 30);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "От";
-            // 
-            // ParRangeTo
-            // 
-            this.ParRangeTo.Location = new System.Drawing.Point(215, 94);
-            this.ParRangeTo.Name = "ParRangeTo";
-            this.ParRangeTo.Size = new System.Drawing.Size(160, 35);
-            this.ParRangeTo.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(156, 97);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 30);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "До";
-            // 
-            // ParRangeFrom
-            // 
-            this.ParRangeFrom.Location = new System.Drawing.Point(215, 29);
-            this.ParRangeFrom.Name = "ParRangeFrom";
-            this.ParRangeFrom.Size = new System.Drawing.Size(160, 35);
-            this.ParRangeFrom.TabIndex = 4;
-            // 
-            // ParRangeL
-            // 
-            this.ParRangeL.AutoSize = true;
-            this.ParRangeL.Location = new System.Drawing.Point(18, 32);
-            this.ParRangeL.Name = "ParRangeL";
-            this.ParRangeL.Size = new System.Drawing.Size(107, 30);
-            this.ParRangeL.TabIndex = 0;
-            this.ParRangeL.Text = "Диапазон";
-            // 
-            // DatePanel
-            // 
-            this.DatePanel.Controls.Add(this.ParDateTo);
-            this.DatePanel.Controls.Add(this.ParDateFrom);
-            this.DatePanel.Controls.Add(this.label10);
-            this.DatePanel.Controls.Add(this.label9);
-            this.DatePanel.Controls.Add(this.ParDateCB);
-            this.DatePanel.Controls.Add(this.ParDateFormatL);
-            this.DatePanel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DatePanel.Location = new System.Drawing.Point(56, 171);
-            this.DatePanel.Name = "DatePanel";
-            this.DatePanel.Size = new System.Drawing.Size(471, 136);
-            this.DatePanel.TabIndex = 23;
-            this.DatePanel.Visible = false;
-            // 
-            // ParDateCB
-            // 
-            this.ParDateCB.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ParDateCB.FormattingEnabled = true;
-            this.ParDateCB.Items.AddRange(new object[] {
-            "DD.MM.YYYY",
-            "MM.DD.YYYY",
-            "DD.MM.YY",
-            "MM.DD.YY",
-            "YYYY.MM.DD",
-            "YYYY.DD.MM",
-            "YY.MM.DD",
-            "YY.DD.MM"});
-            this.ParDateCB.Location = new System.Drawing.Point(221, 14);
-            this.ParDateCB.Name = "ParDateCB";
-            this.ParDateCB.Size = new System.Drawing.Size(184, 38);
-            this.ParDateCB.TabIndex = 21;
-            // 
-            // ParDateFormatL
-            // 
-            this.ParDateFormatL.AutoSize = true;
-            this.ParDateFormatL.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ParDateFormatL.Location = new System.Drawing.Point(55, 14);
-            this.ParDateFormatL.Name = "ParDateFormatL";
-            this.ParDateFormatL.Size = new System.Drawing.Size(139, 30);
-            this.ParDateFormatL.TabIndex = 20;
-            this.ParDateFormatL.Text = "Формат даты";
-            // 
             // ParOKBtn
             // 
             this.ParOKBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -441,7 +474,7 @@
             this.OptionsPanel.Controls.Add(this.label2);
             this.OptionsPanel.Location = new System.Drawing.Point(72, 54);
             this.OptionsPanel.Name = "OptionsPanel";
-            this.OptionsPanel.Size = new System.Drawing.Size(708, 408);
+            this.OptionsPanel.Size = new System.Drawing.Size(559, 269);
             this.OptionsPanel.TabIndex = 2;
             // 
             // textBox1
@@ -595,6 +628,7 @@
             this.GenerateBtn.TabIndex = 1;
             this.GenerateBtn.Text = "Генерировать";
             this.GenerateBtn.UseVisualStyleBackColor = true;
+            this.GenerateBtn.Click += new System.EventHandler(this.GenerateBtn_Click);
             // 
             // OptionsBtn
             // 
@@ -611,38 +645,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Title = "Открыть";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 76);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(231, 30);
-            this.label9.TabIndex = 22;
-            this.label9.Text = "Диапазон годов дат от";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(341, 76);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(36, 30);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "до";
-            // 
-            // ParDateFrom
-            // 
-            this.ParDateFrom.Location = new System.Drawing.Point(257, 76);
-            this.ParDateFrom.Name = "ParDateFrom";
-            this.ParDateFrom.Size = new System.Drawing.Size(77, 35);
-            this.ParDateFrom.TabIndex = 24;
-            // 
-            // ParDateTo
-            // 
-            this.ParDateTo.Location = new System.Drawing.Point(383, 76);
-            this.ParDateTo.Name = "ParDateTo";
-            this.ParDateTo.Size = new System.Drawing.Size(77, 35);
-            this.ParDateTo.TabIndex = 25;
             // 
             // mainForm
             // 
@@ -666,10 +668,10 @@
             this.ParametresPanel.PerformLayout();
             this.StringPanel.ResumeLayout(false);
             this.StringPanel.PerformLayout();
-            this.SeqPanel.ResumeLayout(false);
-            this.SeqPanel.PerformLayout();
             this.RangePanel.ResumeLayout(false);
             this.RangePanel.PerformLayout();
+            this.SeqPanel.ResumeLayout(false);
+            this.SeqPanel.PerformLayout();
             this.DatePanel.ResumeLayout(false);
             this.DatePanel.PerformLayout();
             this.OptionsPanel.ResumeLayout(false);

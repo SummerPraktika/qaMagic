@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace qaMagic
 {
     public partial class mainForm : Form
     {
         private int locationX = 20, locationY = 25, deltaY = 40; // Исходные параметры для кнопок - в панели слева
-        //private FieldNode[] fileNode = new FieldNode[60]; - массив параметров, НУЖЕН КЛАСС ПАРАМЕТРОВ, конструкторы ниже
+        private List<FieldNode> fileNode = new List<FieldNode>(); //- массив параметров, НУЖЕН КЛАСС ПАРАМЕТРОВ, конструкторы ниже
         private Button[] leftBtn = new Button[60]; // массив всех кнопок
         int tBtn = 0; //текущий номер кнопки 
         int clickedBtnIndex = -1; //номер нажатой кнопки, -1 - не нажата
@@ -78,7 +79,7 @@ namespace qaMagic
             }
             if (ParCB.SelectedIndex == 3)
             {
-                //FieldNode fieldNode.Add(FieldNode(int type, int from, int step));
+               // fileNode.Add( new FieldNode("asd", 3, 100, 1)); - работает
             }
             clearParametresPanel();
             nothingShow();
@@ -260,6 +261,63 @@ namespace qaMagic
                 if (b != null)
                     b.BackColor = Color.Azure;
             }
+        }
+        private void Generate() // Показ панели описания
+        {
+            string st = "";
+            for (int i = 0; i < 10; i++)
+                    {
+                        
+                        foreach (FieldNode a in fileNode)
+                        {
+                            if (a.type == 0)
+                            {
+                                st += a.getRndString().ToString() + ";";//  вызов функции печати для поля со строками
+                            }
+                            if (a.type == 1)
+                            {
+                              st +=  a.getRndNumber().ToString() + ";"; // вызов функции печати для поля c рандомным числом из промежутка
+                            }
+                            if (a.type == 2)
+                            {
+                                st += a.getRndDate() + ";"; // вызов функции печати для поля дат
+                            }
+                            if (a.type == 3)
+                            {
+                                st += a.getSequenceNumber().ToString() + ";"; // вызов функции печати для поля c Шагом
+                            }
+                        }
+                        st += "\n";
+                        using (FileStream fs = new FileStream("end.csv", FileMode.Create))
+                        {
+                            using (StreamWriter writer = new StreamWriter(fs, Encoding.Default))
+                            {
+
+
+                                writer.Write(st);
+                            }
+
+                        }
+                       
+            }
+        }
+
+        private void RightPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void GenerateBtn_Click(object sender, EventArgs e)
+        {
+            
+            fileNode.Add(new FieldNode(1, "asdf", 100, 2000));
+            fileNode.Add(new FieldNode("asd", 3, 100, 1));
+            fileNode.Add(new FieldNode(1, "asdf", 100, 5000));
+            fileNode.Add(new FieldNode(0, "asdf", "name.txt"));
+            fileNode.Add(new FieldNode(0, "asdf", "surname.txt"));
+            fileNode.Add(new FieldNode(0, "asdf", "secname.txt"));
+            fileNode.Add(new FieldNode(2, "asd", "MM.dd.yyyy", new DateTime(1980, 1, 1), new DateTime(2015, 3, 2)));
+            Generate();
         }
     }
 }
