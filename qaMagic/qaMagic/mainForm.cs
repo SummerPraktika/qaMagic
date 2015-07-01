@@ -17,21 +17,40 @@ namespace qaMagic
         private Button[] leftBtn = new Button[60]; // массив всех кнопок
         int tBtn = 0; //текущий номер кнопки 
         int clickedBtnIndex = -1; //номер нажатой кнопки, -1 - не нажата
+        private string filenameOfString;
+
+        FieldNode[] node = new FieldNode[100]; // Массив полей
 
         public mainForm()
         {
             InitializeComponent();
             nothingShow();
+            CBDefault();
+            
+        }
+
+        private void CBDefault()
+        {
+            OptFormatCB.SelectedIndex = 0;
+            OptDivCB.SelectedIndex = 0;
+            OptEncodeCB.SelectedIndex = 0;
+            OptCountLines.Text = "100";
+
+            ParDateCB.SelectedIndex = 0;
+            ParCB.SelectedIndex = 0;
         }
 
         private void AddBtn_Click(object sender, EventArgs e) // Клик Добавить кнопку
         {
-            
-            ParCB.SelectedIndex = 0;
-
             showParametresPanel();
             parametresShow();
 
+            ParCB.SelectedIndex = 0;
+            StringPanel.Visible = true;
+            SeqPanel.Visible = false;
+            DatePanel.Visible = false;
+            RangePanel.Visible = false;
+           
             ParametresPanel.Location = new Point(ParametresPanel.Location.X, 40);
             clickedBtnIndex = -1;
             leftButtonsColorClear();
@@ -60,44 +79,120 @@ namespace qaMagic
                 clearParametresPanel();
                 SeqPanel.Visible = true;
             }
+            if (ParCB.SelectedIndex == 4) // строка последовательно
+            {
+                clearParametresPanel();
+                StringPanel.Visible = true;
+            }
+        }
+
+        private void saveField()
+        {
+            int index = clickedBtnIndex; // Индекс нажатой кнопки
+            string name = ParNameTB.Text;
+            if (clickedBtnIndex == -1) // Если добавляем новую кнопку
+            {
+                index = tBtn - 1;          // то ставим индекс новой кнопки
+            }
+            if (ParCB.SelectedIndex == 0)
+            {
+                node[index] = new FieldNode(0, name, filenameOfString);
+            }
+            if (ParCB.SelectedIndex == 1)
+            {
+                node[index] = new FieldNode(1, name, int.Parse(ParRangeFrom.Text), int.Parse(ParRangeTo.Text));
+            }
+            if (ParCB.SelectedIndex == 2)
+            {
+                node[index] = new FieldNode(2, name, ParDateCB.SelectedItem.ToString(), ParDateFrom.Value, ParDateTo.Value);
+            }
+            if (ParCB.SelectedIndex == 3)
+            {
+                node[index] = new FieldNode(3, name, int.Parse(ParSeqFrom.Text), int.Parse(ParSeqStep.Text));
+            }
+            if (ParCB.SelectedIndex == 4)
+            {
+                node[index] = new FieldNode(4, name, filenameOfString);
+            }
+        }
+
+        private void newFieldBtn_Click(object sender, EventArgs e) // Клик по кнопке на панели слева
+        {
+
+            ParametresPanel.Visible = true;
+            showParametresPanel();
+            int index = 0;
+            foreach (Button b in leftBtn)
+            {
+                if (b == sender)
+                    clickedBtnIndex = index;
+                if (b != null)
+                    b.BackColor = Color.Azure;
+                index++;
+            }
+            Button temp = (Button)sender;
+            temp.BackColor = Color.Aqua;
+
+            int type = node[clickedBtnIndex].type;
+            ParCB.SelectedIndex = type;
+            ParNameTB.Text = node[clickedBtnIndex].name;
+
+            if (type == 0) // строка  //ТУТ ПРОИСХОДИТ ЗАПОЛНЕНИЕ ПАРАМЕТРОВ ДЛЯ ИХ ВОЗМОЖНОГО ИЗМЕНЕНИЯ ПОЛЬЗОВАТЕЛЕМ
+            {
+                clearParametresPanel();
+                StringPanel.Visible = true;
+                fd.FileName = node[clickedBtnIndex].pathToFile;
+            }
+            if (type == 1) // диапазон
+            {
+                clearParametresPanel();
+                RangePanel.Visible = true;
+                ParRangeFrom.Text = node[clickedBtnIndex].from.ToString();
+                ParRangeTo.Text = node[clickedBtnIndex].to.ToString();
+            }
+            if (type == 2) // дата
+            {
+                clearParametresPanel();
+                DatePanel.Visible = true;
+                ParDateCB.SelectedItem = node[clickedBtnIndex].dateFormat;
+                ParDateFrom.Value = node[clickedBtnIndex].dfrom;
+                ParDateTo.Value = node[clickedBtnIndex].dto;
+            }
+            if (type == 3) // последовательность
+            {
+                clearParametresPanel();
+                SeqPanel.Visible = true;
+                ParSeqFrom.Text = node[clickedBtnIndex].from.ToString();
+                ParSeqStep.Text = node[clickedBtnIndex].to.ToString(); 
+            }
+            if (type == 4) // строка посл
+            {
+                clearParametresPanel();
+                StringPanel.Visible = true;
+                fd.FileName = node[clickedBtnIndex].pathToFile;
+            }
+
+            ParametresPanel.Location = new Point(ParametresPanel.Location.X, 100);
+            descriptionShow();
         }
 
         private void ParOKBtn_Click(object sender, EventArgs e) // Клик ОК в панели Параметров
         {
-            if (ParCB.SelectedIndex == 0)
-            {
-                //FieldNode fieldNode.Add(FieldNode(int type, string filename));
-            }
-            if (ParCB.SelectedIndex == 1)
-            {
-                //FieldNode fieldNode.Add(FieldNode(int type, int from, int to));
-            }
-            if (ParCB.SelectedIndex == 2)
-            {
-                //FieldNode fieldNode.Add(FieldNode(int type, string dateformat));
-            }
-            if (ParCB.SelectedIndex == 3)
-            {
-                //FieldNode fieldNode.Add(FieldNode(int type, int from, int step));
-            }
+            
+            
             clearParametresPanel();
             nothingShow();
             if (clickedBtnIndex == -1) // если мы добавляем поле
                 NewButton();
-            else                       // если мы изменяем поле
-            {
-                //МЕНЯЕМ ПАРАМЕТРЫ ПОЛЯ В FileNode[]
-
-            }
-
+            saveField(); // сохраняем изменения в FieldNode
         }
 
         private void button1_Click(object sender, EventArgs e) // открытие диалога выбора файла со строками
         {
-            OpenFileDialog fd = new OpenFileDialog();
+            //OpenFileDialog fd = new OpenFileDialog();
             fd.ShowDialog();
             string name = fd.FileName;
-            MessageBox.Show(name);
+            filenameOfString = name;
         }
 
         private void NewButton() // добавление новой кнопки
@@ -122,36 +217,17 @@ namespace qaMagic
             newFieldBtn.Visible = true;
             newFieldBtn.Text = ParNameTB.Text;
             newFieldBtn.BackColor = Color.Azure;
+            newFieldBtn.Font = new Font("Segoe UI", 12);
+            
+
             LeftPanel.Controls.Add(newFieldBtn);
             newFieldBtn.Click += new System.EventHandler(this.newFieldBtn_Click);
             leftBtn[tBtn++] = newFieldBtn;
         }
 
-        private void newFieldBtn_Click(object sender, EventArgs e) // Клик по кнопке на панели слева
-        {
-           
-            ParametresPanel.Visible = true;
-            showParametresPanel();
-            //ЗДЕСЬ ПОДСТАВИТЬ ПАРАМЕТРЫ ИЗ FieldNode[]
-            int index = 0;
-            foreach (Button b in leftBtn)
-            {
-                if (b == sender)
-                    clickedBtnIndex = index;
-                if (b != null)
-                    b.BackColor = Color.Azure;
-                index++;
-            }
-            Button temp = (Button)sender;
-            temp.BackColor = Color.Aqua;
-
-            ParametresPanel.Location = new Point(ParametresPanel.Location.X, 100);
-            descriptionShow();
-        }
-
         private void ParDelBtn_Click(object sender, EventArgs e) // Клик по кнопке удаления
         {
-            //удаление из массива FieldNode[];
+            
             if (clickedBtnIndex == -1)
                 throw new FormatException();
 
@@ -166,6 +242,7 @@ namespace qaMagic
             for (int i = clickedBtnIndex + 1; i < leftBtn.Length; i++)
             {
                 leftBtn[i - 1] = leftBtn[i];
+                node[i - 1] = node[i];
                 if (leftBtn[i] == null)
                     break;
                 leftBtn[i - 1].Location = new Point(leftBtn[i - 1].Location.X, leftBtn[i - 1].Location.Y - deltaY);
@@ -241,7 +318,7 @@ namespace qaMagic
 
         private void OptPathBtn_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sd = new SaveFileDialog();
+            //SaveFileDialog sd = new SaveFileDialog();
             sd.ShowDialog();
             string name = sd.FileName;
             MessageBox.Show(name);

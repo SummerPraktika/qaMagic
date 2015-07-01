@@ -9,13 +9,14 @@ namespace qaMagic
 {
     class FieldNode
     {
-        HashSet<string> data = new HashSet<string>();
-        int type;
-        string name;
-        string pathToFile;
-        string dateFormat;
-        int from, to;
-        int start, step;
+        List<string> data = new List<string>();
+        public int type;
+        public string name;
+        public string pathToFile;
+        public string dateFormat;
+        public int from, to;
+        public DateTime dfrom, dto;
+        public int start, step;
 
         public FieldNode(int type, string name, string pathToFile)
         {
@@ -33,13 +34,13 @@ namespace qaMagic
             this.to = to;
         }
 
-        public FieldNode(int type, string name, string dateFormat, int from, int to)
+        public FieldNode(int type, string name, string dateFormat, DateTime dfrom, DateTime dto)
         {
             this.type = type;
             this.name = name;
             this.dateFormat = dateFormat;
-            this.from = from;
-            this.to = to;
+            this.dfrom = dfrom;
+            this.dto = dto;
         }
 
         public FieldNode(string name, int type, int start, int step)
@@ -83,8 +84,8 @@ namespace qaMagic
         string getRndDate()
         {
             Random day = new Random();
-            long ticks = new DateTime(this.from, 01, 01, 00, 00, 0).Ticks;
-            DateTime date = new DateTime(ticks).AddDays(day.Next(0, (this.to - this.from) * 365));
+            long ticks = dfrom.Ticks;
+            DateTime date = new DateTime(ticks).AddDays(day.Next(0, (this.dto.Year - this.dfrom.Year) * 365));
 
             return leadToFormat(date);
         }
