@@ -549,10 +549,13 @@ namespace qaMagic
                     }
 
                 }
-            } catch (ArgumentException) {
+            }
+            catch (ArgumentException)
+            {
                 MessageBox.Show("Выберите путь сохранения в опциях!");
                 return;
             }
+            catch (FileLoadException) { }
             MessageBox.Show("Генерация выполнена");
         }
 
