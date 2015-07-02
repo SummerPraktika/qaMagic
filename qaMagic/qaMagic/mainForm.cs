@@ -14,13 +14,12 @@ namespace qaMagic
     public partial class mainForm : Form
     {
         private int locationX = 20, locationY = 25, deltaY = 40; // Исходные параметры для кнопок - в панели слева
-        //private FieldNode[] fileNode = new FieldNode[60]; - массив параметров, НУЖЕН КЛАСС ПАРАМЕТРОВ, конструкторы ниже
         private Button[] leftBtn = new Button[60]; // массив всех кнопок
         int tBtn = 0; //текущий номер кнопки 
         int clickedBtnIndex = -1; //номер нажатой кнопки, -1 - не нажата
         private string filenameOfString;
         private string divider = ".";
-
+        private string OpenFileName = "";
         FieldNode[] node = new FieldNode[100]; // Массив полей
 
         public mainForm()
@@ -460,7 +459,7 @@ namespace qaMagic
         {
             //SaveFileDialog sd = new SaveFileDialog();
             sd.ShowDialog();
-            string name = sd.FileName;
+            OpenFileName = sd.FileName;
             //MessageBox.Show(name);
         }
 
@@ -577,6 +576,33 @@ namespace qaMagic
         private void GenerateBtn_Click(object sender, EventArgs e)
         {
             Generate();
+        }
+
+        private void OpenFolder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (OpenFileName != "")
+                {
+                    System.Diagnostics.Process.Start("explorer", OpenFileName);
+                }
+                else 
+                {
+                    MessageBox.Show("Сгенерируйте файл"); 
+                }
+                
+
+            }
+            catch (Win32Exception) 
+            {
+                MessageBox.Show("Невозможно открыть");
+            }
+            catch (ObjectDisposedException) { }
+            catch (FileNotFoundException) 
+            { 
+                MessageBox.Show("Сгенерируйте файл"); 
+            }
+
         }
 
 
