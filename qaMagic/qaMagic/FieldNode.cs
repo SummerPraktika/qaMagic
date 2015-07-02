@@ -17,6 +17,7 @@ namespace qaMagic
         public int from, to;
         public DateTime dfrom, dto;
         public int start, step;
+        Random rand = new Random();
 
         public FieldNode(int type, string name, string pathToFile)
         {
@@ -55,37 +56,37 @@ namespace qaMagic
         {
             string line;
 
-            StreamReader file = new StreamReader(pathToFile, Encoding.Default);
-            while ((line = file.ReadLine()) != null)
+            using (StreamReader file = new StreamReader(pathToFile, Encoding.Default))
             {
-                this.data.Add(line);
+                while ((line = file.ReadLine()) != null)
+                {
+                    this.data.Add(line);
+                }
             }
         }
 
-        string getRndString()
+        public string getRndString()
         {
-            Random rand = new Random();
             return this.data.ElementAt(rand.Next(0, this.data.Count));
         }
 
-        int getRndNumber()
+        public int getRndNumber()
         {
-            Random rand = new Random();
             return rand.Next(from, to);
         }
 
-        int getSequenceNumber()
+        public int getSequenceNumber()
         {
             int number = this.start;
             this.start = this.start + this.step;
             return number;
         }
 
-        string getRndDate()
+        public string getRndDate()
         {
-            Random day = new Random();
+
             long ticks = dfrom.Ticks;
-            DateTime date = new DateTime(ticks).AddDays(day.Next(0, (this.dto.Year - this.dfrom.Year) * 365));
+            DateTime date = new DateTime(ticks).AddDays(rand.Next(0, (this.dto.Year - this.dfrom.Year) * 365));
 
             return leadToFormat(date);
         }
@@ -102,6 +103,13 @@ namespace qaMagic
                 }
             }
             return date.ToString("dd.MM.yyyy");
+        }
+
+
+
+        public string getSequentialString(int index)
+        {
+            return this.data.ElementAt(index);
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace qaMagic
 {
@@ -18,6 +19,7 @@ namespace qaMagic
         int tBtn = 0; //текущий номер кнопки 
         int clickedBtnIndex = -1; //номер нажатой кнопки, -1 - не нажата
         private string filenameOfString;
+        private string divider = ".";
 
         FieldNode[] node = new FieldNode[100]; // Массив полей
 
@@ -108,7 +110,7 @@ namespace qaMagic
             }
             if (ParCB.SelectedIndex == 3)
             {
-                node[index] = new FieldNode(3, name, int.Parse(ParSeqFrom.Text), int.Parse(ParSeqStep.Text));
+                node[index] = new FieldNode(name, 3, int.Parse(ParSeqFrom.Text), int.Parse(ParSeqStep.Text));
             }
             if (ParCB.SelectedIndex == 4)
             {
@@ -116,9 +118,52 @@ namespace qaMagic
             }
         }
 
+        private void FieldUpBtn_Click(object sender, EventArgs e)
+        {
+            FieldUpBtn.Enabled = true; // Кнопки перемещения поля вверх
+            FieldDownBtn.Enabled = true;
+            FieldNode tmp = node[clickedBtnIndex - 1];
+            node[clickedBtnIndex - 1] = node[clickedBtnIndex];
+            node[clickedBtnIndex] = tmp;
+
+            string name = leftBtn[clickedBtnIndex - 1].Text;
+            leftBtn[clickedBtnIndex - 1].Text = leftBtn[clickedBtnIndex].Text;
+            leftBtn[clickedBtnIndex].Text = name;
+
+            leftBtn[clickedBtnIndex - 1].BackColor = Color.Aqua;
+            leftBtn[clickedBtnIndex].BackColor = Color.Azure;
+
+            clickedBtnIndex--;
+
+            if (clickedBtnIndex == 0)
+                FieldUpBtn.Enabled = false;
+        }
+
+        private void FieldDownBtn_Click(object sender, EventArgs e)
+        {
+            FieldUpBtn.Enabled = true; // Кнопки перемещения поля вниз
+            FieldDownBtn.Enabled = true;
+
+            FieldNode tmp = node[clickedBtnIndex + 1];
+            node[clickedBtnIndex + 1] = node[clickedBtnIndex];
+            node[clickedBtnIndex] = tmp;
+
+            string name = leftBtn[clickedBtnIndex + 1].Text;
+            leftBtn[clickedBtnIndex + 1].Text = leftBtn[clickedBtnIndex].Text;
+            leftBtn[clickedBtnIndex].Text = name;
+
+            leftBtn[clickedBtnIndex + 1].BackColor = Color.Aqua;
+            leftBtn[clickedBtnIndex].BackColor = Color.Azure;
+
+            clickedBtnIndex++;
+
+            if (clickedBtnIndex == tBtn - 1)
+                FieldDownBtn.Enabled = false;
+
+        }
+
         private void newFieldBtn_Click(object sender, EventArgs e) // Клик по кнопке на панели слева
         {
-
             ParametresPanel.Visible = true;
             showParametresPanel();
             int index = 0;
@@ -132,6 +177,13 @@ namespace qaMagic
             }
             Button temp = (Button)sender;
             temp.BackColor = Color.Aqua;
+
+            FieldUpBtn.Enabled = true; // Кнопки перемещения поля вверх / вниз
+            FieldDownBtn.Enabled = true;
+            if (clickedBtnIndex == 0)
+                FieldUpBtn.Enabled = false;
+            if (clickedBtnIndex == tBtn - 1)
+                FieldDownBtn.Enabled = false;
 
             int type = node[clickedBtnIndex].type;
             ParCB.SelectedIndex = type;
@@ -162,8 +214,8 @@ namespace qaMagic
             {
                 clearParametresPanel();
                 SeqPanel.Visible = true;
-                ParSeqFrom.Text = node[clickedBtnIndex].from.ToString();
-                ParSeqStep.Text = node[clickedBtnIndex].to.ToString(); 
+                ParSeqFrom.Text = node[clickedBtnIndex].start.ToString();
+                ParSeqStep.Text = node[clickedBtnIndex].step.ToString(); 
             }
             if (type == 4) // строка посл
             {
@@ -178,8 +230,88 @@ namespace qaMagic
 
         private void ParOKBtn_Click(object sender, EventArgs e) // Клик ОК в панели Параметров
         {
-            
-            
+
+            int type = ParCB.SelectedIndex;
+            if (ParNameTB.Text == "")
+            {
+                MessageBox.Show("Введите название поля");
+                return;
+            }
+            if (type == 0) // строка
+            {
+                if (fd.FileName == "")
+                {
+                    MessageBox.Show("Выберите файл для генерации");
+                    return;
+                }
+            }
+            if (type == 1) // диапазон
+            {
+                Int64 a = 0, b = 0;
+                if (ParRangeFrom.Text == "" || ParRangeFrom.Text == "")
+                {
+                    MessageBox.Show("Введите значения поля / полей");
+                    return;
+                }
+                try
+                {
+                    a = Int64.Parse(ParRangeFrom.Text);
+                    b = Int64.Parse(ParRangeTo.Text);
+                }
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Введите значения поля / полей");
+                    return;
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Неверный формат ввода");
+                    return;
+                }
+
+
+                if (a > b)
+                {
+                    MessageBox.Show("Начало диапазона не должно быть больше конца диапазона");
+                    return;
+                }
+
+            }
+            if (type == 2) // дата
+            {
+                if (ParDateFrom.Value > ParDateTo.Value)
+                {
+                    MessageBox.Show("Начало диапазона дат не должно быть больше конца диапазона дат");
+                    return;
+                }
+            }
+            if (type == 3) // последовательность
+            {
+                Int64 a = 0, b = 0;
+                if (ParSeqFrom.Text == "" || ParSeqStep.Text == "")
+                {
+                    MessageBox.Show("Введите значения поля / полей");
+                    return;
+                }
+                try
+                {
+                    a = Int64.Parse(ParSeqFrom.Text);
+                    b = Int64.Parse(ParSeqStep.Text);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Неверный формат ввода");
+                    return;
+                }
+            }
+            if (type == 4) // строка посл
+            {
+                if (fd.FileName == "")
+                {
+                    MessageBox.Show("Выберите файл для генерации");
+                    return;
+                }
+            }
             clearParametresPanel();
             nothingShow();
             if (clickedBtnIndex == -1) // если мы добавляем поле
@@ -277,6 +409,8 @@ namespace qaMagic
             InfoL.Text = "Параметры";
             DescriptionL.Visible = false;
             ParDelBtn.Visible = false;
+            FieldUpBtn.Visible = false;
+            FieldDownBtn.Visible = false;
             ParametresPanel.Visible = true;
             OptionsPanel.Visible = false;
         }
@@ -287,6 +421,8 @@ namespace qaMagic
             DescriptionL.Visible = true;
             DescriptionL.Text = "Описание...."; // здесь нужно что-то вставлять
             ParDelBtn.Visible = true;
+            FieldUpBtn.Visible = true;
+            FieldDownBtn.Visible = true;
             ParametresPanel.Visible = true;
             OptionsPanel.Visible = false;
         }
@@ -296,6 +432,8 @@ namespace qaMagic
             InfoL.Text = "Опции";
             DescriptionL.Visible = false;
             ParDelBtn.Visible = false;
+            FieldUpBtn.Visible = false;
+            FieldDownBtn.Visible = false;
             ParametresPanel.Visible = false;
             OptionsPanel.Visible = true;
         }
@@ -305,6 +443,8 @@ namespace qaMagic
             InfoL.Text = "";
             DescriptionL.Visible = false;
             ParDelBtn.Visible = false;
+            FieldUpBtn.Visible = false;
+            FieldDownBtn.Visible = false;
             ParametresPanel.Visible = false;
             OptionsPanel.Visible = false;
         }
@@ -321,11 +461,31 @@ namespace qaMagic
             //SaveFileDialog sd = new SaveFileDialog();
             sd.ShowDialog();
             string name = sd.FileName;
-            MessageBox.Show(name);
+            //MessageBox.Show(name);
         }
 
         private void OptOKBtn_Click(object sender, EventArgs e)
         {
+            if (sd.FileName == "")
+            {
+                MessageBox.Show("Выберите файл для генерации");
+                return;
+            }
+            Int64 a = 0;
+            if (OptCountLines.Text == "")
+            {
+                MessageBox.Show("Введите значения поля - количество генерируемых строк");
+                return;
+            }
+            try
+            {
+                a = Int64.Parse(OptCountLines.Text);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Неверный формат ввода");
+                return;
+            }
             nothingShow();
         }
         /* ОПЦИИ END */
@@ -338,5 +498,87 @@ namespace qaMagic
                     b.BackColor = Color.Azure;
             }
         }
+
+        private void Generate() // Показ панели описания
+        {
+            string st = "";
+            if (node[0] == null)
+            {
+                MessageBox.Show("Выберите хотя бы одно поле");
+                return;
+            }
+            try
+            {
+                using (FileStream fs = new FileStream(sd.FileName, FileMode.Create))
+                {
+                    using (StreamWriter writer = new StreamWriter(fs, Encoding.GetEncoding(OptEncodeCB.SelectedItem.ToString())))
+                    {
+                        for (int i = 0; i < int.Parse(OptCountLines.Text); i++)
+                        {
+
+                            foreach (FieldNode a in node)
+                            {
+                                if (a == null)
+                                    break;
+                                if (a.type == 0)
+                                {
+                                    st += a.getRndString().ToString() + divider;//  вызов функции печати для поля со строками
+                                }
+                                if (a.type == 1)
+                                {
+                                    st += a.getRndNumber().ToString() + divider; // вызов функции печати для поля c рандомным числом из промежутка
+                                }
+                                if (a.type == 2)
+                                {
+                                    st += a.getRndDate() + divider; // вызов функции печати для поля дат
+                                }
+                                if (a.type == 3)
+                                {
+                                    st += a.getSequenceNumber().ToString() + divider; // вызов функции печати для поля c Шагом
+                                }
+                                if (a.type == 4)
+                                {
+                                    st += a.getSequentialString(i).ToString() + divider;//  вызов функции печати для поля со строками
+                                }
+                            }
+                            st += "\n";
+                            writer.Write(st);
+                            st = "";
+                        }
+
+                    }
+
+                }
+            } catch (ArgumentException) {
+                MessageBox.Show("Выберите путь сохранения в опциях!");
+                return;
+            }
+            MessageBox.Show("Генерация выполнена");
+        }
+
+        private void OptDivCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (OptDivCB.SelectedIndex == 0)
+                divider = ".";
+            if (OptDivCB.SelectedIndex == 1)
+                divider = ",";
+            if (OptDivCB.SelectedIndex == 2)
+                divider = ";";
+            if (OptDivCB.SelectedIndex == 3)
+                divider = " ";
+            if (OptDivCB.SelectedIndex == 4)
+                divider = "\t";
+        }
+
+        private void GenerateBtn_Click(object sender, EventArgs e)
+        {
+            Generate();
+        }
+
+
+
+
+
+
     }
 }
