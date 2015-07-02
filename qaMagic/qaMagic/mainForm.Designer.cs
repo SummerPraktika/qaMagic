@@ -160,9 +160,9 @@
             // 
             // RightPanel
             // 
+            this.RightPanel.Controls.Add(this.OptionsPanel);
             this.RightPanel.Controls.Add(this.ParametresPanel);
             this.RightPanel.Controls.Add(this.DescriptionL);
-            this.RightPanel.Controls.Add(this.OptionsPanel);
             this.RightPanel.Location = new System.Drawing.Point(443, 94);
             this.RightPanel.Name = "RightPanel";
             this.RightPanel.Size = new System.Drawing.Size(820, 484);
@@ -656,6 +656,10 @@
             this.OptionsBtn.Text = "Опции";
             this.OptionsBtn.UseVisualStyleBackColor = true;
             this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
+            // 
+            // sd
+            // 
+            this.sd.Filter = "CSV-файлы (*.csv)|*.csv|Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
             // 
             // FieldUpBtn
             // 
