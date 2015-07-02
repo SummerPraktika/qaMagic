@@ -504,6 +504,7 @@
             // 
             this.OptCountLines.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.OptCountLines.Location = new System.Drawing.Point(275, 313);
+            this.OptCountLines.MaxLength = 18;
             this.OptCountLines.Name = "OptCountLines";
             this.OptCountLines.Size = new System.Drawing.Size(170, 29);
             this.OptCountLines.TabIndex = 10;
@@ -514,9 +515,9 @@
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.Location = new System.Drawing.Point(36, 305);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(170, 42);
+            this.label8.Size = new System.Drawing.Size(170, 63);
             this.label8.TabIndex = 9;
-            this.label8.Text = "Выберите количество \r\nгенерируемых строк";
+            this.label8.Text = "Выберите количество \r\nгенерируемых строк\r\n(от 1 до 1000000)";
             // 
             // OptOKBtn
             // 

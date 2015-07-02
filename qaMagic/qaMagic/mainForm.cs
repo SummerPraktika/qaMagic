@@ -472,9 +472,9 @@ namespace qaMagic
                 return;
             }
             Int64 a = 0;
-            if (OptCountLines.Text == "")
+            if (OptCountLines.Text == "" || Int64.Parse(OptCountLines.Text) < 1 || Int64.Parse(OptCountLines.Text) > 1000000)
             {
-                MessageBox.Show("Введите значения поля - количество генерируемых строк");
+                MessageBox.Show("Введите значения поля - количество генерируемых строк от 1 до 1000000");
                 return;
             }
             try
@@ -487,6 +487,7 @@ namespace qaMagic
                 return;
             }
             nothingShow();
+            MessageBox.Show("Сохранено");
         }
         /* ОПЦИИ END */
 
