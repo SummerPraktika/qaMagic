@@ -1,0 +1,11 @@
+C:\Users\Иван\Documents\Visual Studio 2013\Projects\QA Helper\QA Helper\bin\Release\QA Helper.exe.config
+C:\Users\Иван\Documents\Visual Studio 2013\Projects\QA Helper\QA Helper\bin\Release\QA Helper.exe
+C:\Users\Иван\Documents\Visual Studio 2013\Projects\QA Helper\QA Helper\bin\Release\QA Helper.pdb
+C:\Users\Иван\Documents\Visual Studio 2013\Projects\QA Helper\QA Helper\obj\Release\QA_Helper.Form1.resources
+C:\Users\Иван\Documents\Visual Studio 2013\Projects\QA Helper\QA Helper\obj\Release\QA_Helper.Properties.Resources.resources
+C:\Users\Иван\Documents\Visual Studio 2013\Projects\QA Helper\QA Helper\obj\Release\QA_Helper.settingsForm.resources
+C:\Users\Иван\Documents\Visual Studio 2013\Projects\QA Helper\QA Helper\obj\Release\QA Helper.csproj.GenerateResource.Cache
+C:\Users\Иван\Documents\Visual Studio 2013\Projects\QA Helper\QA Helper\obj\Release\QA Helper.exe
+C:\Users\Иван\Documents\Visual Studio 2013\Projects\QA Helper\QA Helper\obj\Release\QA Helper.pdb
+C:\Users\Иван\Documents\Visual Studio 2013\Projects\QA Helper\QA Helper\obj\Release\QA Helper.csprojResolveAssemblyReference.cache
+C:\Users\Иван\Documents\Visual Studio 2013\Projects\QA Helper\QA Helper\obj\Release\QA_Helper.MessageDialog.resources
