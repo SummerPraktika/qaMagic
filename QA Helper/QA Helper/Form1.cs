@@ -29,7 +29,7 @@ namespace QA_Helper
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            this.commonAddPanel.Show();
+            this.commonAddPanel.Show(); // Отобразить панель добавления поля
            
         }
 
@@ -38,7 +38,7 @@ namespace QA_Helper
 
         }
 
-        private void settingButton_Click(object sender, EventArgs e)
+        private void settingButton_Click(object sender, EventArgs e) // Отображает окошко с настройками
         {
             settingsForm form = new settingsForm();
             form.StartPosition = FormStartPosition.Manual;
@@ -46,16 +46,16 @@ namespace QA_Helper
             form.Show(this);
         }
 
-        private void applyFieldButton_Click(object sender, EventArgs e)
+        private void applyFieldButton_Click(object sender, EventArgs e) // Добавляет поле в tableLayoutPanel и сохраняет параметры для поля
         {
             if (this.typeBox.SelectedIndex == 0)
             {
                 if (pathToFile != "")
                 {
                     node = new FieldNode(this, 0, this.nameTxt.Text, pathToFile);
-                    this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
-                    this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
-                    this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);
+                    this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount); // Добавление в конец tableLayoutPanel в 1 колонку
+                    this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);  // Добавление в конец tableLayoutPanel во 2 колонку
+                    this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);  // Добавление в конец tableLayoutPanel в 3 колонку
                     node.fieldButton.Text = this.nameTxt.Text;
                     nodes.Add(node);
 
@@ -128,7 +128,7 @@ namespace QA_Helper
             }
         }
 
-        private void chooseButton_Click(object sender, EventArgs e)
+        private void chooseButton_Click(object sender, EventArgs e) // Отображает окошко выбора файла
         {
             OpenFileDialog fbd = new OpenFileDialog();
             DialogResult result = fbd.ShowDialog();
@@ -142,7 +142,7 @@ namespace QA_Helper
             }
         }
 
-        private void typeBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void typeBox_SelectedIndexChanged(object sender, EventArgs e) // Скрывает и показывает нужные элементы в соответствии с выбранным типом
         {
             clearParametersPanel();
 

@@ -490,41 +490,41 @@ namespace QA_Helper
 
         #endregion
 
-        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.StatusStrip statusStrip; // Статусная строка в низу окошка
         private System.Windows.Forms.ToolStripStatusLabel tooltip;
-        private System.Windows.Forms.Panel welcomePanel;
-        private System.Windows.Forms.Panel controlPanel;
-        private System.Windows.Forms.Button settingButton;
-        private System.Windows.Forms.Button addButton;
-        private System.Windows.Forms.Button generateButton;
-        private System.Windows.Forms.TextBox aboutText;
+        private System.Windows.Forms.Panel welcomePanel; // Панель, отображающая лого и приветственный текст
+        private System.Windows.Forms.Panel controlPanel; // Панель с кнопками ДОбавить, Генерировать, Настройки
+        private System.Windows.Forms.Button settingButton; // Кнопка настроек
+        private System.Windows.Forms.Button addButton; // Кнопка добавления
+        private System.Windows.Forms.Button generateButton; // Кнопка генерации
+        private System.Windows.Forms.TextBox aboutText; // Приветственный текст (Приложение позволяет генерировать..)
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button fieldButton;
-        private System.Windows.Forms.Button editButton;
-        private System.Windows.Forms.Button deleteButton;
-        public TablePanel tableLayoutPanel;
-        private PictureBox pictureBox1;
-        private Panel commonAddPanel;
-        private Button chooseButton;
-        private Label chooseLabel;
-        private TextBox nameTxt;
-        private Label nameLbl;
-        private Label typeLbl;
-        private ComboBox typeBox;
+        private System.Windows.Forms.Button fieldButton; // Кнопка с именем поля в tableLayoutPanel
+        private System.Windows.Forms.Button editButton; // Кнопка редактирования поля в tableLayoutPanel
+        private System.Windows.Forms.Button deleteButton; // Кнопка удаления поля в tableLayoutPanel
+        public TablePanel tableLayoutPanel; // Панель, содержащая узлы добавляемых полей. Узел в виде: Кнопка с именем поля, кнопка редактирования, кнопка удаления
+        private PictureBox pictureBox1; // Логотип
+        private Panel commonAddPanel; // Панель, появляющаяся после нажатия кнопки "Добавить"
+        private Button chooseButton; // Кнопка выбора файла со строками для типа "строка"
+        private Label chooseLabel; // Label рядом с кнопкой chooseButton
+        private TextBox nameTxt; // Для ввода имени поля
+        private Label nameLbl; // Label для текст. поля nameTxt
+        private Label typeLbl; // Label для typeBox
+        private ComboBox typeBox; // Выпадающий список для выбора типа поля
         private Label addInfo;
-        private Button applyFieldButton;
-        private TextBox rangeToTxt;
-        private TextBox rangeFromTxt;
-        private Label rangeLbl;
-        private Label seqStepLbl;
-        private TextBox seqStepTxt;
-        private TextBox seqFromTxt;
-        private Label seqFromLbl;
-        private DateTimePicker datePickerTo;
-        private DateTimePicker datePickerFrom;
-        private Label datePariodLbl;
-        private Label dateFormatLbl;
-        private ComboBox dateFormatCbox;
+        private Button applyFieldButton; // Добавить поле после ввода параметров
+        private TextBox rangeToTxt; // Для ввода начала диапазона
+        private TextBox rangeFromTxt; // Для ввода конца диапазона
+        private Label rangeLbl; // Label для rangeToTxt и rangeFromTxt
+        private Label seqStepLbl; // Label для seqStepTxt
+        private TextBox seqStepTxt; // Для шага последовательности
+        private TextBox seqFromTxt; // Для начала последовательности
+        private Label seqFromLbl; // Label для seqFromTxt
+        private DateTimePicker datePickerTo; // Выбор даты "от"
+        private DateTimePicker datePickerFrom; // Выбор даты "до"
+        private Label datePariodLbl; // Label для datePicker
+        private Label dateFormatLbl; // Label для dateFormat
+        private ComboBox dateFormatCbox; // Выпадающий список для выбора форматы даты
     }
 }
 
