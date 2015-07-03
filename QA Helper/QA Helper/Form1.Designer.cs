@@ -60,7 +60,7 @@ namespace QA_Helper
             this.seqFromTxt = new System.Windows.Forms.TextBox();
             this.seqStepTxt = new System.Windows.Forms.TextBox();
             this.seqStepLbl = new System.Windows.Forms.Label();
-            this.tableLayoutPanel = new QA_Helper.TablePanel();
+            this.tableLayoutPanel = new TablePanel();
             this.dateFormatCbox = new System.Windows.Forms.ComboBox();
             this.dateFormatLbl = new System.Windows.Forms.Label();
             this.datePariodLbl = new System.Windows.Forms.Label();
@@ -300,7 +300,7 @@ namespace QA_Helper
             this.typeBox.Location = new System.Drawing.Point(110, 41);
             this.typeBox.Name = "typeBox";
             this.typeBox.Size = new System.Drawing.Size(175, 21);
-            this.typeBox.TabIndex = 10;
+            this.typeBox.SelectedIndex = 0;
             this.typeBox.SelectedIndexChanged += new System.EventHandler(this.typeBox_SelectedIndexChanged);
             // 
             // addInfo
@@ -420,7 +420,7 @@ namespace QA_Helper
             this.dateFormatCbox.Location = new System.Drawing.Point(110, 101);
             this.dateFormatCbox.Name = "dateFormatCbox";
             this.dateFormatCbox.Size = new System.Drawing.Size(175, 21);
-            this.dateFormatCbox.TabIndex = 18;
+            this.dateFormatCbox.SelectedIndex = 0;
             this.dateFormatCbox.Visible = false;
             // 
             // dateFormatLbl
@@ -490,41 +490,41 @@ namespace QA_Helper
 
         #endregion
 
-        private System.Windows.Forms.StatusStrip statusStrip; // Статусная строка в низу окошка
-        private System.Windows.Forms.ToolStripStatusLabel tooltip;
-        private System.Windows.Forms.Panel welcomePanel; // Панель, отображающая лого и приветственный текст
-        private System.Windows.Forms.Panel controlPanel; // Панель с кнопками ДОбавить, Генерировать, Настройки
-        private System.Windows.Forms.Button settingButton; // Кнопка настроек
-        private System.Windows.Forms.Button addButton; // Кнопка добавления
-        private System.Windows.Forms.Button generateButton; // Кнопка генерации
-        private System.Windows.Forms.TextBox aboutText; // Приветственный текст (Приложение позволяет генерировать..)
-        private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button fieldButton; // Кнопка с именем поля в tableLayoutPanel
-        private System.Windows.Forms.Button editButton; // Кнопка редактирования поля в tableLayoutPanel
-        private System.Windows.Forms.Button deleteButton; // Кнопка удаления поля в tableLayoutPanel
-        public TablePanel tableLayoutPanel; // Панель, содержащая узлы добавляемых полей. Узел в виде: Кнопка с именем поля, кнопка редактирования, кнопка удаления
-        private PictureBox pictureBox1; // Логотип
-        private Panel commonAddPanel; // Панель, появляющаяся после нажатия кнопки "Добавить"
-        private Button chooseButton; // Кнопка выбора файла со строками для типа "строка"
-        private Label chooseLabel; // Label рядом с кнопкой chooseButton
-        private TextBox nameTxt; // Для ввода имени поля
-        private Label nameLbl; // Label для текст. поля nameTxt
-        private Label typeLbl; // Label для typeBox
-        private ComboBox typeBox; // Выпадающий список для выбора типа поля
-        private Label addInfo;
-        private Button applyFieldButton; // Добавить поле после ввода параметров
-        private TextBox rangeToTxt; // Для ввода начала диапазона
-        private TextBox rangeFromTxt; // Для ввода конца диапазона
-        private Label rangeLbl; // Label для rangeToTxt и rangeFromTxt
-        private Label seqStepLbl; // Label для seqStepTxt
-        private TextBox seqStepTxt; // Для шага последовательности
-        private TextBox seqFromTxt; // Для начала последовательности
-        private Label seqFromLbl; // Label для seqFromTxt
-        private DateTimePicker datePickerTo; // Выбор даты "от"
-        private DateTimePicker datePickerFrom; // Выбор даты "до"
-        private Label datePariodLbl; // Label для datePicker
-        private Label dateFormatLbl; // Label для dateFormat
-        private ComboBox dateFormatCbox; // Выпадающий список для выбора форматы даты
+        public System.Windows.Forms.StatusStrip statusStrip;
+        public System.Windows.Forms.ToolStripStatusLabel tooltip;
+        public System.Windows.Forms.Panel welcomePanel;
+        public System.Windows.Forms.Panel controlPanel;
+        public System.Windows.Forms.Button settingButton;
+        public System.Windows.Forms.Button addButton;
+        public System.Windows.Forms.Button generateButton;
+        public System.Windows.Forms.TextBox aboutText;
+        public System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.Button fieldButton;
+        public System.Windows.Forms.Button editButton;
+        public System.Windows.Forms.Button deleteButton;
+        public TablePanel tableLayoutPanel;
+        public PictureBox pictureBox1;
+        public Panel commonAddPanel;
+        public Button chooseButton;
+        public Label chooseLabel;
+        public TextBox nameTxt;
+        public Label nameLbl;
+        public Label typeLbl;
+        public ComboBox typeBox;
+        public Label addInfo;
+        public Button applyFieldButton;
+        public TextBox rangeToTxt;
+        public TextBox rangeFromTxt;
+        public Label rangeLbl;
+        public Label seqStepLbl;
+        public TextBox seqStepTxt;
+        public TextBox seqFromTxt;
+        public Label seqFromLbl;
+        public DateTimePicker datePickerTo;
+        public DateTimePicker datePickerFrom;
+        public Label datePariodLbl;
+        public Label dateFormatLbl;
+        public ComboBox dateFormatCbox;
     }
 }
 
