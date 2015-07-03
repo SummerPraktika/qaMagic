@@ -15,8 +15,8 @@ namespace qaMagic
     {
         private int locationX = 20, locationY = 25, deltaY = 40; // Исходные параметры для кнопок - в панели слева
         private Button[] leftBtn = new Button[60]; // массив всех кнопок
-        int tBtn = 0; //текущий номер кнопки 
-        int clickedBtnIndex = -1; //номер нажатой кнопки, -1 - не нажата
+        long tBtn = 0; //текущий номер кнопки 
+        long clickedBtnIndex = -1; //номер нажатой кнопки, -1 - не нажата
         private string filenameOfString;
         private string divider = ".";
         private string OpenFileName = "";
@@ -89,11 +89,15 @@ namespace qaMagic
 
         private void saveField()
         {
-            int index = clickedBtnIndex; // Индекс нажатой кнопки
+            long index = clickedBtnIndex; // Индекс нажатой кнопки
             string name = ParNameTB.Text;
             if (clickedBtnIndex == -1) // Если добавляем новую кнопку
             {
                 index = tBtn - 1;          // то ставим индекс новой кнопки
+            }
+            else
+            {
+                leftBtn[clickedBtnIndex].Text = name; // изменяем имя кнопки в панели слева
             }
             if (ParCB.SelectedIndex == 0)
             {
@@ -101,7 +105,7 @@ namespace qaMagic
             }
             if (ParCB.SelectedIndex == 1)
             {
-                node[index] = new FieldNode(1, name, int.Parse(ParRangeFrom.Text), int.Parse(ParRangeTo.Text));
+                node[index] = new FieldNode(1, name, long.Parse(ParRangeFrom.Text), long.Parse(ParRangeTo.Text));
             }
             if (ParCB.SelectedIndex == 2)
             {
@@ -109,7 +113,7 @@ namespace qaMagic
             }
             if (ParCB.SelectedIndex == 3)
             {
-                node[index] = new FieldNode(name, 3, int.Parse(ParSeqFrom.Text), int.Parse(ParSeqStep.Text));
+                node[index] = new FieldNode(name, 3, long.Parse(ParSeqFrom.Text), long.Parse(ParSeqStep.Text));
             }
             if (ParCB.SelectedIndex == 4)
             {
@@ -165,7 +169,7 @@ namespace qaMagic
         {
             ParametresPanel.Visible = true;
             showParametresPanel();
-            int index = 0;
+            long index = 0;
             foreach (Button b in leftBtn)
             {
                 if (b == sender)
@@ -230,7 +234,8 @@ namespace qaMagic
         private void ParOKBtn_Click(object sender, EventArgs e) // Клик ОК в панели Параметров
         {
 
-            int type = ParCB.SelectedIndex;
+            long type = ParCB.SelectedIndex;
+            ParNameTB.Text = ParNameTB.Text.Trim(); // удаляем ненужные пробелы
             if (ParNameTB.Text == "")
             {
                 MessageBox.Show("Введите название поля");
@@ -246,7 +251,7 @@ namespace qaMagic
             }
             if (type == 1) // диапазон
             {
-                Int64 a = 0, b = 0;
+                long a = 0, b = 0;
                 if (ParRangeFrom.Text == "" || ParRangeFrom.Text == "")
                 {
                     MessageBox.Show("Введите значения поля / полей");
@@ -254,8 +259,8 @@ namespace qaMagic
                 }
                 try
                 {
-                    a = Int64.Parse(ParRangeFrom.Text);
-                    b = Int64.Parse(ParRangeTo.Text);
+                    a = long.Parse(ParRangeFrom.Text);
+                    b = long.Parse(ParRangeTo.Text);
                 }
                 catch (ArgumentNullException)
                 {
@@ -286,7 +291,7 @@ namespace qaMagic
             }
             if (type == 3) // последовательность
             {
-                Int64 a = 0, b = 0;
+                long a = 0, b = 0;
                 if (ParSeqFrom.Text == "" || ParSeqStep.Text == "")
                 {
                     MessageBox.Show("Введите значения поля / полей");
@@ -294,8 +299,13 @@ namespace qaMagic
                 }
                 try
                 {
-                    a = Int64.Parse(ParSeqFrom.Text);
-                    b = Int64.Parse(ParSeqStep.Text);
+                    a = long.Parse(ParSeqFrom.Text);
+                    b = long.Parse(ParSeqStep.Text);
+                    //if (b > (long.MaxValue - a) / 1000000)
+                    //{
+                    //    MessageBox.Show("Значения полей могут выйти за рамки переменных, уменьшите начальное значение или шаг");
+                    //    return;
+                    //}
                 }
                 catch (FormatException)
                 {
@@ -314,7 +324,7 @@ namespace qaMagic
             clearParametresPanel();
             nothingShow();
             if (clickedBtnIndex == -1) // если мы добавляем поле
-                NewButton();
+                NewButton(); 
             saveField(); // сохраняем изменения в FieldNode
         }
 
@@ -370,7 +380,7 @@ namespace qaMagic
                 leftBtn[clickedBtnIndex] = null;
                 tBtn--;
             }
-            for (int i = clickedBtnIndex + 1; i < leftBtn.Length; i++)
+            for (long i = clickedBtnIndex + 1; i < leftBtn.Length; i++)
             {
                 leftBtn[i - 1] = leftBtn[i];
                 node[i - 1] = node[i];
@@ -470,21 +480,28 @@ namespace qaMagic
                 MessageBox.Show("Выберите файл для генерации");
                 return;
             }
-            Int64 a = 0;
-            if (OptCountLines.Text == "" || Int64.Parse(OptCountLines.Text) < 1 || Int64.Parse(OptCountLines.Text) > 1000000)
+
+            if (OptCountLines.Text == "")
             {
                 MessageBox.Show("Введите значения поля - количество генерируемых строк от 1 до 1000000");
                 return;
             }
+            long a = 0;
             try
             {
-                a = Int64.Parse(OptCountLines.Text);
+                a = long.Parse(OptCountLines.Text);
             }
             catch (FormatException)
             {
                 MessageBox.Show("Неверный формат ввода");
                 return;
             }
+            if (long.Parse(OptCountLines.Text) < 1 || long.Parse(OptCountLines.Text) > 1000000)
+            {
+                MessageBox.Show("Введите значения поля - количество генерируемых строк от 1 до 1000000");
+                return;
+            }
+
             nothingShow();
             MessageBox.Show("Сохранено");
         }
@@ -604,11 +621,5 @@ namespace qaMagic
             }
 
         }
-
-
-
-
-
-
     }
 }

@@ -78,11 +78,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.DescriptionL = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.OpenFolder = new System.Windows.Forms.Button();
             this.GenerateBtn = new System.Windows.Forms.Button();
             this.OptionsBtn = new System.Windows.Forms.Button();
             this.fd = new System.Windows.Forms.OpenFileDialog();
             this.sd = new System.Windows.Forms.SaveFileDialog();
-            this.OpenFolder = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.LeftPanel.SuspendLayout();
             this.TopPanel.SuspendLayout();
             this.RightPanel.SuspendLayout();
@@ -161,9 +162,9 @@
             // 
             // RightPanel
             // 
-            this.RightPanel.Controls.Add(this.OptionsPanel);
             this.RightPanel.Controls.Add(this.ParametresPanel);
             this.RightPanel.Controls.Add(this.DescriptionL);
+            this.RightPanel.Controls.Add(this.OptionsPanel);
             this.RightPanel.Location = new System.Drawing.Point(443, 94);
             this.RightPanel.Name = "RightPanel";
             this.RightPanel.Size = new System.Drawing.Size(820, 484);
@@ -191,6 +192,7 @@
             // 
             this.OptCountLines.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.OptCountLines.Location = new System.Drawing.Point(275, 313);
+            this.OptCountLines.MaxLength = 18;
             this.OptCountLines.Name = "OptCountLines";
             this.OptCountLines.Size = new System.Drawing.Size(170, 29);
             this.OptCountLines.TabIndex = 10;
@@ -201,19 +203,20 @@
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.Location = new System.Drawing.Point(36, 305);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(170, 42);
+            this.label8.Size = new System.Drawing.Size(170, 63);
             this.label8.TabIndex = 9;
-            this.label8.Text = "Выберите количество \r\nгенерируемых строк";
+            this.label8.Text = "Выберите количество \r\nгенерируемых строк\r\n(от 1 до 1000000)";
             // 
             // OptOKBtn
             // 
+            this.OptOKBtn.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.OptOKBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OptOKBtn.Location = new System.Drawing.Point(588, 340);
+            this.OptOKBtn.Location = new System.Drawing.Point(560, 353);
             this.OptOKBtn.Name = "OptOKBtn";
-            this.OptOKBtn.Size = new System.Drawing.Size(105, 54);
+            this.OptOKBtn.Size = new System.Drawing.Size(125, 50);
             this.OptOKBtn.TabIndex = 8;
             this.OptOKBtn.Text = "ОК";
-            this.OptOKBtn.UseVisualStyleBackColor = true;
+            this.OptOKBtn.UseVisualStyleBackColor = false;
             this.OptOKBtn.Click += new System.EventHandler(this.OptOKBtn_Click);
             // 
             // OptPathBtn
@@ -314,6 +317,7 @@
             // 
             // ParametresPanel
             // 
+            this.ParametresPanel.Controls.Add(this.label3);
             this.ParametresPanel.Controls.Add(this.FieldDownBtn);
             this.ParametresPanel.Controls.Add(this.FieldUpBtn);
             this.ParametresPanel.Controls.Add(this.ParDelBtn);
@@ -322,10 +326,10 @@
             this.ParametresPanel.Controls.Add(this.ParTypeL);
             this.ParametresPanel.Controls.Add(this.ParCB);
             this.ParametresPanel.Controls.Add(this.ParOKBtn);
-            this.ParametresPanel.Controls.Add(this.SeqPanel);
             this.ParametresPanel.Controls.Add(this.RangePanel);
             this.ParametresPanel.Controls.Add(this.DatePanel);
             this.ParametresPanel.Controls.Add(this.StringPanel);
+            this.ParametresPanel.Controls.Add(this.SeqPanel);
             this.ParametresPanel.Location = new System.Drawing.Point(57, 38);
             this.ParametresPanel.Name = "ParametresPanel";
             this.ParametresPanel.Size = new System.Drawing.Size(711, 364);
@@ -354,13 +358,15 @@
             // 
             // ParDelBtn
             // 
+            this.ParDelBtn.BackColor = System.Drawing.Color.Coral;
             this.ParDelBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ParDelBtn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ParDelBtn.Location = new System.Drawing.Point(24, 321);
             this.ParDelBtn.Name = "ParDelBtn";
             this.ParDelBtn.Size = new System.Drawing.Size(123, 40);
             this.ParDelBtn.TabIndex = 5;
             this.ParDelBtn.Text = "Удалить";
-            this.ParDelBtn.UseVisualStyleBackColor = true;
+            this.ParDelBtn.UseVisualStyleBackColor = false;
             this.ParDelBtn.Visible = false;
             this.ParDelBtn.Click += new System.EventHandler(this.ParDelBtn_Click);
             // 
@@ -412,13 +418,14 @@
             // 
             // ParOKBtn
             // 
+            this.ParOKBtn.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.ParOKBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ParOKBtn.Location = new System.Drawing.Point(575, 313);
             this.ParOKBtn.Name = "ParOKBtn";
-            this.ParOKBtn.Size = new System.Drawing.Size(124, 48);
+            this.ParOKBtn.Size = new System.Drawing.Size(125, 50);
             this.ParOKBtn.TabIndex = 20;
             this.ParOKBtn.Text = "ОК";
-            this.ParOKBtn.UseVisualStyleBackColor = true;
+            this.ParOKBtn.UseVisualStyleBackColor = false;
             this.ParOKBtn.Click += new System.EventHandler(this.ParOKBtn_Click);
             // 
             // SeqPanel
@@ -438,7 +445,7 @@
             // 
             this.ParSeqStep.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ParSeqStep.Location = new System.Drawing.Point(284, 77);
-            this.ParSeqStep.MaxLength = 18;
+            this.ParSeqStep.MaxLength = 8;
             this.ParSeqStep.Name = "ParSeqStep";
             this.ParSeqStep.Size = new System.Drawing.Size(150, 29);
             this.ParSeqStep.TabIndex = 9;
@@ -646,9 +653,6 @@
             this.DescriptionL.Text = "Описание";
             this.DescriptionL.Visible = false;
             // 
-            this.OptCountLines.MaxLength = 18;
-            this.label8.Size = new System.Drawing.Size(170, 63);
-            this.label8.Text = "Выберите количество \r\nгенерируемых строк\r\n(от 1 до 1000000)";
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightCyan;
@@ -660,12 +664,23 @@
             this.panel1.Size = new System.Drawing.Size(837, 88);
             this.panel1.TabIndex = 3;
             // 
+            // OpenFolder
+            // 
+            this.OpenFolder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.OpenFolder.Location = new System.Drawing.Point(90, 20);
+            this.OpenFolder.Name = "OpenFolder";
+            this.OpenFolder.Size = new System.Drawing.Size(180, 50);
+            this.OpenFolder.TabIndex = 2;
+            this.OpenFolder.Text = "Открыть";
+            this.OpenFolder.UseVisualStyleBackColor = true;
+            this.OpenFolder.Click += new System.EventHandler(this.OpenFolder_Click);
+            // 
             // GenerateBtn
             // 
             this.GenerateBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.GenerateBtn.Location = new System.Drawing.Point(585, 19);
+            this.GenerateBtn.Location = new System.Drawing.Point(570, 20);
             this.GenerateBtn.Name = "GenerateBtn";
-            this.GenerateBtn.Size = new System.Drawing.Size(180, 48);
+            this.GenerateBtn.Size = new System.Drawing.Size(180, 50);
             this.GenerateBtn.TabIndex = 1;
             this.GenerateBtn.Text = "Генерировать";
             this.GenerateBtn.UseVisualStyleBackColor = true;
@@ -674,28 +689,31 @@
             // OptionsBtn
             // 
             this.OptionsBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OptionsBtn.Location = new System.Drawing.Point(368, 21);
+            this.OptionsBtn.Location = new System.Drawing.Point(330, 20);
             this.OptionsBtn.Name = "OptionsBtn";
-            this.OptionsBtn.Size = new System.Drawing.Size(131, 46);
+            this.OptionsBtn.Size = new System.Drawing.Size(180, 50);
             this.OptionsBtn.TabIndex = 0;
             this.OptionsBtn.Text = "Опции";
             this.OptionsBtn.UseVisualStyleBackColor = true;
             this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
             // 
+            // fd
+            // 
+            this.fd.Filter = "Текстовые файлы (*.txt)|*.txt";
+            // 
             // sd
             // 
-            this.sd.Filter = "CSV-файлы (*.csv)|*.csv|Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+            this.sd.Filter = "CSV-файлы (*.csv)|*.csv|Текстовые файлы (*.txt)|*.txt";
             // 
-            // OpenFolder
+            // label3
             // 
-            this.OpenFolder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OpenFolder.Location = new System.Drawing.Point(81, 21);
-            this.OpenFolder.Name = "OpenFolder";
-            this.OpenFolder.Size = new System.Drawing.Size(131, 46);
-            this.OpenFolder.TabIndex = 2;
-            this.OpenFolder.Text = "Открыть";
-            this.OpenFolder.UseVisualStyleBackColor = true;
-            this.OpenFolder.Click += new System.EventHandler(this.OpenFolder_Click);
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(89, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(303, 20);
+            this.label3.TabIndex = 35;
+            this.label3.Text = "Все поля обязательны для заполнения";
             // 
             // mainForm
             // 
@@ -789,6 +807,7 @@
         private System.Windows.Forms.Button FieldDownBtn;
         private System.Windows.Forms.Button FieldUpBtn;
         private System.Windows.Forms.Button OpenFolder;
+        private System.Windows.Forms.Label label3;
     }
 }
 

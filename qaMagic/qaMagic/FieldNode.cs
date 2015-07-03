@@ -14,9 +14,9 @@ namespace qaMagic
         public string name;
         public string pathToFile;
         public string dateFormat;
-        public int from, to;
+        public long from, to;
         public DateTime dfrom, dto;
-        public int start, step;
+        public long start, step;
         Random rand = new Random();
 
         public FieldNode(int type, string name, string pathToFile)
@@ -27,7 +27,7 @@ namespace qaMagic
             setData();
         }
 
-        public FieldNode(int type, string name, int from, int to)
+        public FieldNode(int type, string name, long from, long to)
         {
             this.type = type;
             this.name = name;
@@ -44,7 +44,7 @@ namespace qaMagic
             this.dto = dto;
         }
 
-        public FieldNode(string name, int type, int start, int step)
+        public FieldNode(string name, int type, long start, long step)
         {
             this.type = type;
             this.name = name;
@@ -70,14 +70,14 @@ namespace qaMagic
             return this.data.ElementAt(rand.Next(0, this.data.Count));
         }
 
-        public int getRndNumber()
+        public long getRndNumber()
         {
-            return rand.Next(from, to);
+            return (long)(rand.NextDouble() * (to - from) + from);
         }
 
-        public int getSequenceNumber()
+        public long getSequenceNumber()
         {
-            int number = this.start;
+            long number = this.start;
             this.start = this.start + this.step;
             return number;
         }
