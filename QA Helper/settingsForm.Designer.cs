@@ -49,7 +49,7 @@
             this.formatBox.Location = new System.Drawing.Point(119, 9);
             this.formatBox.Name = "formatBox";
             this.formatBox.Size = new System.Drawing.Size(121, 21);
-            this.formatBox.SelectedIndex = 0;
+            this.formatBox.TabIndex = 14;
             // 
             // encodingBox
             // 
@@ -61,7 +61,7 @@
             this.encodingBox.Location = new System.Drawing.Point(119, 63);
             this.encodingBox.Name = "encodingBox";
             this.encodingBox.Size = new System.Drawing.Size(121, 21);
-            this.encodingBox.SelectedIndex = 0;
+            this.encodingBox.TabIndex = 13;
             // 
             // delimeterBox
             // 
@@ -77,7 +77,7 @@
             this.delimeterBox.Location = new System.Drawing.Point(119, 36);
             this.delimeterBox.Name = "delimeterBox";
             this.delimeterBox.Size = new System.Drawing.Size(121, 21);
-            this.delimeterBox.SelectedIndex = 0;
+            this.delimeterBox.TabIndex = 12;
             // 
             // recordsCountTxt
             // 
@@ -153,6 +153,7 @@
             this.Controls.Add(this.formatBox);
             this.Name = "settingsForm";
             this.Text = "Настройки";
+            this.Load += new System.EventHandler(this.settingsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace QA_Helper
 {
-    class FieldNode
+    public class FieldNode
     {
         Form1 form;
         public Button fieldButton = new Button();
@@ -196,40 +196,15 @@ namespace QA_Helper
             form.tableLayoutPanel.ResumeLayout(false);
             form.tableLayoutPanel.PerformLayout();
 
-            if (form.tableLayoutPanel.RowCount == 1)
+            for (int i = row; i < Form1.nodes.Count() - 1; i++)
             {
-                form.commonAddPanel.Hide();
-                form.tooltip.Text = "Добавьте поля для генерирования записей";
-                Form1.mode = "add";
+                Form1.nodes[i] = Form1.nodes[i + 1];
             }
         }
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            Form1.mode = "edit";
-            Form1.editable = form.tableLayoutPanel.GetRow((Button)sender);
-            form.addInfo.Text = "Изменение поля";
-            form.applyFieldButton.Text = "Сохранить поле";
 
-            form.typeBox.SelectedIndex = this.type;
-            form.nameTxt.Text = this.name;
-
-            if (this.type == 1)
-            {
-                form.rangeFromTxt.Text = this.from.ToString();
-                form.rangeToTxt.Text = this.to.ToString();
-            }
-            else if (this.type == 2)
-            {
-                //form.dateFormatCbox.SelectedIndex = this.from.ToString();
-                form.datePickerFrom.Value = this.dfrom;
-                form.datePickerTo.Value = this.dto;
-            }
-            else if (this.type == 3)
-            {
-                form.seqFromTxt.Text = this.start.ToString();
-                form.seqStepTxt.Text = this.step.ToString();
-            }
         }
     }
 }
