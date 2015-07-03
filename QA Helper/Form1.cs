@@ -178,6 +178,7 @@ namespace QA_Helper
                         this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
                         this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
                         this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);
+                        
                         node.fieldButton.Text = this.nameTxt.Text;
                         nodes.Add(node);
 
@@ -257,7 +258,7 @@ namespace QA_Helper
             else
             {
                 FieldNode node = nodes.ElementAt(editable-1);
-                OpenFileDialog fbd = new OpenFileDialog();
+                //OpenFileDialog fbd = new OpenFileDialog();
 
                 if (this.typeBox.SelectedIndex == 0)
                 {
@@ -265,11 +266,11 @@ namespace QA_Helper
                     node.name = this.nameTxt.Text;
                     node.fieldButton.Text = this.nameTxt.Text;
 
-                    DialogResult result = fbd.ShowDialog();
+                   /* DialogResult result = fbd.ShowDialog();
                     if (result.ToString() == "OK")
                         pathToFile = fbd.FileName;
                     else
-                        pathToFile = "";
+                        pathToFile = "";*/
 
                     node.pathToFile = pathToFile;
                 }
@@ -304,11 +305,11 @@ namespace QA_Helper
                     node.name = this.nameTxt.Text;
                     node.fieldButton.Text = this.nameTxt.Text;
 
-                    DialogResult result = fbd.ShowDialog();
+                    /*DialogResult result = fbd.ShowDialog();
                     if (result.ToString() == "OK")
                         pathToFile = fbd.FileName;
                     else
-                        pathToFile = "";
+                        pathToFile = "";*/
 
                     node.pathToFile = this.pathToFile;
                 }
