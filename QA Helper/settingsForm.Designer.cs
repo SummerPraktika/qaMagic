@@ -153,6 +153,7 @@
             this.Controls.Add(this.formatBox);
             this.Name = "settingsForm";
             this.Text = "Настройки";
+            this.Load += new System.EventHandler(this.settingsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

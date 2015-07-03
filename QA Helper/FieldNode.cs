@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace QA_Helper
 {
-    class FieldNode
+    public class FieldNode
     {
         public Form1 form;
         public Button fieldButton = new Button();

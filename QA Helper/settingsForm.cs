@@ -30,16 +30,23 @@ namespace QA_Helper
 
         public static void setConfig(String key, String value)
         {
-            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None); // Add an Application Setting.
-
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
             config.AppSettings.Settings[key].Value = value;
-            config.Save(ConfigurationSaveMode.Modified);
-
-            ConfigurationManager.RefreshSection("appSettings");
+            config.Save(ConfigurationSaveMode.Minimal);
         }
 
-        string getSetting(string key) {
-           return ConfigurationManager.AppSettings[key];
+        public static string getSetting(string key)
+        {
+            return ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath).AppSettings.Settings[key].Value;
+        }
+
+        private void settingsForm_Load(object sender, EventArgs e)
+        {
+            formatBox.SelectedItem = getSetting("format");
+            delimeterBox.SelectedItem = getSetting("delimeter");
+            encodingBox.SelectedItem = getSetting("encoding");
+            recordsCountTxt.Text = getSetting("recordsCount");
+
         }
     }
 }

@@ -7,16 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace QA_Helper
 {
     public partial class Form1 : Form
     {
-<<<<<<< master
-        List<FieldNode> nodes = new List<FieldNode>();
-=======
         public static List<FieldNode> nodes = new List<FieldNode>();
->>>>>>> local
         public static string mode = "add";
         FieldNode node;
         string pathToFile = "";
@@ -35,9 +32,6 @@ namespace QA_Helper
 
         private void addButton_Click(object sender, EventArgs e)
         {
-<<<<<<< master
-            if (mode == "add")
-=======
             mode = "add";
             this.addInfo.Text = "Добавление поля";
             this.applyFieldButton.Text = "Добавить поле";
@@ -141,14 +135,12 @@ namespace QA_Helper
                 }
             }
             catch (ArgumentException)
->>>>>>> local
             {
-                this.addInfo.Text = "Добавление поля";
-                this.applyFieldButton.Text = "Добавить поле";
-                setDefaultParameters();
+                errorMessage("Выберите путь сохранения в опциях!");
+                return;
             }
-            this.commonAddPanel.Show();
-           
+            catch (FileLoadException) { }
+            MessageBox.Show("Генерация выполнена");
         }
 
  void errorMessage(string text)
@@ -162,7 +154,8 @@ namespace QA_Helper
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-
+            //nodes.Add(new FieldNode(this, "sdfsdf", 3, 1, 2));
+            generate();
         }
 
         private void settingButton_Click(object sender, EventArgs e)
@@ -178,7 +171,6 @@ namespace QA_Helper
             if (mode == "add")
             {
                 if (this.typeBox.SelectedIndex == 0)
-<<<<<<< master
                 {
                     if (pathToFile != "")
                     {
@@ -202,31 +194,6 @@ namespace QA_Helper
                 }
                 else if (this.typeBox.SelectedIndex == 1)
                 {
-=======
-                {
-                    if (pathToFile != "")
-                    {
-                        node = new FieldNode(this, 0, this.nameTxt.Text, pathToFile);
-                        this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
-                        this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
-                        this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);
-                        node.fieldButton.Text = this.nameTxt.Text;
-                        nodes.Add(node);
-
-                        this.tableLayoutPanel.RowCount = this.tableLayoutPanel.RowCount + 1;
-                    }
-                    else
-                    {
-                        MessageDialog form = new MessageDialog();
-                        form.errorLabel.Text = "Не выбран файл со строками!";
-                        form.StartPosition = FormStartPosition.Manual;
-                        form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
-                        form.Show(this);
-                    }
-                }
-                else if (this.typeBox.SelectedIndex == 1)
-                {
->>>>>>> local
                     node = new FieldNode(this, 1, this.nameTxt.Text, Int32.Parse(this.rangeFromTxt.Text), Int32.Parse(this.rangeToTxt.Text));
                     this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
                     this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
@@ -249,11 +216,7 @@ namespace QA_Helper
                 }
                 else if (this.typeBox.SelectedIndex == 3)
                 {
-<<<<<<< master
-                    node = new FieldNode(this, this.nameTxt.Text, 2, Int32.Parse(this.seqFromTxt.Text), Int32.Parse(this.seqStepTxt.Text));
-=======
                     node = new FieldNode(this, this.nameTxt.Text, 3, Int32.Parse(this.seqFromTxt.Text), Int32.Parse(this.seqStepTxt.Text));
->>>>>>> local
                     this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
                     this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
                     this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);
@@ -262,66 +225,6 @@ namespace QA_Helper
 
                     this.tableLayoutPanel.RowCount = this.tableLayoutPanel.RowCount + 1;
 
-<<<<<<< master
-                }
-                else if (this.typeBox.SelectedIndex == 4)
-                {
-                    if (pathToFile != "")
-                    {
-                        node = new FieldNode(this, this.nameTxt.Text, 4, pathToFile);
-                        this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
-                        this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
-                        this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);
-                        node.fieldButton.Text = this.nameTxt.Text;
-                        nodes.Add(node);
-
-                        this.tableLayoutPanel.RowCount = this.tableLayoutPanel.RowCount + 1;
-                    }
-                    else
-                    {
-                        MessageDialog form = new MessageDialog();
-                        form.errorLabel.Text = "Не выбран файл со строками!";
-                        form.StartPosition = FormStartPosition.Manual;
-                        form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
-                        form.Show(this);
-                    }
-                }
-
-                if (this.tableLayoutPanel.RowCount > 1)
-                {
-                    this.tooltip.Text = "Нажмите кнопку генерации";
-                }
-            }
-            else
-            {
-                FieldNode node = nodes.ElementAt(editable-1);
-                OpenFileDialog fbd = new OpenFileDialog();
-
-                if (this.typeBox.SelectedIndex == 0)
-                {
-                    node.type = 0;
-                    node.name = this.nameTxt.Text;
-                    node.fieldButton.Text = this.nameTxt.Text;
-
-                    DialogResult result = fbd.ShowDialog();
-                    if (result.ToString() == "OK")
-                        pathToFile = fbd.FileName;
-                    else
-                        pathToFile = "";
-
-                    node.pathToFile = pathToFile;
-                }
-                else if (this.typeBox.SelectedIndex == 1)
-                {
-                    node.type = 1;
-                    node.name = this.nameTxt.Text;
-                    node.fieldButton.Text = this.nameTxt.Text;
-                    node.from = Int32.Parse(this.rangeFromTxt.Text);
-                    node.to = Int32.Parse(this.rangeToTxt.Text);
-                }
-                else if (this.typeBox.SelectedIndex == 2)
-                {
-=======
                 }
                 else if (this.typeBox.SelectedIndex == 4)
                 {
@@ -380,7 +283,6 @@ namespace QA_Helper
                 }
                 else if (this.typeBox.SelectedIndex == 2)
                 {
->>>>>>> local
                     node.type = 2;
                     node.name = this.nameTxt.Text;
                     node.fieldButton.Text = this.nameTxt.Text;
