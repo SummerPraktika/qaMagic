@@ -45,18 +45,6 @@ namespace QA_Helper
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.aboutText = new System.Windows.Forms.TextBox();
             this.commonAddPanel = new System.Windows.Forms.Panel();
-            this.datePickerTo = new System.Windows.Forms.DateTimePicker();
-            this.datePickerFrom = new System.Windows.Forms.DateTimePicker();
-            this.datePariodLbl = new System.Windows.Forms.Label();
-            this.dateFormatLbl = new System.Windows.Forms.Label();
-            this.dateFormatCbox = new System.Windows.Forms.ComboBox();
-            this.seqStepLbl = new System.Windows.Forms.Label();
-            this.seqStepTxt = new System.Windows.Forms.TextBox();
-            this.seqFromTxt = new System.Windows.Forms.TextBox();
-            this.seqFromLbl = new System.Windows.Forms.Label();
-            this.rangeToTxt = new System.Windows.Forms.TextBox();
-            this.rangeFromTxt = new System.Windows.Forms.TextBox();
-            this.rangeLbl = new System.Windows.Forms.Label();
             this.applyFieldButton = new System.Windows.Forms.Button();
             this.chooseButton = new System.Windows.Forms.Button();
             this.chooseLabel = new System.Windows.Forms.Label();
@@ -65,8 +53,19 @@ namespace QA_Helper
             this.typeLbl = new System.Windows.Forms.Label();
             this.typeBox = new System.Windows.Forms.ComboBox();
             this.addInfo = new System.Windows.Forms.Label();
-            this.sd = new System.Windows.Forms.SaveFileDialog();
-            this.tableLayoutPanel = new QA_Helper.TablePanel();
+            this.rangeLbl = new System.Windows.Forms.Label();
+            this.rangeFromTxt = new System.Windows.Forms.TextBox();
+            this.rangeToTxt = new System.Windows.Forms.TextBox();
+            this.seqFromLbl = new System.Windows.Forms.Label();
+            this.seqFromTxt = new System.Windows.Forms.TextBox();
+            this.seqStepTxt = new System.Windows.Forms.TextBox();
+            this.seqStepLbl = new System.Windows.Forms.Label();
+            this.tableLayoutPanel = new TablePanel();
+            this.dateFormatCbox = new System.Windows.Forms.ComboBox();
+            this.dateFormatLbl = new System.Windows.Forms.Label();
+            this.datePariodLbl = new System.Windows.Forms.Label();
+            this.datePickerFrom = new System.Windows.Forms.DateTimePicker();
+            this.datePickerTo = new System.Windows.Forms.DateTimePicker();
             this.statusStrip.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.welcomePanel.SuspendLayout();
@@ -226,133 +225,6 @@ namespace QA_Helper
             this.commonAddPanel.TabIndex = 2;
             this.commonAddPanel.Visible = false;
             // 
-            // datePickerTo
-            // 
-            this.datePickerTo.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePickerTo.Location = new System.Drawing.Point(205, 135);
-            this.datePickerTo.Name = "datePickerTo";
-            this.datePickerTo.Size = new System.Drawing.Size(80, 20);
-            this.datePickerTo.TabIndex = 22;
-            this.datePickerTo.Visible = false;
-            // 
-            // datePickerFrom
-            // 
-            this.datePickerFrom.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePickerFrom.Location = new System.Drawing.Point(110, 136);
-            this.datePickerFrom.Name = "datePickerFrom";
-            this.datePickerFrom.Size = new System.Drawing.Size(80, 20);
-            this.datePickerFrom.TabIndex = 21;
-            this.datePickerFrom.Visible = false;
-            // 
-            // datePariodLbl
-            // 
-            this.datePariodLbl.AutoSize = true;
-            this.datePariodLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePariodLbl.Location = new System.Drawing.Point(33, 142);
-            this.datePariodLbl.Name = "datePariodLbl";
-            this.datePariodLbl.Size = new System.Drawing.Size(48, 13);
-            this.datePariodLbl.TabIndex = 20;
-            this.datePariodLbl.Text = "Период";
-            this.datePariodLbl.Visible = false;
-            // 
-            // dateFormatLbl
-            // 
-            this.dateFormatLbl.AutoSize = true;
-            this.dateFormatLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateFormatLbl.Location = new System.Drawing.Point(33, 104);
-            this.dateFormatLbl.Name = "dateFormatLbl";
-            this.dateFormatLbl.Size = new System.Drawing.Size(75, 13);
-            this.dateFormatLbl.TabIndex = 19;
-            this.dateFormatLbl.Text = "Формат даты";
-            this.dateFormatLbl.Visible = false;
-            // 
-            // dateFormatCbox
-            // 
-            this.dateFormatCbox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dateFormatCbox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateFormatCbox.FormattingEnabled = true;
-            this.dateFormatCbox.Items.AddRange(new object[] {
-            "MM.DD.YYYY",
-            "DD.MM.YYYY"});
-            this.dateFormatCbox.Location = new System.Drawing.Point(110, 101);
-            this.dateFormatCbox.Name = "dateFormatCbox";
-            this.dateFormatCbox.Size = new System.Drawing.Size(175, 21);
-            this.dateFormatCbox.TabIndex = 18;
-            this.dateFormatCbox.Visible = false;
-            // 
-            // seqStepLbl
-            // 
-            this.seqStepLbl.AutoSize = true;
-            this.seqStepLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.seqStepLbl.Location = new System.Drawing.Point(185, 124);
-            this.seqStepLbl.Name = "seqStepLbl";
-            this.seqStepLbl.Size = new System.Drawing.Size(29, 13);
-            this.seqStepLbl.TabIndex = 17;
-            this.seqStepLbl.Text = "Шаг";
-            this.seqStepLbl.Visible = false;
-            // 
-            // seqStepTxt
-            // 
-            this.seqStepTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.seqStepTxt.Location = new System.Drawing.Point(218, 120);
-            this.seqStepTxt.Name = "seqStepTxt";
-            this.seqStepTxt.Size = new System.Drawing.Size(37, 22);
-            this.seqStepTxt.TabIndex = 16;
-            this.seqStepTxt.Text = "1";
-            this.seqStepTxt.Visible = false;
-            // 
-            // seqFromTxt
-            // 
-            this.seqFromTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.seqFromTxt.Location = new System.Drawing.Point(142, 120);
-            this.seqFromTxt.Name = "seqFromTxt";
-            this.seqFromTxt.Size = new System.Drawing.Size(37, 22);
-            this.seqFromTxt.TabIndex = 15;
-            this.seqFromTxt.Text = "1";
-            this.seqFromTxt.Visible = false;
-            // 
-            // seqFromLbl
-            // 
-            this.seqFromLbl.AutoSize = true;
-            this.seqFromLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.seqFromLbl.Location = new System.Drawing.Point(115, 124);
-            this.seqFromLbl.Name = "seqFromLbl";
-            this.seqFromLbl.Size = new System.Drawing.Size(21, 13);
-            this.seqFromLbl.TabIndex = 14;
-            this.seqFromLbl.Text = "От";
-            this.seqFromLbl.Visible = false;
-            // 
-            // rangeToTxt
-            // 
-            this.rangeToTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rangeToTxt.Location = new System.Drawing.Point(205, 120);
-            this.rangeToTxt.Name = "rangeToTxt";
-            this.rangeToTxt.Size = new System.Drawing.Size(37, 22);
-            this.rangeToTxt.TabIndex = 13;
-            this.rangeToTxt.Text = "10";
-            this.rangeToTxt.Visible = false;
-            // 
-            // rangeFromTxt
-            // 
-            this.rangeFromTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rangeFromTxt.Location = new System.Drawing.Point(153, 120);
-            this.rangeFromTxt.Name = "rangeFromTxt";
-            this.rangeFromTxt.Size = new System.Drawing.Size(37, 22);
-            this.rangeFromTxt.TabIndex = 12;
-            this.rangeFromTxt.Text = "1";
-            this.rangeFromTxt.Visible = false;
-            // 
-            // rangeLbl
-            // 
-            this.rangeLbl.AutoSize = true;
-            this.rangeLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rangeLbl.Location = new System.Drawing.Point(78, 124);
-            this.rangeLbl.Name = "rangeLbl";
-            this.rangeLbl.Size = new System.Drawing.Size(60, 13);
-            this.rangeLbl.TabIndex = 11;
-            this.rangeLbl.Text = "Диапазон";
-            this.rangeLbl.Visible = false;
-            // 
             // applyFieldButton
             // 
             this.applyFieldButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -428,7 +300,7 @@ namespace QA_Helper
             this.typeBox.Location = new System.Drawing.Point(110, 41);
             this.typeBox.Name = "typeBox";
             this.typeBox.Size = new System.Drawing.Size(175, 21);
-            this.typeBox.TabIndex = 10;
+            this.typeBox.SelectedIndex = 0;
             this.typeBox.SelectedIndexChanged += new System.EventHandler(this.typeBox_SelectedIndexChanged);
             // 
             // addInfo
@@ -441,6 +313,79 @@ namespace QA_Helper
             this.addInfo.TabIndex = 0;
             this.addInfo.Text = "Добавление поля";
             this.addInfo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // rangeLbl
+            // 
+            this.rangeLbl.AutoSize = true;
+            this.rangeLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rangeLbl.Location = new System.Drawing.Point(78, 124);
+            this.rangeLbl.Name = "rangeLbl";
+            this.rangeLbl.Size = new System.Drawing.Size(60, 13);
+            this.rangeLbl.TabIndex = 11;
+            this.rangeLbl.Text = "Диапазон";
+            this.rangeLbl.Visible = false;
+            // 
+            // rangeFromTxt
+            // 
+            this.rangeFromTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rangeFromTxt.Location = new System.Drawing.Point(153, 120);
+            this.rangeFromTxt.Name = "rangeFromTxt";
+            this.rangeFromTxt.Size = new System.Drawing.Size(37, 22);
+            this.rangeFromTxt.TabIndex = 12;
+            this.rangeFromTxt.Text = "1";
+            this.rangeFromTxt.Visible = false;
+            // 
+            // rangeToTxt
+            // 
+            this.rangeToTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rangeToTxt.Location = new System.Drawing.Point(205, 120);
+            this.rangeToTxt.Name = "rangeToTxt";
+            this.rangeToTxt.Size = new System.Drawing.Size(37, 22);
+            this.rangeToTxt.TabIndex = 13;
+            this.rangeToTxt.Text = "10";
+            this.rangeToTxt.Visible = false;
+            // 
+            // seqFromLbl
+            // 
+            this.seqFromLbl.AutoSize = true;
+            this.seqFromLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.seqFromLbl.Location = new System.Drawing.Point(115, 124);
+            this.seqFromLbl.Name = "seqFromLbl";
+            this.seqFromLbl.Size = new System.Drawing.Size(21, 13);
+            this.seqFromLbl.TabIndex = 14;
+            this.seqFromLbl.Text = "От";
+            this.seqFromLbl.Visible = false;
+            // 
+            // seqFromTxt
+            // 
+            this.seqFromTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seqFromTxt.Location = new System.Drawing.Point(142, 120);
+            this.seqFromTxt.Name = "seqFromTxt";
+            this.seqFromTxt.Size = new System.Drawing.Size(37, 22);
+            this.seqFromTxt.TabIndex = 15;
+            this.seqFromTxt.Text = "1";
+            this.seqFromTxt.Visible = false;
+            // 
+            // seqStepTxt
+            // 
+            this.seqStepTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seqStepTxt.Location = new System.Drawing.Point(218, 120);
+            this.seqStepTxt.Name = "seqStepTxt";
+            this.seqStepTxt.Size = new System.Drawing.Size(37, 22);
+            this.seqStepTxt.TabIndex = 16;
+            this.seqStepTxt.Text = "1";
+            this.seqStepTxt.Visible = false;
+            // 
+            // seqStepLbl
+            // 
+            this.seqStepLbl.AutoSize = true;
+            this.seqStepLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seqStepLbl.Location = new System.Drawing.Point(185, 124);
+            this.seqStepLbl.Name = "seqStepLbl";
+            this.seqStepLbl.Size = new System.Drawing.Size(29, 13);
+            this.seqStepLbl.TabIndex = 17;
+            this.seqStepLbl.Text = "Шаг";
+            this.seqStepLbl.Visible = false;
             // 
             // tableLayoutPanel
             // 
@@ -463,6 +408,60 @@ namespace QA_Helper
             this.tableLayoutPanel.Size = new System.Drawing.Size(228, 383);
             this.tableLayoutPanel.TabIndex = 3;
             this.tableLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel_Paint);
+            // 
+            // dateFormatCbox
+            // 
+            this.dateFormatCbox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dateFormatCbox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateFormatCbox.FormattingEnabled = true;
+            this.dateFormatCbox.Items.AddRange(new object[] {
+            "MM.DD.YYYY",
+            "DD.MM.YYYY"});
+            this.dateFormatCbox.Location = new System.Drawing.Point(110, 101);
+            this.dateFormatCbox.Name = "dateFormatCbox";
+            this.dateFormatCbox.Size = new System.Drawing.Size(175, 21);
+            this.dateFormatCbox.SelectedIndex = 0;
+            this.dateFormatCbox.Visible = false;
+            // 
+            // dateFormatLbl
+            // 
+            this.dateFormatLbl.AutoSize = true;
+            this.dateFormatLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateFormatLbl.Location = new System.Drawing.Point(33, 104);
+            this.dateFormatLbl.Name = "dateFormatLbl";
+            this.dateFormatLbl.Size = new System.Drawing.Size(75, 13);
+            this.dateFormatLbl.TabIndex = 19;
+            this.dateFormatLbl.Text = "Формат даты";
+            this.dateFormatLbl.Visible = false;
+            // 
+            // datePariodLbl
+            // 
+            this.datePariodLbl.AutoSize = true;
+            this.datePariodLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datePariodLbl.Location = new System.Drawing.Point(33, 142);
+            this.datePariodLbl.Name = "datePariodLbl";
+            this.datePariodLbl.Size = new System.Drawing.Size(48, 13);
+            this.datePariodLbl.TabIndex = 20;
+            this.datePariodLbl.Text = "Период";
+            this.datePariodLbl.Visible = false;
+            // 
+            // datePickerFrom
+            // 
+            this.datePickerFrom.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datePickerFrom.Location = new System.Drawing.Point(110, 136);
+            this.datePickerFrom.Name = "datePickerFrom";
+            this.datePickerFrom.Size = new System.Drawing.Size(80, 20);
+            this.datePickerFrom.TabIndex = 21;
+            this.datePickerFrom.Visible = false;
+            // 
+            // datePickerTo
+            // 
+            this.datePickerTo.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datePickerTo.Location = new System.Drawing.Point(205, 135);
+            this.datePickerTo.Name = "datePickerTo";
+            this.datePickerTo.Size = new System.Drawing.Size(80, 20);
+            this.datePickerTo.TabIndex = 22;
+            this.datePickerTo.Visible = false;
             // 
             // Form1
             // 
@@ -491,42 +490,41 @@ namespace QA_Helper
 
         #endregion
 
-        private System.Windows.Forms.StatusStrip statusStrip; // Статусная строка в низу окошка
-        private System.Windows.Forms.ToolStripStatusLabel tooltip;
-        private System.Windows.Forms.Panel welcomePanel; // Панель, отображающая лого и приветственный текст
-        private System.Windows.Forms.Panel controlPanel; // Панель с кнопками ДОбавить, Генерировать, Настройки
-        private System.Windows.Forms.Button settingButton; // Кнопка настроек
-        private System.Windows.Forms.Button addButton; // Кнопка добавления
-        private System.Windows.Forms.Button generateButton; // Кнопка генерации
-        private System.Windows.Forms.TextBox aboutText; // Приветственный текст (Приложение позволяет генерировать..)
-        private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button fieldButton; // Кнопка с именем поля в tableLayoutPanel
-        private System.Windows.Forms.Button editButton; // Кнопка редактирования поля в tableLayoutPanel
-        private System.Windows.Forms.Button deleteButton; // Кнопка удаления поля в tableLayoutPanel
-        public TablePanel tableLayoutPanel; // Панель, содержащая узлы добавляемых полей. Узел в виде: Кнопка с именем поля, кнопка редактирования, кнопка удаления
-        private PictureBox pictureBox1; // Логотип
-        private Panel commonAddPanel; // Панель, появляющаяся после нажатия кнопки "Добавить"
-        private Button chooseButton; // Кнопка выбора файла со строками для типа "строка"
-        private Label chooseLabel; // Label рядом с кнопкой chooseButton
-        private TextBox nameTxt; // Для ввода имени поля
-        private Label nameLbl; // Label для текст. поля nameTxt
-        private Label typeLbl; // Label для typeBox
-        private ComboBox typeBox; // Выпадающий список для выбора типа поля
-        private Label addInfo;
-        private Button applyFieldButton; // Добавить поле после ввода параметров
-        private TextBox rangeToTxt; // Для ввода начала диапазона
-        private TextBox rangeFromTxt; // Для ввода конца диапазона
-        private Label rangeLbl; // Label для rangeToTxt и rangeFromTxt
-        private Label seqStepLbl; // Label для seqStepTxt
-        private TextBox seqStepTxt; // Для шага последовательности
-        private TextBox seqFromTxt; // Для начала последовательности
-        private Label seqFromLbl; // Label для seqFromTxt
-        private DateTimePicker datePickerTo; // Выбор даты "от"
-        private DateTimePicker datePickerFrom; // Выбор даты "до"
-        private Label datePariodLbl; // Label для datePicker
-        private Label dateFormatLbl; // Label для dateFormat
-        private ComboBox dateFormatCbox;
-        private SaveFileDialog sd; // Выпадающий список для выбора форматы даты
+        public System.Windows.Forms.StatusStrip statusStrip;
+        public System.Windows.Forms.ToolStripStatusLabel tooltip;
+        public System.Windows.Forms.Panel welcomePanel;
+        public System.Windows.Forms.Panel controlPanel;
+        public System.Windows.Forms.Button settingButton;
+        public System.Windows.Forms.Button addButton;
+        public System.Windows.Forms.Button generateButton;
+        public System.Windows.Forms.TextBox aboutText;
+        public System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.Button fieldButton;
+        public System.Windows.Forms.Button editButton;
+        public System.Windows.Forms.Button deleteButton;
+        public TablePanel tableLayoutPanel;
+        public PictureBox pictureBox1;
+        public Panel commonAddPanel;
+        public Button chooseButton;
+        public Label chooseLabel;
+        public TextBox nameTxt;
+        public Label nameLbl;
+        public Label typeLbl;
+        public ComboBox typeBox;
+        public Label addInfo;
+        public Button applyFieldButton;
+        public TextBox rangeToTxt;
+        public TextBox rangeFromTxt;
+        public Label rangeLbl;
+        public Label seqStepLbl;
+        public TextBox seqStepTxt;
+        public TextBox seqFromTxt;
+        public Label seqFromLbl;
+        public DateTimePicker datePickerTo;
+        public DateTimePicker datePickerFrom;
+        public Label datePariodLbl;
+        public Label dateFormatLbl;
+        public ComboBox dateFormatCbox;
     }
 }
 
