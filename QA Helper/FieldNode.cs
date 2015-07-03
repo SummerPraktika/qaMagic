@@ -10,7 +10,7 @@ namespace QA_Helper
 {
     class FieldNode
     {
-        Form1 form;
+        public Form1 form;
         public Button fieldButton = new Button();
         public Button editButton = new Button();
         public Button deleteButton = new Button();
