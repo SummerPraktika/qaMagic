@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace QA_Helper
 {
@@ -134,23 +135,29 @@ namespace QA_Helper
                     }
                 }
             }
-            catch (ArgumentException)
-            {
-                errorMessage("Выберите путь сохранения в опциях!");
-                return;
-            }
             catch (FileLoadException) { }
-            MessageBox.Show("Генерация выполнена");
+            simpleMessage("Генерация выполнена");
         }
 
- void errorMessage(string text)
- {
-     MessageDialog form = new MessageDialog();
-     form.errorLabel.Text = text;
-     form.StartPosition = FormStartPosition.Manual;
-     form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
-     form.Show(this);
- }
+        void errorMessage(string text)
+        {
+            MessageDialog form = new MessageDialog();
+            form.errorTxt.Text = text;
+            form.Text = "Ошибка";
+            form.StartPosition = FormStartPosition.Manual;
+            form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
+            form.Show(this);
+        }
+
+        void simpleMessage(string text)
+        {
+            MessageDialog form = new MessageDialog();
+            form.errorTxt.Text = text;
+            form.Text = "Успех";
+            form.StartPosition = FormStartPosition.Manual;
+            form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
+            form.Show(this);
+        }
 
         private void generateButton_Click(object sender, EventArgs e)
         {
@@ -168,18 +175,28 @@ namespace QA_Helper
 
         private void applyFieldButton_Click(object sender, EventArgs e)
         {
+            string fieldName = this.nameTxt.Text.ToString();
+            fieldName = fieldName.ToString().Trim();
+            if (fieldName == "")
+            {
+                fieldName = "Безымянное";
+            }
+            if (fieldName.Contains(" "))
+            {
+                fieldName = fieldName.Replace(" ", "_");
+            }
+
             if (mode == "add")
             {
                 if (this.typeBox.SelectedIndex == 0)
                 {
                     if (pathToFile != "")
                     {
-                        node = new FieldNode(this, 0, this.nameTxt.Text, pathToFile);
+                        node = new FieldNode(this, 0, fieldName, pathToFile);
                         this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
                         this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
                         this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);
-                        
-                        node.fieldButton.Text = this.nameTxt.Text;
+                        node.fieldButton.Text = fieldName;
                         nodes.Add(node);
 
                         this.tableLayoutPanel.RowCount = this.tableLayoutPanel.RowCount + 1;
@@ -187,7 +204,7 @@ namespace QA_Helper
                     else
                     {
                         MessageDialog form = new MessageDialog();
-                        form.errorLabel.Text = "Не выбран файл со строками!";
+                        form.errorTxt.Text = "Не выбран файл со строками!";
                         form.StartPosition = FormStartPosition.Manual;
                         form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
                         form.Show(this);
@@ -195,47 +212,61 @@ namespace QA_Helper
                 }
                 else if (this.typeBox.SelectedIndex == 1)
                 {
-                    node = new FieldNode(this, 1, this.nameTxt.Text, Int32.Parse(this.rangeFromTxt.Text), Int32.Parse(this.rangeToTxt.Text));
-                    this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
-                    this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
-                    this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);
-                    node.fieldButton.Text = this.nameTxt.Text;
-                    nodes.Add(node);
+                    if (this.rangeFromTxt.Text == "" || this.rangeToTxt.Text == "")
+                    {
+                        errorMessage("Заполните все поля!");
+                    }
+                    else
+                    {
+                        node = new FieldNode(this, 1, fieldName, Int32.Parse(this.rangeFromTxt.Text), Int32.Parse(this.rangeToTxt.Text));
+                        this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
+                        this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
+                        this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);
+                        node.fieldButton.Text = fieldName;
+                        nodes.Add(node);
 
-                    this.tableLayoutPanel.RowCount = this.tableLayoutPanel.RowCount + 1;
+                        this.tableLayoutPanel.RowCount = this.tableLayoutPanel.RowCount + 1;
+                    }
                 }
                 else if (this.typeBox.SelectedIndex == 2)
                 {
-                    node = new FieldNode(this, 2, this.nameTxt.Text, this.dateFormatCbox.SelectedItem.ToString(), this.datePickerFrom.Value, this.datePickerTo.Value);
+                    node = new FieldNode(this, 2, fieldName, this.dateFormatCbox.SelectedItem.ToString(), this.datePickerFrom.Value, this.datePickerTo.Value);
                     this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
                     this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
                     this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);
-                    node.fieldButton.Text = this.nameTxt.Text;
+                    node.fieldButton.Text = fieldName;
                     nodes.Add(node);
 
                     this.tableLayoutPanel.RowCount = this.tableLayoutPanel.RowCount + 1;
                 }
                 else if (this.typeBox.SelectedIndex == 3)
                 {
-                    node = new FieldNode(this, this.nameTxt.Text, 3, Int32.Parse(this.seqFromTxt.Text), Int32.Parse(this.seqStepTxt.Text));
-                    this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
-                    this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
-                    this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);
-                    node.fieldButton.Text = this.nameTxt.Text;
-                    nodes.Add(node);
+                    if (this.seqFromTxt.Text == "" || this.seqStepTxt.Text == "")
+                    {
+                        errorMessage("Заполните все поля!");
+                    }
+                    else
+                    {
+                        node = new FieldNode(this, fieldName, 3, Int32.Parse(this.seqFromTxt.Text), Int32.Parse(this.seqStepTxt.Text));
+                        this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
+                        this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
+                        this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);
+                        node.fieldButton.Text = fieldName;
+                        nodes.Add(node);
 
-                    this.tableLayoutPanel.RowCount = this.tableLayoutPanel.RowCount + 1;
+                        this.tableLayoutPanel.RowCount = this.tableLayoutPanel.RowCount + 1;
+                    }
 
                 }
                 else if (this.typeBox.SelectedIndex == 4)
                 {
                     if (pathToFile != "")
                     {
-                        node = new FieldNode(this, 4, this.nameTxt.Text, pathToFile);
+                        node = new FieldNode(this, 4, fieldName, pathToFile);
                         this.tableLayoutPanel.Controls.Add(node.fieldButton, 0, this.tableLayoutPanel.RowCount);
                         this.tableLayoutPanel.Controls.Add(node.editButton, 1, this.tableLayoutPanel.RowCount);
                         this.tableLayoutPanel.Controls.Add(node.deleteButton, 2, this.tableLayoutPanel.RowCount);
-                        node.fieldButton.Text = this.nameTxt.Text;
+                        node.fieldButton.Text = fieldName;
                         nodes.Add(node);
 
                         this.tableLayoutPanel.RowCount = this.tableLayoutPanel.RowCount + 1;
@@ -243,7 +274,7 @@ namespace QA_Helper
                     else
                     {
                         MessageDialog form = new MessageDialog();
-                        form.errorLabel.Text = "Не выбран файл со строками!";
+                        form.errorTxt.Text = "Не выбран файл со строками!";
                         form.StartPosition = FormStartPosition.Manual;
                         form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
                         form.Show(this);
@@ -258,35 +289,35 @@ namespace QA_Helper
             else
             {
                 FieldNode node = nodes.ElementAt(editable-1);
-                //OpenFileDialog fbd = new OpenFileDialog();
+                OpenFileDialog fbd = new OpenFileDialog();
 
                 if (this.typeBox.SelectedIndex == 0)
                 {
                     node.type = 0;
-                    node.name = this.nameTxt.Text;
-                    node.fieldButton.Text = this.nameTxt.Text;
+                    node.name = fieldName;
+                    node.fieldButton.Text = fieldName;
 
-                   /* DialogResult result = fbd.ShowDialog();
+                    DialogResult result = fbd.ShowDialog();
                     if (result.ToString() == "OK")
                         pathToFile = fbd.FileName;
                     else
-                        pathToFile = "";*/
+                        pathToFile = "";
 
                     node.pathToFile = pathToFile;
                 }
                 else if (this.typeBox.SelectedIndex == 1)
                 {
                     node.type = 1;
-                    node.name = this.nameTxt.Text;
-                    node.fieldButton.Text = this.nameTxt.Text;
+                    node.name = fieldName;
+                    node.fieldButton.Text = fieldName;
                     node.from = Int32.Parse(this.rangeFromTxt.Text);
                     node.to = Int32.Parse(this.rangeToTxt.Text);
                 }
                 else if (this.typeBox.SelectedIndex == 2)
                 {
                     node.type = 2;
-                    node.name = this.nameTxt.Text;
-                    node.fieldButton.Text = this.nameTxt.Text;
+                    node.name = fieldName;
+                    node.fieldButton.Text = fieldName;
                     node.dateFormat = this.dateFormatCbox.SelectedItem.ToString();
                     node.dfrom = this.datePickerFrom.Value;
                     node.dto = this.datePickerTo.Value;
@@ -294,22 +325,22 @@ namespace QA_Helper
                 else if (this.typeBox.SelectedIndex == 3)
                 {
                     node.type = 3;
-                    node.name = this.nameTxt.Text;
-                    node.fieldButton.Text = this.nameTxt.Text;
+                    node.name = fieldName;
+                    node.fieldButton.Text = fieldName;
                     node.start = Int32.Parse(this.seqFromTxt.Text);
                     node.step = Int32.Parse(this.seqStepTxt.Text);
                 }
                 else if (this.typeBox.SelectedIndex == 4)
                 {
                     node.type = 4;
-                    node.name = this.nameTxt.Text;
-                    node.fieldButton.Text = this.nameTxt.Text;
+                    node.name = fieldName;
+                    node.fieldButton.Text = fieldName;
 
-                    /*DialogResult result = fbd.ShowDialog();
+                    DialogResult result = fbd.ShowDialog();
                     if (result.ToString() == "OK")
                         pathToFile = fbd.FileName;
                     else
-                        pathToFile = "";*/
+                        pathToFile = "";
 
                     node.pathToFile = this.pathToFile;
                 }
@@ -365,6 +396,20 @@ namespace QA_Helper
             {
                 this.chooseButton.Visible = true;
                 this.chooseLabel.Visible = true;
+            }
+        }
+
+        private void numValidate(object sender, EventArgs e)
+        {
+            string val = ((TextBox)sender).Text;
+            try
+            {
+                long a = long.Parse(val);
+            }
+            catch (FormatException)
+            {
+                val = Regex.Replace(val, @"[^0-9]", "");
+                ((TextBox)sender).Text = val;
             }
         }
 

@@ -110,6 +110,7 @@ namespace QA_Helper
             this.generateButton.Size = new System.Drawing.Size(120, 34);
             this.generateButton.TabIndex = 2;
             this.generateButton.Text = "Генерировать";
+            this.toolTip1.SetToolTip(this.generateButton, "Сгенерировать входные данные");
             this.generateButton.UseVisualStyleBackColor = true;
             this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
@@ -134,6 +135,7 @@ namespace QA_Helper
             this.settingButton.Name = "settingButton";
             this.settingButton.Size = new System.Drawing.Size(34, 34);
             this.settingButton.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.settingButton, "Настройки");
             this.settingButton.UseVisualStyleBackColor = true;
             this.settingButton.Click += new System.EventHandler(this.settingButton_Click);
             // 
@@ -299,6 +301,7 @@ namespace QA_Helper
             this.seqStepTxt.TabIndex = 16;
             this.seqStepTxt.Text = "1";
             this.seqStepTxt.Visible = false;
+            this.seqStepTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
             // 
             // seqFromTxt
             // 
@@ -309,6 +312,7 @@ namespace QA_Helper
             this.seqFromTxt.TabIndex = 15;
             this.seqFromTxt.Text = "1";
             this.seqFromTxt.Visible = false;
+            this.seqFromTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
             // 
             // seqFromLbl
             // 
@@ -330,6 +334,7 @@ namespace QA_Helper
             this.rangeToTxt.TabIndex = 13;
             this.rangeToTxt.Text = "10";
             this.rangeToTxt.Visible = false;
+            this.rangeToTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
             // 
             // rangeFromTxt
             // 
@@ -340,6 +345,7 @@ namespace QA_Helper
             this.rangeFromTxt.TabIndex = 12;
             this.rangeFromTxt.Text = "1";
             this.rangeFromTxt.Visible = false;
+            this.rangeFromTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
             // 
             // rangeLbl
             // 
@@ -456,7 +462,7 @@ namespace QA_Helper
             this.tableLayoutPanel.Location = new System.Drawing.Point(16, 12);
             this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 2;
+            this.tableLayoutPanel.RowCount = 1;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel.Size = new System.Drawing.Size(228, 383);

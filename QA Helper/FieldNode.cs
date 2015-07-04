@@ -162,7 +162,7 @@ namespace QA_Helper
             this.fieldButton.Location = new System.Drawing.Point(0, 0);
             this.fieldButton.Margin = new System.Windows.Forms.Padding(0);
             this.fieldButton.Name = "fieldButton";
-            this.fieldButton.Size = new System.Drawing.Size(162, 32);
+            this.fieldButton.Size = new System.Drawing.Size(164, 32);
             this.fieldButton.TabIndex = 1;
             this.fieldButton.Text = "Безымянное";
             this.fieldButton.UseVisualStyleBackColor = true;
@@ -191,7 +191,7 @@ namespace QA_Helper
                 c.Dispose();
             }
 
-            //form.tableLayoutPanel.RowCount--;
+            form.tableLayoutPanel.RowCount--;
 
             form.tableLayoutPanel.ResumeLayout(false);
             form.tableLayoutPanel.PerformLayout();
@@ -207,7 +207,7 @@ namespace QA_Helper
         private void editButton_Click(object sender, EventArgs e)
         {
             Form1.mode = "edit";
-            Form1.editable = form.tableLayoutPanel.GetRow((Button)sender) -1;
+            Form1.editable = form.tableLayoutPanel.GetRow((Button)sender);
             form.addInfo.Text = "Изменение поля";
             form.applyFieldButton.Text = "Сохранить поле";
 

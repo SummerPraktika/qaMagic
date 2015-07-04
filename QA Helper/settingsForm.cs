@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace QA_Helper
 {
@@ -20,12 +21,23 @@ namespace QA_Helper
 
         private void saveSettingsButton_Click(object sender, EventArgs e)
         {
-            setConfig("format", this.formatBox.Text);
-            setConfig("delimeter", this.delimeterBox.Text);
-            setConfig("encoding", this.encodingBox.Text);
-            setConfig("recordsCount", this.recordsCountTxt.Text);
+            if (this.recordsCountTxt.Text == "")
+            {
+                errorMessage("Количество записей должно быть от 1 до 10000");
+            }
+            else if (Int32.Parse(this.recordsCountTxt.Text) < 1 || Int32.Parse(this.recordsCountTxt.Text) > 10000)
+            {
+                errorMessage("Количество записей должно быть от 1 до 10000");
+            }
+            else
+            {
+                setConfig("format", this.formatBox.Text);
+                setConfig("delimeter", this.delimeterBox.Text);
+                setConfig("encoding", this.encodingBox.Text);
+                setConfig("recordsCount", this.recordsCountTxt.Text);
 
-            this.Close();
+                this.Close();
+            }
         }
 
         public static void setConfig(String key, String value)
@@ -47,6 +59,29 @@ namespace QA_Helper
             encodingBox.SelectedItem = getSetting("encoding");
             recordsCountTxt.Text = getSetting("recordsCount");
 
+        }
+
+        private void numValidate(object sender, EventArgs e)
+        {
+            string val = ((TextBox)sender).Text;
+            try
+            {
+                long a = long.Parse(val);
+            }
+            catch (FormatException)
+            {
+                val = Regex.Replace(val, @"[^0-9]", "");
+                ((TextBox)sender).Text = val;
+            }
+        }
+
+        private void errorMessage(string text)
+        {
+            MessageDialog form = new MessageDialog();
+            form.errorTxt.Text = text;
+            form.StartPosition = FormStartPosition.Manual;
+            form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
+            form.Show(this);
         }
     }
 }
