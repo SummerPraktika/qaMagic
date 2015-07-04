@@ -56,6 +56,8 @@ namespace QA_Helper
         void generate()
         {
             SaveFileDialog sd = new SaveFileDialog();
+            sd.Title = "Сохранение файла";
+            sd.Filter = "CSV files|*.csv";
             DialogResult result = sd.ShowDialog();
             string pathSaveFile;
             if (result.ToString() == "OK")
