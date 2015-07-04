@@ -65,8 +65,7 @@ namespace QA_Helper
             this.typeLbl = new System.Windows.Forms.Label();
             this.typeBox = new System.Windows.Forms.ComboBox();
             this.addInfo = new System.Windows.Forms.Label();
-            this.LeftPanel = new System.Windows.Forms.Panel();
-            this.fd = new System.Windows.Forms.OpenFileDialog();
+            this.tableLayoutPanel = new QA_Helper.TablePanel();
             this.statusStrip.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.welcomePanel.SuspendLayout();
@@ -300,7 +299,6 @@ namespace QA_Helper
             this.seqStepTxt.TabIndex = 16;
             this.seqStepTxt.Text = "1";
             this.seqStepTxt.Visible = false;
-            this.seqStepTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
             // 
             // seqFromTxt
             // 
@@ -311,7 +309,6 @@ namespace QA_Helper
             this.seqFromTxt.TabIndex = 15;
             this.seqFromTxt.Text = "1";
             this.seqFromTxt.Visible = false;
-            this.seqFromTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
             // 
             // seqFromLbl
             // 
@@ -333,7 +330,6 @@ namespace QA_Helper
             this.rangeToTxt.TabIndex = 13;
             this.rangeToTxt.Text = "10";
             this.rangeToTxt.Visible = false;
-            this.rangeToTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
             // 
             // rangeFromTxt
             // 
@@ -344,7 +340,6 @@ namespace QA_Helper
             this.rangeFromTxt.TabIndex = 12;
             this.rangeFromTxt.Text = "1";
             this.rangeFromTxt.Visible = false;
-            this.rangeFromTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
             // 
             // rangeLbl
             // 
@@ -446,24 +441,118 @@ namespace QA_Helper
             this.addInfo.Text = "Добавление поля";
             this.addInfo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // LeftPanel
+<<<<<<< HEAD
+=======
+            // rangeLbl
             // 
-            this.LeftPanel.AutoScroll = true;
-            this.LeftPanel.Location = new System.Drawing.Point(12, 12);
-            this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(245, 366);
-            this.LeftPanel.TabIndex = 25;
+            this.rangeLbl.AutoSize = true;
+            this.rangeLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rangeLbl.Location = new System.Drawing.Point(78, 124);
+            this.rangeLbl.Name = "rangeLbl";
+            this.rangeLbl.Size = new System.Drawing.Size(60, 13);
+            this.rangeLbl.TabIndex = 11;
+            this.rangeLbl.Text = "Диапазон";
+            this.rangeLbl.Visible = false;
+            // 
+            // rangeFromTxt
+            // 
+            this.rangeFromTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rangeFromTxt.Location = new System.Drawing.Point(153, 120);
+            this.rangeFromTxt.Name = "rangeFromTxt";
+            this.rangeFromTxt.Size = new System.Drawing.Size(37, 22);
+            this.rangeFromTxt.TabIndex = 12;
+            this.rangeFromTxt.Text = "1";
+            this.rangeFromTxt.Visible = false;
+            this.rangeFromTxt.KeyUp += new KeyEventHandler(this.numValidate);
+            // 
+            // rangeToTxt
+            // 
+            this.rangeToTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rangeToTxt.Location = new System.Drawing.Point(205, 120);
+            this.rangeToTxt.Name = "rangeToTxt";
+            this.rangeToTxt.Size = new System.Drawing.Size(37, 22);
+            this.rangeToTxt.TabIndex = 13;
+            this.rangeToTxt.Text = "10";
+            this.rangeToTxt.Visible = false;
+            this.rangeToTxt.KeyUp += new KeyEventHandler(this.numValidate);
+            // 
+            // seqFromLbl
+            // 
+            this.seqFromLbl.AutoSize = true;
+            this.seqFromLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.seqFromLbl.Location = new System.Drawing.Point(115, 124);
+            this.seqFromLbl.Name = "seqFromLbl";
+            this.seqFromLbl.Size = new System.Drawing.Size(21, 13);
+            this.seqFromLbl.TabIndex = 14;
+            this.seqFromLbl.Text = "От";
+            this.seqFromLbl.Visible = false;
+            // 
+            // seqFromTxt
+            // 
+            this.seqFromTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seqFromTxt.Location = new System.Drawing.Point(142, 120);
+            this.seqFromTxt.Name = "seqFromTxt";
+            this.seqFromTxt.Size = new System.Drawing.Size(37, 22);
+            this.seqFromTxt.TabIndex = 15;
+            this.seqFromTxt.Text = "1";
+            this.seqFromTxt.Visible = false;
+            this.seqFromTxt.KeyUp += new KeyEventHandler(this.numValidate);
+            // 
+            // seqStepTxt
+            // 
+            this.seqStepTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seqStepTxt.Location = new System.Drawing.Point(218, 120);
+            this.seqStepTxt.Name = "seqStepTxt";
+            this.seqStepTxt.Size = new System.Drawing.Size(37, 22);
+            this.seqStepTxt.TabIndex = 16;
+            this.seqStepTxt.Text = "1";
+            this.seqStepTxt.Visible = false;
+            this.seqStepTxt.KeyUp += new KeyEventHandler(this.numValidate);
+            // 
+            // seqStepLbl
+            // 
+            this.seqStepLbl.AutoSize = true;
+            this.seqStepLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seqStepLbl.Location = new System.Drawing.Point(185, 124);
+            this.seqStepLbl.Name = "seqStepLbl";
+            this.seqStepLbl.Size = new System.Drawing.Size(29, 13);
+            this.seqStepLbl.TabIndex = 17;
+            this.seqStepLbl.Text = "Шаг";
+            this.seqStepLbl.Visible = false;
+            // 
+>>>>>>> 4316cabdc6d71790e7fdd8fb31a32d980338eed6
+            // tableLayoutPanel
+            // 
+            this.tableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tableLayoutPanel.ColumnCount = 3;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tableLayoutPanel.Location = new System.Drawing.Point(16, 12);
+            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 2;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel.Size = new System.Drawing.Size(228, 383);
+            this.tableLayoutPanel.TabIndex = 3;
+            this.tableLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel_Paint);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(662, 469);
-            this.Controls.Add(this.LeftPanel);
-            this.Controls.Add(this.controlPanel);
-            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.commonAddPanel);
+            this.Controls.Add(this.tableLayoutPanel);
+            this.Controls.Add(this.controlPanel);
             this.Controls.Add(this.welcomePanel);
+            this.Controls.Add(this.statusStrip);
             this.Name = "Form1";
             this.Text = "QA Helper";
             this.statusStrip.ResumeLayout(false);
@@ -493,6 +582,7 @@ namespace QA_Helper
         public System.Windows.Forms.Button fieldButton;
         public System.Windows.Forms.Button editButton;
         public System.Windows.Forms.Button deleteButton;
+        public TablePanel tableLayoutPanel;
         public PictureBox pictureBox1;
         public Panel commonAddPanel;
         public Button chooseButton;
@@ -515,8 +605,6 @@ namespace QA_Helper
         public Label datePariodLbl;
         public Label dateFormatLbl;
         public ComboBox dateFormatCbox;
-        private Panel LeftPanel;
-        private OpenFileDialog fd;
     }
 }
 

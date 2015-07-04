@@ -1,4 +1,5 @@
-﻿namespace QA_Helper
+﻿using System.Windows.Forms;
+namespace QA_Helper
 {
     partial class settingsForm
     {
@@ -86,6 +87,7 @@
             this.recordsCountTxt.Name = "recordsCountTxt";
             this.recordsCountTxt.Size = new System.Drawing.Size(121, 22);
             this.recordsCountTxt.TabIndex = 11;
+            this.recordsCountTxt.KeyUp += new KeyEventHandler(this.numValidate);
             // 
             // formatLbl
             // 
