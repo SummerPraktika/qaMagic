@@ -45,26 +45,26 @@ namespace QA_Helper
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.aboutText = new System.Windows.Forms.TextBox();
             this.commonAddPanel = new System.Windows.Forms.Panel();
-            this.datePickerTo = new System.Windows.Forms.DateTimePicker();
             this.datePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.datePariodLbl = new System.Windows.Forms.Label();
             this.dateFormatLbl = new System.Windows.Forms.Label();
             this.dateFormatCbox = new System.Windows.Forms.ComboBox();
-            this.seqStepLbl = new System.Windows.Forms.Label();
-            this.seqStepTxt = new System.Windows.Forms.TextBox();
-            this.seqFromTxt = new System.Windows.Forms.TextBox();
             this.seqFromLbl = new System.Windows.Forms.Label();
             this.rangeToTxt = new System.Windows.Forms.TextBox();
             this.rangeFromTxt = new System.Windows.Forms.TextBox();
             this.rangeLbl = new System.Windows.Forms.Label();
             this.applyFieldButton = new System.Windows.Forms.Button();
-            this.chooseButton = new System.Windows.Forms.Button();
             this.chooseLabel = new System.Windows.Forms.Label();
             this.nameTxt = new System.Windows.Forms.TextBox();
             this.nameLbl = new System.Windows.Forms.Label();
             this.typeLbl = new System.Windows.Forms.Label();
             this.typeBox = new System.Windows.Forms.ComboBox();
             this.addInfo = new System.Windows.Forms.Label();
+            this.seqFromTxt = new System.Windows.Forms.TextBox();
+            this.seqStepTxt = new System.Windows.Forms.TextBox();
+            this.chooseButton = new System.Windows.Forms.Button();
+            this.datePickerTo = new System.Windows.Forms.DateTimePicker();
+            this.seqStepLbl = new System.Windows.Forms.Label();
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.fd = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip.SuspendLayout();
@@ -111,6 +111,7 @@ namespace QA_Helper
             this.generateButton.Size = new System.Drawing.Size(120, 34);
             this.generateButton.TabIndex = 2;
             this.generateButton.Text = "Генерировать";
+            this.toolTip1.SetToolTip(this.generateButton, "Сгенерировать входные данные");
             this.generateButton.UseVisualStyleBackColor = true;
             this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
@@ -135,6 +136,7 @@ namespace QA_Helper
             this.settingButton.Name = "settingButton";
             this.settingButton.Size = new System.Drawing.Size(34, 34);
             this.settingButton.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.settingButton, "Настройки");
             this.settingButton.UseVisualStyleBackColor = true;
             this.settingButton.Click += new System.EventHandler(this.settingButton_Click);
             // 
@@ -200,45 +202,36 @@ namespace QA_Helper
             // 
             // commonAddPanel
             // 
-            this.commonAddPanel.Controls.Add(this.datePickerTo);
             this.commonAddPanel.Controls.Add(this.datePickerFrom);
             this.commonAddPanel.Controls.Add(this.datePariodLbl);
             this.commonAddPanel.Controls.Add(this.dateFormatLbl);
             this.commonAddPanel.Controls.Add(this.dateFormatCbox);
-            this.commonAddPanel.Controls.Add(this.seqStepLbl);
-            this.commonAddPanel.Controls.Add(this.seqStepTxt);
-            this.commonAddPanel.Controls.Add(this.seqFromTxt);
             this.commonAddPanel.Controls.Add(this.seqFromLbl);
-            this.commonAddPanel.Controls.Add(this.rangeToTxt);
             this.commonAddPanel.Controls.Add(this.rangeFromTxt);
             this.commonAddPanel.Controls.Add(this.rangeLbl);
             this.commonAddPanel.Controls.Add(this.applyFieldButton);
-            this.commonAddPanel.Controls.Add(this.chooseButton);
             this.commonAddPanel.Controls.Add(this.chooseLabel);
             this.commonAddPanel.Controls.Add(this.nameTxt);
             this.commonAddPanel.Controls.Add(this.nameLbl);
             this.commonAddPanel.Controls.Add(this.typeLbl);
             this.commonAddPanel.Controls.Add(this.typeBox);
             this.commonAddPanel.Controls.Add(this.addInfo);
+            this.commonAddPanel.Controls.Add(this.seqFromTxt);
+            this.commonAddPanel.Controls.Add(this.datePickerTo);
+            this.commonAddPanel.Controls.Add(this.seqStepLbl);
+            this.commonAddPanel.Controls.Add(this.rangeToTxt);
+            this.commonAddPanel.Controls.Add(this.seqStepTxt);
+            this.commonAddPanel.Controls.Add(this.chooseButton);
             this.commonAddPanel.Location = new System.Drawing.Point(263, 236);
             this.commonAddPanel.Name = "commonAddPanel";
             this.commonAddPanel.Size = new System.Drawing.Size(383, 194);
             this.commonAddPanel.TabIndex = 2;
             this.commonAddPanel.Visible = false;
             // 
-            // datePickerTo
-            // 
-            this.datePickerTo.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePickerTo.Location = new System.Drawing.Point(205, 135);
-            this.datePickerTo.Name = "datePickerTo";
-            this.datePickerTo.Size = new System.Drawing.Size(80, 20);
-            this.datePickerTo.TabIndex = 22;
-            this.datePickerTo.Visible = false;
-            // 
             // datePickerFrom
             // 
             this.datePickerFrom.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePickerFrom.Location = new System.Drawing.Point(110, 136);
+            this.datePickerFrom.Location = new System.Drawing.Point(110, 123);
             this.datePickerFrom.Name = "datePickerFrom";
             this.datePickerFrom.Size = new System.Drawing.Size(80, 20);
             this.datePickerFrom.TabIndex = 21;
@@ -248,7 +241,7 @@ namespace QA_Helper
             // 
             this.datePariodLbl.AutoSize = true;
             this.datePariodLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePariodLbl.Location = new System.Drawing.Point(33, 142);
+            this.datePariodLbl.Location = new System.Drawing.Point(33, 124);
             this.datePariodLbl.Name = "datePariodLbl";
             this.datePariodLbl.Size = new System.Drawing.Size(48, 13);
             this.datePariodLbl.TabIndex = 20;
@@ -259,7 +252,7 @@ namespace QA_Helper
             // 
             this.dateFormatLbl.AutoSize = true;
             this.dateFormatLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateFormatLbl.Location = new System.Drawing.Point(33, 104);
+            this.dateFormatLbl.Location = new System.Drawing.Point(33, 97);
             this.dateFormatLbl.Name = "dateFormatLbl";
             this.dateFormatLbl.Size = new System.Drawing.Size(75, 13);
             this.dateFormatLbl.TabIndex = 19;
@@ -273,51 +266,24 @@ namespace QA_Helper
             this.dateFormatCbox.FormattingEnabled = true;
             this.dateFormatCbox.Items.AddRange(new object[] {
             "MM.DD.YYYY",
-            "DD.MM.YYYY"});
-            this.dateFormatCbox.Location = new System.Drawing.Point(110, 101);
+            "DD.MM.YYYY",
+            "MM.DD.YY",
+            "DD.MM.YY",
+            "YYYY.DD.MM",
+            "YYYY.MM.DD",
+            "YY.DD.MM",
+            "YY.MM.DD"});
+            this.dateFormatCbox.Location = new System.Drawing.Point(110, 94);
             this.dateFormatCbox.Name = "dateFormatCbox";
             this.dateFormatCbox.Size = new System.Drawing.Size(175, 21);
             this.dateFormatCbox.TabIndex = 23;
             this.dateFormatCbox.Visible = false;
             // 
-            // seqStepLbl
-            // 
-            this.seqStepLbl.AutoSize = true;
-            this.seqStepLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.seqStepLbl.Location = new System.Drawing.Point(185, 124);
-            this.seqStepLbl.Name = "seqStepLbl";
-            this.seqStepLbl.Size = new System.Drawing.Size(29, 13);
-            this.seqStepLbl.TabIndex = 17;
-            this.seqStepLbl.Text = "Шаг";
-            this.seqStepLbl.Visible = false;
-            // 
-            // seqStepTxt
-            // 
-            this.seqStepTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.seqStepTxt.Location = new System.Drawing.Point(218, 120);
-            this.seqStepTxt.Name = "seqStepTxt";
-            this.seqStepTxt.Size = new System.Drawing.Size(37, 22);
-            this.seqStepTxt.TabIndex = 16;
-            this.seqStepTxt.Text = "1";
-            this.seqStepTxt.Visible = false;
-            this.seqStepTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
-            // 
-            // seqFromTxt
-            // 
-            this.seqFromTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.seqFromTxt.Location = new System.Drawing.Point(142, 120);
-            this.seqFromTxt.Name = "seqFromTxt";
-            this.seqFromTxt.Size = new System.Drawing.Size(37, 22);
-            this.seqFromTxt.TabIndex = 15;
-            this.seqFromTxt.Text = "1";
-            this.seqFromTxt.Visible = false;
-            this.seqFromTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
-            // 
             // seqFromLbl
             // 
             this.seqFromLbl.AutoSize = true;
             this.seqFromLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.seqFromLbl.Location = new System.Drawing.Point(115, 124);
+            this.seqFromLbl.Location = new System.Drawing.Point(107, 124);
             this.seqFromLbl.Name = "seqFromLbl";
             this.seqFromLbl.Size = new System.Drawing.Size(21, 13);
             this.seqFromLbl.TabIndex = 14;
@@ -327,9 +293,10 @@ namespace QA_Helper
             // rangeToTxt
             // 
             this.rangeToTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rangeToTxt.Location = new System.Drawing.Point(205, 120);
+            this.rangeToTxt.Location = new System.Drawing.Point(248, 121);
+            this.rangeToTxt.MaxLength = 18;
             this.rangeToTxt.Name = "rangeToTxt";
-            this.rangeToTxt.Size = new System.Drawing.Size(37, 22);
+            this.rangeToTxt.Size = new System.Drawing.Size(60, 22);
             this.rangeToTxt.TabIndex = 13;
             this.rangeToTxt.Text = "10";
             this.rangeToTxt.Visible = false;
@@ -338,9 +305,10 @@ namespace QA_Helper
             // rangeFromTxt
             // 
             this.rangeFromTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rangeFromTxt.Location = new System.Drawing.Point(153, 120);
+            this.rangeFromTxt.Location = new System.Drawing.Point(144, 121);
+            this.rangeFromTxt.MaxLength = 18;
             this.rangeFromTxt.Name = "rangeFromTxt";
-            this.rangeFromTxt.Size = new System.Drawing.Size(37, 22);
+            this.rangeFromTxt.Size = new System.Drawing.Size(60, 22);
             this.rangeFromTxt.TabIndex = 12;
             this.rangeFromTxt.Text = "1";
             this.rangeFromTxt.Visible = false;
@@ -350,7 +318,7 @@ namespace QA_Helper
             // 
             this.rangeLbl.AutoSize = true;
             this.rangeLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rangeLbl.Location = new System.Drawing.Point(78, 124);
+            this.rangeLbl.Location = new System.Drawing.Point(33, 124);
             this.rangeLbl.Name = "rangeLbl";
             this.rangeLbl.Size = new System.Drawing.Size(60, 13);
             this.rangeLbl.TabIndex = 11;
@@ -368,22 +336,11 @@ namespace QA_Helper
             this.applyFieldButton.UseVisualStyleBackColor = true;
             this.applyFieldButton.Click += new System.EventHandler(this.applyFieldButton_Click);
             // 
-            // chooseButton
-            // 
-            this.chooseButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseButton.Location = new System.Drawing.Point(210, 119);
-            this.chooseButton.Name = "chooseButton";
-            this.chooseButton.Size = new System.Drawing.Size(98, 23);
-            this.chooseButton.TabIndex = 6;
-            this.chooseButton.Text = "Открыть файл";
-            this.chooseButton.UseVisualStyleBackColor = true;
-            this.chooseButton.Click += new System.EventHandler(this.chooseButton_Click);
-            // 
             // chooseLabel
             // 
             this.chooseLabel.AutoSize = true;
             this.chooseLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.chooseLabel.Location = new System.Drawing.Point(87, 124);
+            this.chooseLabel.Location = new System.Drawing.Point(33, 124);
             this.chooseLabel.Name = "chooseLabel";
             this.chooseLabel.Size = new System.Drawing.Size(117, 13);
             this.chooseLabel.TabIndex = 5;
@@ -445,6 +402,61 @@ namespace QA_Helper
             this.addInfo.TabIndex = 0;
             this.addInfo.Text = "Добавление поля";
             this.addInfo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // seqFromTxt
+            // 
+            this.seqFromTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seqFromTxt.Location = new System.Drawing.Point(142, 120);
+            this.seqFromTxt.MaxLength = 18;
+            this.seqFromTxt.Name = "seqFromTxt";
+            this.seqFromTxt.Size = new System.Drawing.Size(60, 22);
+            this.seqFromTxt.TabIndex = 15;
+            this.seqFromTxt.Text = "1";
+            this.seqFromTxt.Visible = false;
+            this.seqFromTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
+            // 
+            // seqStepTxt
+            // 
+            this.seqStepTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seqStepTxt.Location = new System.Drawing.Point(248, 120);
+            this.seqStepTxt.MaxLength = 5;
+            this.seqStepTxt.Name = "seqStepTxt";
+            this.seqStepTxt.Size = new System.Drawing.Size(60, 22);
+            this.seqStepTxt.TabIndex = 16;
+            this.seqStepTxt.Text = "1";
+            this.seqStepTxt.Visible = false;
+            this.seqStepTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
+            // 
+            // chooseButton
+            // 
+            this.chooseButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chooseButton.Location = new System.Drawing.Point(210, 119);
+            this.chooseButton.Name = "chooseButton";
+            this.chooseButton.Size = new System.Drawing.Size(98, 23);
+            this.chooseButton.TabIndex = 6;
+            this.chooseButton.Text = "Открыть файл";
+            this.chooseButton.UseVisualStyleBackColor = true;
+            this.chooseButton.Click += new System.EventHandler(this.chooseButton_Click);
+            // 
+            // datePickerTo
+            // 
+            this.datePickerTo.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datePickerTo.Location = new System.Drawing.Point(205, 123);
+            this.datePickerTo.Name = "datePickerTo";
+            this.datePickerTo.Size = new System.Drawing.Size(80, 20);
+            this.datePickerTo.TabIndex = 22;
+            this.datePickerTo.Visible = false;
+            // 
+            // seqStepLbl
+            // 
+            this.seqStepLbl.AutoSize = true;
+            this.seqStepLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seqStepLbl.Location = new System.Drawing.Point(210, 124);
+            this.seqStepLbl.Name = "seqStepLbl";
+            this.seqStepLbl.Size = new System.Drawing.Size(29, 13);
+            this.seqStepLbl.TabIndex = 17;
+            this.seqStepLbl.Text = "Шаг";
+            this.seqStepLbl.Visible = false;
             // 
             // LeftPanel
             // 

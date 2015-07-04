@@ -1,24 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.IO;
 
 namespace QA_Helper
 {
     public class FieldNode
     {
-
         List<string> data = new List<string>();
         public int type;
         public string name;
         public string pathToFile;
         public string dateFormat;
-        public int from, to;
+        public long from, to;
         public DateTime dfrom, dto;
-        public int start, step;
+        public long start, step;
         Random rand = new Random();
 
         public FieldNode(int type, string name, string pathToFile)
@@ -29,15 +27,7 @@ namespace QA_Helper
             setData();
         }
 
-        public FieldNode(string name, int type, string pathToFile)
-        {
-            this.type = type;
-            this.name = name;
-            this.pathToFile = pathToFile;
-            setData();
-        }
-
-        public FieldNode(int type, string name, int from, int to)
+        public FieldNode(int type, string name, long from, long to)
         {
             this.type = type;
             this.name = name;
@@ -54,7 +44,7 @@ namespace QA_Helper
             this.dto = dto;
         }
 
-        public FieldNode(string name, int type, int start, int step)
+        public FieldNode(string name, int type, long start, long step)
         {
             this.type = type;
             this.name = name;
@@ -80,14 +70,14 @@ namespace QA_Helper
             return this.data.ElementAt(rand.Next(0, this.data.Count));
         }
 
-        public int getRndNumber()
+        public long getRndNumber()
         {
-            return rand.Next(from, to);
+            return (long)(rand.NextDouble() * (to - from) + from);
         }
 
-        public int getSequenceNumber()
+        public long getSequenceNumber()
         {
-            int number = this.start;
+            long number = this.start;
             this.start = this.start + this.step;
             return number;
         }
@@ -115,9 +105,11 @@ namespace QA_Helper
             return date.ToString("dd.MM.yyyy");
         }
 
+
+
         public string getSequentialString(int index)
         {
-            return this.data.ElementAt(index);
+            return this.data.ElementAt(index % data.Count);
         }
     }
 }

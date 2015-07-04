@@ -74,6 +74,8 @@ namespace QA_Helper
                 ((TextBox)sender).Text = val;
             }
         }
+<<<<<<< HEAD
+=======
 
         private void errorMessage(string text)
         {
@@ -83,5 +85,6 @@ namespace QA_Helper
             form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
             form.Show(this);
         }
+>>>>>>> ef45f75b2b14ea88d0ed591b893f8c9c62298bf4
     }
 }

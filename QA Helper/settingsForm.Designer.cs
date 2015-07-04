@@ -50,7 +50,7 @@ namespace QA_Helper
             this.formatBox.Location = new System.Drawing.Point(119, 9);
             this.formatBox.Name = "formatBox";
             this.formatBox.Size = new System.Drawing.Size(121, 21);
-            this.formatBox.SelectedIndex = 0;
+            this.formatBox.TabIndex = 14;
             // 
             // encodingBox
             // 
@@ -58,11 +58,14 @@ namespace QA_Helper
             this.encodingBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.encodingBox.FormattingEnabled = true;
             this.encodingBox.Items.AddRange(new object[] {
-            "UTF-8"});
+            "UTF-8",
+            "UTF-16",
+            "Unicode",
+            "windows-1251"});
             this.encodingBox.Location = new System.Drawing.Point(119, 63);
             this.encodingBox.Name = "encodingBox";
             this.encodingBox.Size = new System.Drawing.Size(121, 21);
-            this.encodingBox.SelectedIndex = 0;
+            this.encodingBox.TabIndex = 13;
             // 
             // delimeterBox
             // 
@@ -78,7 +81,7 @@ namespace QA_Helper
             this.delimeterBox.Location = new System.Drawing.Point(119, 36);
             this.delimeterBox.Name = "delimeterBox";
             this.delimeterBox.Size = new System.Drawing.Size(121, 21);
-            this.delimeterBox.SelectedIndex = 0;
+            this.delimeterBox.TabIndex = 12;
             // 
             // recordsCountTxt
             // 
@@ -87,7 +90,7 @@ namespace QA_Helper
             this.recordsCountTxt.Name = "recordsCountTxt";
             this.recordsCountTxt.Size = new System.Drawing.Size(121, 22);
             this.recordsCountTxt.TabIndex = 11;
-            this.recordsCountTxt.KeyUp += new KeyEventHandler(this.numValidate);
+            this.recordsCountTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
             // 
             // formatLbl
             // 
