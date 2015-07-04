@@ -20,7 +20,7 @@ namespace QA_Helper
         public static int editable = 0;
         Color defaultColor = SystemColors.Control;
 
-        private int locationX = 0, locationY = 15, deltaY = 32; // Исходные параметры для кнопок - в панели слева
+        private int locationX = 0, locationY = 0, deltaY = 32; // Исходные параметры для кнопок - в панели слева
         private List<Button> FieldBtn = new List<Button>(); // массив всех кнопок
         private List<Button> ParametresBtn = new List<Button>();
         private List<Button> DeleteBtn = new List<Button>();
@@ -213,7 +213,7 @@ namespace QA_Helper
             parametres.Location = new Point(locationX + 164, newLocationY);
             parametres.Visible = true;
             parametres.Font = new Font("Segoe UI", 8);
-            parametres.BackgroundImage = Properties.Resources._1435861266_gears;
+            parametres.BackgroundImage = Properties.Resources._1435861155_edit;
             parametres.BackgroundImageLayout = ImageLayout.Center;
 
             delete.Location = new Point(locationX + 196, newLocationY);

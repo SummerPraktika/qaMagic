@@ -50,7 +50,6 @@ namespace QA_Helper
             this.dateFormatLbl = new System.Windows.Forms.Label();
             this.dateFormatCbox = new System.Windows.Forms.ComboBox();
             this.seqFromLbl = new System.Windows.Forms.Label();
-            this.rangeToTxt = new System.Windows.Forms.TextBox();
             this.rangeFromTxt = new System.Windows.Forms.TextBox();
             this.rangeLbl = new System.Windows.Forms.Label();
             this.applyFieldButton = new System.Windows.Forms.Button();
@@ -61,10 +60,11 @@ namespace QA_Helper
             this.typeBox = new System.Windows.Forms.ComboBox();
             this.addInfo = new System.Windows.Forms.Label();
             this.seqFromTxt = new System.Windows.Forms.TextBox();
-            this.seqStepTxt = new System.Windows.Forms.TextBox();
-            this.chooseButton = new System.Windows.Forms.Button();
             this.datePickerTo = new System.Windows.Forms.DateTimePicker();
             this.seqStepLbl = new System.Windows.Forms.Label();
+            this.rangeToTxt = new System.Windows.Forms.TextBox();
+            this.seqStepTxt = new System.Windows.Forms.TextBox();
+            this.chooseButton = new System.Windows.Forms.Button();
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.fd = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip.SuspendLayout();
@@ -290,18 +290,6 @@ namespace QA_Helper
             this.seqFromLbl.Text = "От";
             this.seqFromLbl.Visible = false;
             // 
-            // rangeToTxt
-            // 
-            this.rangeToTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rangeToTxt.Location = new System.Drawing.Point(248, 121);
-            this.rangeToTxt.MaxLength = 18;
-            this.rangeToTxt.Name = "rangeToTxt";
-            this.rangeToTxt.Size = new System.Drawing.Size(60, 22);
-            this.rangeToTxt.TabIndex = 13;
-            this.rangeToTxt.Text = "10";
-            this.rangeToTxt.Visible = false;
-            this.rangeToTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
-            // 
             // rangeFromTxt
             // 
             this.rangeFromTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -415,6 +403,38 @@ namespace QA_Helper
             this.seqFromTxt.Visible = false;
             this.seqFromTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
             // 
+            // datePickerTo
+            // 
+            this.datePickerTo.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datePickerTo.Location = new System.Drawing.Point(205, 123);
+            this.datePickerTo.Name = "datePickerTo";
+            this.datePickerTo.Size = new System.Drawing.Size(80, 20);
+            this.datePickerTo.TabIndex = 22;
+            this.datePickerTo.Visible = false;
+            // 
+            // seqStepLbl
+            // 
+            this.seqStepLbl.AutoSize = true;
+            this.seqStepLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seqStepLbl.Location = new System.Drawing.Point(210, 124);
+            this.seqStepLbl.Name = "seqStepLbl";
+            this.seqStepLbl.Size = new System.Drawing.Size(29, 13);
+            this.seqStepLbl.TabIndex = 17;
+            this.seqStepLbl.Text = "Шаг";
+            this.seqStepLbl.Visible = false;
+            // 
+            // rangeToTxt
+            // 
+            this.rangeToTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rangeToTxt.Location = new System.Drawing.Point(248, 121);
+            this.rangeToTxt.MaxLength = 18;
+            this.rangeToTxt.Name = "rangeToTxt";
+            this.rangeToTxt.Size = new System.Drawing.Size(60, 22);
+            this.rangeToTxt.TabIndex = 13;
+            this.rangeToTxt.Text = "10";
+            this.rangeToTxt.Visible = false;
+            this.rangeToTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numValidate);
+            // 
             // seqStepTxt
             // 
             this.seqStepTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -438,29 +458,10 @@ namespace QA_Helper
             this.chooseButton.UseVisualStyleBackColor = true;
             this.chooseButton.Click += new System.EventHandler(this.chooseButton_Click);
             // 
-            // datePickerTo
-            // 
-            this.datePickerTo.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePickerTo.Location = new System.Drawing.Point(205, 123);
-            this.datePickerTo.Name = "datePickerTo";
-            this.datePickerTo.Size = new System.Drawing.Size(80, 20);
-            this.datePickerTo.TabIndex = 22;
-            this.datePickerTo.Visible = false;
-            // 
-            // seqStepLbl
-            // 
-            this.seqStepLbl.AutoSize = true;
-            this.seqStepLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.seqStepLbl.Location = new System.Drawing.Point(210, 124);
-            this.seqStepLbl.Name = "seqStepLbl";
-            this.seqStepLbl.Size = new System.Drawing.Size(29, 13);
-            this.seqStepLbl.TabIndex = 17;
-            this.seqStepLbl.Text = "Шаг";
-            this.seqStepLbl.Visible = false;
-            // 
             // LeftPanel
             // 
             this.LeftPanel.AutoScroll = true;
+            this.LeftPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LeftPanel.Location = new System.Drawing.Point(12, 12);
             this.LeftPanel.Name = "LeftPanel";
             this.LeftPanel.Size = new System.Drawing.Size(245, 366);
