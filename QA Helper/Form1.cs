@@ -30,7 +30,6 @@ namespace QA_Helper
         public Form1()
         {
             InitializeComponent();
-            toolTip1.SetToolTip(addButton, "Добавить поле");
         }
 
 
@@ -47,6 +46,7 @@ namespace QA_Helper
             clickedBtnIndex = -1;
             this.addInfo.Text = "Добавление поля";
             this.applyFieldButton.Text = "Добавить поле";
+            this.chooseLabel.Text = "Файл не выбран";
             setDefaultParameters();
             defaultButtons();
             this.commonAddPanel.Show();
@@ -230,6 +230,9 @@ namespace QA_Helper
             parametres.Click += new System.EventHandler(this.parametres_Click);
             delete.Click += new System.EventHandler(this.delete_Click);
 
+            toolTip1.SetToolTip(parametres, "Редактировать поле");
+            toolTip1.SetToolTip(delete, "Удалить поле");
+
             FieldBtn.Add(newFieldBtn);
             ParametresBtn.Add(parametres);
             DeleteBtn.Add(delete);
@@ -295,6 +298,7 @@ namespace QA_Helper
                 typeBox.SelectedIndex = 0;
                 nameTxt.Text = node.name;
                 fd.FileName = node.pathToFile;
+                chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
             }
             else if (node.type == 1)
             {
@@ -326,6 +330,7 @@ namespace QA_Helper
                 typeBox.SelectedIndex = 4;
                 nameTxt.Text = node.name;
                 fd.FileName = node.pathToFile;
+                chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
             }
         }
 
@@ -422,6 +427,7 @@ namespace QA_Helper
             saveField(); // сохраняем изменения в FieldNode
             commonAddPanel.Visible = false;
             aboutText.Visible = true;
+            fd.FileName = "";
 
         }
 
@@ -490,6 +496,11 @@ namespace QA_Helper
         private void chooseButton_Click(object sender, EventArgs e)
         {
             DialogResult result = fd.ShowDialog();
+            
+            if (result == DialogResult.OK)
+            {
+                chooseLabel.Text = fd.SafeFileName + "";
+            }
         }
 
         private void typeBox_SelectedIndexChanged(object sender, EventArgs e)

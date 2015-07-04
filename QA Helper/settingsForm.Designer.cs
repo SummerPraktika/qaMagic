@@ -156,6 +156,7 @@ namespace QA_Helper
             this.Controls.Add(this.delimeterBox);
             this.Controls.Add(this.encodingBox);
             this.Controls.Add(this.formatBox);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "settingsForm";
             this.Text = "Настройки";
             this.Load += new System.EventHandler(this.settingsForm_Load);

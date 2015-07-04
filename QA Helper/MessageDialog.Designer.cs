@@ -65,6 +65,7 @@
             this.ClientSize = new System.Drawing.Size(187, 106);
             this.Controls.Add(this.errorTxt);
             this.Controls.Add(this.continueButton);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "MessageDialog";
             this.Text = "Ошибка";
             this.ResumeLayout(false);
