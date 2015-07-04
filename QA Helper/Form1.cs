@@ -273,10 +273,7 @@ namespace QA_Helper
             this.addInfo.Text = "Изменение поля";
             this.applyFieldButton.Text = "Изменить поле";
             int index = 0;
-            foreach (Button b in FieldBtn)
-            {
-                b.BackColor = Color.Azure;
-            }
+            defaultButtons();
             foreach (Button b in ParametresBtn)
             {
                 if (b == sender)
