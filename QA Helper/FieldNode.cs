@@ -86,8 +86,8 @@ namespace QA_Helper
         {
 
             long ticks = dfrom.Ticks;
-            DateTime date = new DateTime(ticks).AddDays(rand.Next(0, (this.dto.Year - this.dfrom.Year) * 365 + this.dto.Year != this.dfrom.Year ? (365 - this.dfrom.DayOfYear) + this.dto.DayOfYear : this.dto.DayOfYear - this.dfrom.DayOfYear));
-
+            //DateTime date2 = new DateTime(ticks).AddDays(rand.Next(0, (this.dto.Year - this.dfrom.Year) * 365 + this.dto.Year != this.dfrom.Year ? (365 - this.dfrom.DayOfYear) + this.dto.DayOfYear : this.dto.DayOfYear - this.dfrom.DayOfYear));
+            DateTime date = new DateTime(ticks).AddTicks((long) (rand.NextDouble() * (dto.Ticks - dfrom.Ticks)));
             return leadToFormat(date);
         }
 
