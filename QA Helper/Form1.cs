@@ -147,13 +147,14 @@ namespace QA_Helper
                 }
             }
             catch (FileLoadException) { }
-            MessageBox.Show("Генерация выполнена");
+            simpleMessage("Генерация выполнена");
         }
 
          void errorMessage(string text)
          {
              MessageDialog form = new MessageDialog();
              form.errorTxt.Text = text;
+             form.Text = "Ошибка";
              form.StartPosition = FormStartPosition.Manual;
              form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
              form.Show(this);
@@ -373,12 +374,12 @@ namespace QA_Helper
                 }
                 catch (FormatException)
                 {
-                    MessageBox.Show("Неверный формат ввода");
+                    errorMessage("Неверный формат ввода");
                     return;
                 }
                 if (a > b)
                 {
-                    MessageBox.Show("Начало диапазона не должно быть больше конца диапазона");
+                    errorMessage("Начало диапазона не должно быть больше конца диапазона");
                     return;
                 }
             }
@@ -386,7 +387,7 @@ namespace QA_Helper
             {
                 if (datePickerFrom.Value > datePickerTo.Value)
                 {
-                    MessageBox.Show("Начало диапазона дат не должно быть больше конца диапазона дат");
+                    errorMessage("Начало диапазона дат не должно быть больше конца диапазона дат");
                     return;
                 }
             }
@@ -407,7 +408,7 @@ namespace QA_Helper
                 }
                 catch (FormatException)
                 {
-                    MessageBox.Show("Неверный формат ввода");
+                    errorMessage("Неверный формат ввода");
                     return;
                 }
             }
