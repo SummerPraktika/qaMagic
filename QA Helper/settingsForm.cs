@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace QA_Helper
 {
@@ -47,6 +48,20 @@ namespace QA_Helper
             encodingBox.SelectedItem = getSetting("encoding");
             recordsCountTxt.Text = getSetting("recordsCount");
 
+        }
+
+        private void numValidate(object sender, EventArgs e)
+        {
+            string val = ((TextBox)sender).Text;
+            try
+            {
+                long a = long.Parse(val);
+            }
+            catch (FormatException)
+            {
+                val = Regex.Replace(val, @"[^0-9]", "");
+                ((TextBox)sender).Text = val;
+            }
         }
     }
 }

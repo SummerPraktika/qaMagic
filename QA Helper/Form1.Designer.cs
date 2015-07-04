@@ -334,6 +334,7 @@ namespace QA_Helper
             this.rangeFromTxt.TabIndex = 12;
             this.rangeFromTxt.Text = "1";
             this.rangeFromTxt.Visible = false;
+            this.rangeFromTxt.KeyUp += new KeyEventHandler(this.numValidate);
             // 
             // rangeToTxt
             // 
@@ -344,6 +345,7 @@ namespace QA_Helper
             this.rangeToTxt.TabIndex = 13;
             this.rangeToTxt.Text = "10";
             this.rangeToTxt.Visible = false;
+            this.rangeToTxt.KeyUp += new KeyEventHandler(this.numValidate);
             // 
             // seqFromLbl
             // 
@@ -365,6 +367,7 @@ namespace QA_Helper
             this.seqFromTxt.TabIndex = 15;
             this.seqFromTxt.Text = "1";
             this.seqFromTxt.Visible = false;
+            this.seqFromTxt.KeyUp += new KeyEventHandler(this.numValidate);
             // 
             // seqStepTxt
             // 
@@ -375,6 +378,7 @@ namespace QA_Helper
             this.seqStepTxt.TabIndex = 16;
             this.seqStepTxt.Text = "1";
             this.seqStepTxt.Visible = false;
+            this.seqStepTxt.KeyUp += new KeyEventHandler(this.numValidate);
             // 
             // seqStepLbl
             // 
