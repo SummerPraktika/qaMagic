@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Resources;
 
 namespace QA_Helper
 {
@@ -18,13 +19,17 @@ namespace QA_Helper
         public DateTime dfrom, dto;
         public long start, step;
         Random rand = new Random();
+        string[] standartListArray = new string[] { "Фамилии", "Имена", "Отчества", "Города", "Телефоны", "e-mail" };
 
         public FieldNode(int type, string name, string pathToFile)
         {
             this.type = type;
             this.name = name;
             this.pathToFile = pathToFile;
-            setData();
+            if (!standartListArray.Contains(pathToFile))
+                setData();
+            else
+                setStandartData();
         }
 
         public FieldNode(int type, string name, long from, long to)
@@ -63,6 +68,28 @@ namespace QA_Helper
                     this.data.Add(line);
                 }
             }
+        }
+
+        void setStandartData()
+        {
+            string resFile = "";
+
+            if (pathToFile == standartListArray[0])
+                resFile = Properties.Resources.surnames;
+            if (pathToFile == standartListArray[1])
+                resFile = Properties.Resources.names;
+            if (pathToFile == standartListArray[2])
+                resFile = Properties.Resources.middlenames;
+            if (pathToFile == standartListArray[3])
+                resFile = Properties.Resources.cities;
+            if (pathToFile == standartListArray[4])
+                resFile = Properties.Resources.phones;
+            if (pathToFile == standartListArray[5])
+                resFile = Properties.Resources.emails;
+
+            string[] res = resFile.Split(new char[] {'\n', '\r'}, StringSplitOptions.RemoveEmptyEntries);
+            this.data.AddRange(res);
+
         }
 
         public string getRndString()

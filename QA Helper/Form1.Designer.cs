@@ -45,6 +45,8 @@ namespace QA_Helper
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.aboutText = new System.Windows.Forms.TextBox();
             this.commonAddPanel = new System.Windows.Forms.Panel();
+            this.standartListLbl = new System.Windows.Forms.Label();
+            this.standartList = new System.Windows.Forms.ComboBox();
             this.datePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.datePariodLbl = new System.Windows.Forms.Label();
             this.dateFormatLbl = new System.Windows.Forms.Label();
@@ -203,6 +205,8 @@ namespace QA_Helper
             // 
             // commonAddPanel
             // 
+            this.commonAddPanel.Controls.Add(this.standartListLbl);
+            this.commonAddPanel.Controls.Add(this.standartList);
             this.commonAddPanel.Controls.Add(this.datePickerFrom);
             this.commonAddPanel.Controls.Add(this.datePariodLbl);
             this.commonAddPanel.Controls.Add(this.dateFormatLbl);
@@ -228,6 +232,32 @@ namespace QA_Helper
             this.commonAddPanel.Size = new System.Drawing.Size(383, 194);
             this.commonAddPanel.TabIndex = 2;
             this.commonAddPanel.Visible = false;
+            // 
+            // standartListLbl
+            // 
+            this.standartListLbl.AutoSize = true;
+            this.standartListLbl.Location = new System.Drawing.Point(234, 110);
+            this.standartListLbl.Name = "standartListLbl";
+            this.standartListLbl.Size = new System.Drawing.Size(117, 13);
+            this.standartListLbl.TabIndex = 26;
+            this.standartListLbl.Text = "Стандартные списки";
+            // 
+            // standartList
+            // 
+            this.standartList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.standartList.FormattingEnabled = true;
+            this.standartList.Items.AddRange(new object[] {
+            "",
+            "Фамилии",
+            "Имена",
+            "Отчества",
+            "Города",
+            "Телефоны",
+            "e-mail"});
+            this.standartList.Location = new System.Drawing.Point(218, 126);
+            this.standartList.Name = "standartList";
+            this.standartList.Size = new System.Drawing.Size(154, 21);
+            this.standartList.TabIndex = 25;
             // 
             // datePickerFrom
             // 
@@ -274,7 +304,7 @@ namespace QA_Helper
             "YYYY.MM.DD",
             "YY.DD.MM",
             "YY.MM.DD"});
-            this.dateFormatCbox.Location = new System.Drawing.Point(106, 97);
+            this.dateFormatCbox.Location = new System.Drawing.Point(106, 96);
             this.dateFormatCbox.Name = "dateFormatCbox";
             this.dateFormatCbox.Size = new System.Drawing.Size(175, 21);
             this.dateFormatCbox.TabIndex = 23;
@@ -330,7 +360,7 @@ namespace QA_Helper
             this.chooseLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.chooseLabel.Location = new System.Drawing.Point(13, 136);
             this.chooseLabel.Name = "chooseLabel";
-            this.chooseLabel.Size = new System.Drawing.Size(360, 21);
+            this.chooseLabel.Size = new System.Drawing.Size(173, 21);
             this.chooseLabel.TabIndex = 5;
             this.chooseLabel.Text = "Файл не выбран";
             this.chooseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -451,7 +481,7 @@ namespace QA_Helper
             // chooseButton
             // 
             this.chooseButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseButton.Location = new System.Drawing.Point(141, 104);
+            this.chooseButton.Location = new System.Drawing.Point(52, 111);
             this.chooseButton.Name = "chooseButton";
             this.chooseButton.Size = new System.Drawing.Size(98, 23);
             this.chooseButton.TabIndex = 6;
@@ -463,9 +493,9 @@ namespace QA_Helper
             // 
             this.LeftPanel.AutoScroll = true;
             this.LeftPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LeftPanel.Location = new System.Drawing.Point(12, 12);
+            this.LeftPanel.Location = new System.Drawing.Point(8, 12);
             this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(245, 366);
+            this.LeftPanel.Size = new System.Drawing.Size(250, 366);
             this.LeftPanel.TabIndex = 25;
             // 
             // fd
@@ -537,6 +567,8 @@ namespace QA_Helper
         public ComboBox dateFormatCbox;
         private Panel LeftPanel;
         private OpenFileDialog fd;
+        private ComboBox standartList;
+        private Label standartListLbl;
     }
 }
 

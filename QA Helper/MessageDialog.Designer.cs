@@ -60,14 +60,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(187, 106);
+            this.ClientSize = new System.Drawing.Size(181, 106);
             this.Controls.Add(this.errorTxt);
             this.Controls.Add(this.continueButton);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "MessageDialog";
             this.Text = "Ошибка";
+            this.Load += new System.EventHandler(this.MessageDialog_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -26,6 +26,7 @@ namespace QA_Helper
         private List<Button> DeleteBtn = new List<Button>();
         int tBtn = 0; //текущий номер кнопки 
         int clickedBtnIndex = -1; //номер нажатой кнопки, -1 - не нажата
+        string[] standartListArray = new string[] { "Фамилии", "Имена", "Отчества", "Города", "Телефоны", "e-mail" };
 
         public Form1()
         {
@@ -44,6 +45,7 @@ namespace QA_Helper
         private void addButton_Click(object sender, EventArgs e)
         {
             clickedBtnIndex = -1;
+            
             this.addInfo.Text = "Добавление поля";
             this.applyFieldButton.Text = "Добавить поле";
             this.chooseLabel.Text = "Файл не выбран";
@@ -149,7 +151,7 @@ namespace QA_Helper
                 }
             }
             catch (FileLoadException) { }
-            simpleMessage("Генерация выполнена");
+            simpleMessage("Генерация выполнена", pathSaveFile);
         }
 
          void errorMessage(string text)
@@ -162,9 +164,9 @@ namespace QA_Helper
              form.Show(this);
          }
 
-         void simpleMessage(string text)
+         void simpleMessage(string text, string filename)
          {
-             MessageDialog form = new MessageDialog();
+             MessageDialog form = new MessageDialog(filename);
              form.errorTxt.Text = text;
              form.Text = "Успех";
              form.StartPosition = FormStartPosition.Manual;
@@ -300,8 +302,15 @@ namespace QA_Helper
             {
                 typeBox.SelectedIndex = 0;
                 nameTxt.Text = node.name;
-                fd.FileName = node.pathToFile;
-                chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
+                if (!standartListArray.Contains(node.pathToFile))
+                {
+                    fd.FileName = node.pathToFile;
+                    chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
+                }
+                else
+                {
+                    standartList.SelectedItem = node.pathToFile;
+                }
             }
             else if (node.type == 1)
             {
@@ -332,8 +341,15 @@ namespace QA_Helper
             {
                 typeBox.SelectedIndex = 4;
                 nameTxt.Text = node.name;
-                fd.FileName = node.pathToFile;
-                chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
+                if (!standartListArray.Contains(node.pathToFile))
+                {
+                    fd.FileName = node.pathToFile;
+                    chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
+                }
+                else
+                {
+                    standartList.SelectedItem = node.pathToFile;
+                }
             }
         }
 
@@ -352,9 +368,14 @@ namespace QA_Helper
 
             if (this.typeBox.SelectedIndex == 0)
             {
-                if (fd.FileName == "")
+                if (fd.FileName == "" && standartList.SelectedIndex == 0)
                 {
-                    errorMessage("Не выбран файл со строками!");
+                    errorMessage("Не выбран файл со строками или стандартный список!");
+                    return;
+                }
+                if (fd.FileName != "" && standartList.SelectedIndex != 0)
+                {
+                    errorMessage("Выберите либо файл со строками, либо стандартный список!");
                     return;
                 }
             }
@@ -416,9 +437,14 @@ namespace QA_Helper
             }
             else if (this.typeBox.SelectedIndex == 4)
             {
-                if (fd.FileName == "")
+                if (fd.FileName == "" && standartList.SelectedIndex == 0)
                 {
-                    errorMessage("Не выбран файл со строками!");
+                    errorMessage("Не выбран файл со строками или стандартный список!");
+                    return;
+                }
+                if (fd.FileName != "" && standartList.SelectedIndex != 0)
+                {
+                    errorMessage("Выберите либо файл со строками, либо стандартный список!");
                     return;
                 }
             }
@@ -442,7 +468,15 @@ namespace QA_Helper
             {
                 int type = 0;
                 string name = this.nameTxt.Text;
-                string pathToFile = fd.FileName;
+                string pathToFile;
+                if (fd.FileName != "")
+                {
+                    pathToFile = fd.FileName;
+                }
+                else
+                {
+                    pathToFile = standartList.SelectedItem.ToString();
+                }
                 if (clickedBtnIndex == -1)
                     nodes.Add(new FieldNode(type, name, pathToFile));
                 else
@@ -488,7 +522,15 @@ namespace QA_Helper
                 
                 int type = 4;
                 string name = this.nameTxt.Text;
-                string pathToFile = fd.FileName;
+                string pathToFile;
+                if (fd.FileName != "")
+                {
+                    pathToFile = fd.FileName;
+                }
+                else
+                {
+                    pathToFile = standartList.SelectedItem.ToString();
+                }
                 if (clickedBtnIndex == -1)
                     nodes.Add(new FieldNode(type, name, pathToFile));
                 else
@@ -515,6 +557,8 @@ namespace QA_Helper
             {
                 this.chooseButton.Visible = true;
                 this.chooseLabel.Visible = true;
+                this.standartList.Visible = true;
+                this.standartListLbl.Visible = true;
             }
             else if (cbox.SelectedIndex == 1)
             {
@@ -541,6 +585,8 @@ namespace QA_Helper
             {
                 this.chooseButton.Visible = true;
                 this.chooseLabel.Visible = true;
+                this.standartList.Visible = true;
+                this.standartListLbl.Visible = true;
             }
         }
 
@@ -562,6 +608,8 @@ namespace QA_Helper
         {
             this.chooseButton.Visible = false;
             this.chooseLabel.Visible = false;
+            this.standartList.Visible = false;
+            this.standartListLbl.Visible = false;
 
             this.rangeLbl.Visible = false;
             this.rangeFromTxt.Visible = false;
@@ -582,6 +630,7 @@ namespace QA_Helper
         void setDefaultParameters()
         {
             this.typeBox.SelectedIndex = 0;
+            standartList.SelectedIndex = 0;
             this.nameTxt.Text = "Безымянное";
 
             this.rangeFromTxt.Text = "1";
@@ -594,5 +643,7 @@ namespace QA_Helper
             this.datePickerFrom.Value = DateTime.Now;
             this.datePickerTo.Value = DateTime.Now;
         }
+
+
     }
 }
