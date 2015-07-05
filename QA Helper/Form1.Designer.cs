@@ -100,9 +100,9 @@ namespace QA_Helper
             this.controlPanel.Controls.Add(this.generateButton);
             this.controlPanel.Controls.Add(this.addButton);
             this.controlPanel.Controls.Add(this.settingButton);
-            this.controlPanel.Location = new System.Drawing.Point(16, 396);
+            this.controlPanel.Location = new System.Drawing.Point(8, 396);
             this.controlPanel.Name = "controlPanel";
-            this.controlPanel.Size = new System.Drawing.Size(228, 38);
+            this.controlPanel.Size = new System.Drawing.Size(230, 38);
             this.controlPanel.TabIndex = 0;
             // 
             // generateButton
@@ -135,7 +135,7 @@ namespace QA_Helper
             this.settingButton.BackgroundImage = global::QA_Helper.Properties.Resources._1435861266_gears;
             this.settingButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.settingButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.settingButton.Location = new System.Drawing.Point(189, 1);
+            this.settingButton.Location = new System.Drawing.Point(191, 1);
             this.settingButton.Name = "settingButton";
             this.settingButton.Size = new System.Drawing.Size(34, 34);
             this.settingButton.TabIndex = 0;
@@ -253,7 +253,7 @@ namespace QA_Helper
             "Отчества",
             "Города",
             "Телефоны",
-            "e-mail"});
+            "E-mail"});
             this.standartList.Location = new System.Drawing.Point(218, 126);
             this.standartList.Name = "standartList";
             this.standartList.Size = new System.Drawing.Size(154, 21);
@@ -296,8 +296,8 @@ namespace QA_Helper
             this.dateFormatCbox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateFormatCbox.FormattingEnabled = true;
             this.dateFormatCbox.Items.AddRange(new object[] {
-            "MM.DD.YYYY",
             "DD.MM.YYYY",
+            "MM.DD.YYYY",
             "MM.DD.YY",
             "DD.MM.YY",
             "YYYY.DD.MM",
@@ -495,7 +495,7 @@ namespace QA_Helper
             this.LeftPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LeftPanel.Location = new System.Drawing.Point(8, 12);
             this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(250, 366);
+            this.LeftPanel.Size = new System.Drawing.Size(230, 366);
             this.LeftPanel.TabIndex = 25;
             // 
             // fd
@@ -514,6 +514,8 @@ namespace QA_Helper
             this.Controls.Add(this.commonAddPanel);
             this.Controls.Add(this.welcomePanel);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "QA Helper";
             this.statusStrip.ResumeLayout(false);

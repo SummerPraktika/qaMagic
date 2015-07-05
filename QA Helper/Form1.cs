@@ -26,11 +26,13 @@ namespace QA_Helper
         private List<Button> DeleteBtn = new List<Button>();
         int tBtn = 0; //текущий номер кнопки 
         int clickedBtnIndex = -1; //номер нажатой кнопки, -1 - не нажата
-        string[] standartListArray = new string[] { "Фамилии", "Имена", "Отчества", "Города", "Телефоны", "e-mail" };
+        string[] standartListArray = new string[] { "Фамилии", "Имена", "Отчества", "Города", "Телефоны", "E-mail" };
 
         public Form1()
         {
             InitializeComponent();
+
+            this.CenterToScreen();
         }
 
 
@@ -271,6 +273,8 @@ namespace QA_Helper
                 DeleteBtn[i].Location = new Point(DeleteBtn[i].Location.X, DeleteBtn[i].Location.Y - deltaY);
             }
             tBtn--;
+
+            fitButtons();
         }
 
 
@@ -458,6 +462,19 @@ namespace QA_Helper
             aboutText.Visible = true;
             fd.FileName = "";
 
+            fitButtons();
+        }
+
+        private void fitButtons()
+        {
+            if (this.LeftPanel.VerticalScroll.Visible)
+            {
+                LeftPanel.Size = new Size(250, 366);
+            }
+            else
+            {
+                LeftPanel.Size = new Size(230, 366);
+            }
         }
 
         private void saveField()
