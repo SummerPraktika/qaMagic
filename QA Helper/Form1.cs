@@ -19,6 +19,9 @@ namespace QA_Helper
         string pathToFile = "";
         public static int editable = 0;
         Color defaultColor = SystemColors.Control;
+        private Boolean isDragging = false;
+        int draggableY, replaceableY, upperBound;
+        int replaceableFirst, replaceableSecond = -1;
 
         private int locationX = 0, locationY = 0, deltaY = 32; // Исходные параметры для кнопок - в панели слева
         private List<Button> FieldBtn = new List<Button>(); // массив всех кнопок
@@ -231,11 +234,15 @@ namespace QA_Helper
 
             LeftPanel.Controls.Add(newFieldBtn);
             LeftPanel.Controls.Add(parametres);
-            LeftPanel.Controls.Add(delete);
+            LeftPanel.Controls.Add(delete); 
 
             //newFieldBtn.Click += new System.EventHandler(this.newFieldBtn_Click);
             parametres.Click += new System.EventHandler(this.parametres_Click);
             delete.Click += new System.EventHandler(this.delete_Click);
+
+            newFieldBtn.MouseDown += new MouseEventHandler(btn_MouseDown);
+            newFieldBtn.MouseMove += new MouseEventHandler(btn_MouseMove);
+            newFieldBtn.MouseUp += new MouseEventHandler(btn_MouseUp);
 
             toolTip1.SetToolTip(parametres, "Редактировать поле");
             toolTip1.SetToolTip(delete, "Удалить поле");
@@ -243,6 +250,8 @@ namespace QA_Helper
             FieldBtn.Add(newFieldBtn);
             ParametresBtn.Add(parametres);
             DeleteBtn.Add(delete);
+
+            upperBound = newFieldBtn.Location.Y + 16;
             tBtn++;
         }
 
@@ -259,6 +268,7 @@ namespace QA_Helper
                     clickedBtnIndex = index;
                 index++;
             }
+
             FieldBtn[clickedBtnIndex].Dispose();
             FieldBtn.RemoveAt(clickedBtnIndex);
             ParametresBtn[clickedBtnIndex].Dispose();
@@ -661,6 +671,100 @@ namespace QA_Helper
             this.datePickerTo.Value = DateTime.Now;
         }
 
+        void btn_MouseMove(object sender, MouseEventArgs e)
+        {
+            int index = FieldBtn.IndexOf((Button)sender);
+            int mouseY = this.PointToClient(Cursor.Position).Y;
 
+            if (isDragging && mouseY > LeftPanel.Location.Y && mouseY < upperBound)
+            {
+                int a = Cursor.Position.Y;
+                FieldBtn[index].Top = e.Y + ((Button)sender).Top;
+                ParametresBtn[index].Top = e.Y + ((Button)sender).Top;
+                DeleteBtn[index].Top = e.Y + ((Button)sender).Top;
+
+                replaceButtons((Button)sender);
+            }
+        }
+
+        void btn_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDragging = false;
+
+            if (replaceableFirst > -1)
+            {
+                FieldBtn[replaceableFirst].Location = new Point(FieldBtn[replaceableFirst].Location.X, replaceableY);
+                ParametresBtn[replaceableFirst].Location = new Point(ParametresBtn[replaceableFirst].Location.X, replaceableY);
+                DeleteBtn[replaceableFirst].Location = new Point(DeleteBtn[replaceableFirst].Location.X, replaceableY);
+                //swapButtons();
+            }
+            replaceableSecond = -1;
+        }
+        void btn_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (FieldBtn.Count > 1)
+            {
+                isDragging = true;
+                draggableY = ((Button)sender).Location.Y;
+                replaceableY = draggableY;
+                replaceableFirst = FieldBtn.IndexOf((Button)sender);
+                replaceableSecond = replaceableFirst;
+            }
+        }
+
+        void replaceButtons(Button draggable)
+        {
+            int draggableIndex = FieldBtn.IndexOf(draggable);
+            for (int i = 0; i < FieldBtn.Count; i++)
+            {
+                if (i != draggableIndex)
+                {
+                    Button field = FieldBtn[i];
+                    Button parameters = ParametresBtn[i];
+                    Button delete = DeleteBtn[i];
+                    int Y = field.Location.Y;
+
+                    if (draggable.Location.Y == Y)
+                    {
+                        replaceableY = field.Location.Y;
+                        field.Location = new Point(field.Location.X, draggableY);
+                        parameters.Location = new Point(parameters.Location.X, draggableY);
+                        delete.Location = new Point(delete.Location.X, draggableY);
+                        draggableY = Y;
+
+                        replaceableSecond = replaceableFirst;
+                        replaceableFirst = i;
+
+                        swapButtons();
+                    }
+                    else if (draggable.Location.Y != Y && draggableY != replaceableY)
+                    {
+                        field.Location = new Point(field.Location.X, replaceableY);
+                        parameters.Location = new Point(parameters.Location.X, replaceableY);
+                        delete.Location = new Point(delete.Location.X, replaceableY);
+                        replaceableY = draggableY;
+                    }
+                }
+            }
+        }
+
+        void swapButtons()
+        {
+            Button temp1 = FieldBtn[replaceableFirst];
+            Button temp2 = ParametresBtn[replaceableFirst];
+            Button temp3 = DeleteBtn[replaceableFirst];
+
+            FieldBtn[replaceableFirst] = FieldBtn[replaceableSecond];
+            ParametresBtn[replaceableFirst] = ParametresBtn[replaceableSecond];
+            DeleteBtn[replaceableFirst] = DeleteBtn[replaceableSecond];
+
+            FieldBtn[replaceableSecond] = temp1;
+            ParametresBtn[replaceableSecond] = temp2;
+            DeleteBtn[replaceableSecond] = temp3;
+
+            FieldNode temp = nodes[replaceableFirst];
+            nodes[replaceableFirst] = nodes[replaceableSecond];
+            nodes[replaceableSecond] = temp;
+        }
     }
 }
