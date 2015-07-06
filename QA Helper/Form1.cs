@@ -33,6 +33,9 @@ namespace QA_Helper
         int clickedBtnIndex = -1; //номер нажатой кнопки, -1 - не нажата
         string[] standartListArray = new string[] { "Фамилии", "Имена", "Отчества", "Города", "Телефоны", "e-mail" };
 
+        private Boolean isDragging = false;
+        int delta = 32, draggableIndex, replaceableY, upperBound;
+
         public Form1()
         {
             InitializeComponent();
@@ -239,12 +242,18 @@ namespace QA_Helper
             parametres.Click += new System.EventHandler(this.parametres_Click);
             delete.Click += new System.EventHandler(this.delete_Click);
 
+            newFieldBtn.MouseDown += new MouseEventHandler(btn_MouseDown);
+            newFieldBtn.MouseMove += new MouseEventHandler(btn_MouseMove);
+            newFieldBtn.MouseUp += new MouseEventHandler(btn_MouseUp);
+
             toolTip1.SetToolTip(parametres, "Редактировать поле");
             toolTip1.SetToolTip(delete, "Удалить поле");
 
             FieldBtn.Add(newFieldBtn);
             ParametresBtn.Add(parametres);
             DeleteBtn.Add(delete);
+
+            upperBound = newFieldBtn.Location.Y + 16;
             tBtn++;
         }
 
@@ -646,6 +655,105 @@ namespace QA_Helper
             this.datePickerFrom.Value = DateTime.Now;
             this.datePickerTo.Value = DateTime.Now;
         }
+
+        // Drag and Drop Functions
+        void btn_MouseMove(object sender, MouseEventArgs e)
+        {
+            int index = FieldBtn.IndexOf((Button)sender);
+            int mouseY = this.PointToClient(Cursor.Position).Y;
+
+            if (isDragging && mouseY > LeftPanel.Location.Y && mouseY < upperBound)
+            {
+                int a = Cursor.Position.Y;
+                FieldBtn[index].Top = e.Y + ((Button)sender).Top;
+                ParametresBtn[index].Top = e.Y + ((Button)sender).Top;
+                DeleteBtn[index].Top = e.Y + ((Button)sender).Top;
+
+                replaceButtons((Button)sender);
+            }
+        }
+
+        void btn_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDragging = false;
+            int index = FieldBtn.IndexOf((Button)sender);
+
+            FieldBtn[index].Location = new Point(FieldBtn[index].Location.X, replaceableY);
+            ParametresBtn[index].Location = new Point(ParametresBtn[index].Location.X, replaceableY);
+            DeleteBtn[index].Location = new Point(DeleteBtn[index].Location.X, replaceableY);
+        }
+        void btn_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDragging = true;
+            replaceableY = FieldBtn[FieldBtn.IndexOf((Button)sender)].Location.Y;
+            int index = FieldBtn.IndexOf((Button)sender);
+            draggableToFront(index);
+        }
+
+        void draggableToFront(int index)
+        {
+            for (int i = 0; i < FieldBtn.Count; i++)
+            {
+                LeftPanel.Controls.SetChildIndex(FieldBtn[i], i + 2);
+                LeftPanel.Controls.SetChildIndex(ParametresBtn[i], i + 2);
+                LeftPanel.Controls.SetChildIndex(DeleteBtn[i], i + 2);
+            }
+            LeftPanel.Controls.SetChildIndex(FieldBtn[index], 0);
+            LeftPanel.Controls.SetChildIndex(ParametresBtn[index], 0);
+            LeftPanel.Controls.SetChildIndex(DeleteBtn[index], 0);
+        }
+
+        void replaceButtons(Button draggable)
+        {
+            draggableIndex = FieldBtn.IndexOf(draggable);
+            int draggableY = draggable.Location.Y;
+
+            int minDist1 = draggableIndex > 0 ? Math.Abs(draggable.Location.Y - FieldBtn[draggableIndex - 1].Location.Y) : 999;
+            int minDist2 = draggableIndex < FieldBtn.Count - 1 ? Math.Abs(draggable.Location.Y - FieldBtn[draggableIndex + 1].Location.Y) : 999;
+
+            if (minDist1 < minDist2)
+            {
+                if (draggableY <= FieldBtn[draggableIndex - 1].Location.Y)
+                {
+                    replaceableY = FieldBtn[draggableIndex - 1].Location.Y;
+                    FieldBtn[draggableIndex - 1].Location = new Point(FieldBtn[draggableIndex - 1].Location.X, FieldBtn[draggableIndex - 1].Location.Y + delta);
+                    ParametresBtn[draggableIndex - 1].Location = new Point(ParametresBtn[draggableIndex - 1].Location.X, ParametresBtn[draggableIndex - 1].Location.Y + delta);
+                    DeleteBtn[draggableIndex - 1].Location = new Point(DeleteBtn[draggableIndex - 1].Location.X, DeleteBtn[draggableIndex - 1].Location.Y + delta);
+                    swapButtons(draggableIndex, draggableIndex - 1);
+                }
+            }
+            else if (minDist1 > minDist2)
+            {
+                if (draggableY > FieldBtn[draggableIndex + 1].Location.Y)
+                {
+                    replaceableY = FieldBtn[draggableIndex + 1].Location.Y;
+                    FieldBtn[draggableIndex + 1].Location = new Point(FieldBtn[draggableIndex + 1].Location.X, FieldBtn[draggableIndex + 1].Location.Y - delta);
+                    ParametresBtn[draggableIndex + 1].Location = new Point(ParametresBtn[draggableIndex + 1].Location.X, ParametresBtn[draggableIndex + 1].Location.Y - delta);
+                    DeleteBtn[draggableIndex + 1].Location = new Point(DeleteBtn[draggableIndex + 1].Location.X, DeleteBtn[draggableIndex + 1].Location.Y - delta);
+                    swapButtons(draggableIndex, draggableIndex + 1);
+                }
+            }
+        }
+
+        void swapButtons(int draggableIndex, int replaceableIndex)
+        {
+            Button temp1 = FieldBtn[draggableIndex];
+            Button temp2 = ParametresBtn[draggableIndex];
+            Button temp3 = DeleteBtn[draggableIndex];
+
+            FieldBtn[draggableIndex] = FieldBtn[replaceableIndex];
+            ParametresBtn[draggableIndex] = ParametresBtn[replaceableIndex];
+            DeleteBtn[draggableIndex] = DeleteBtn[replaceableIndex];
+
+            FieldBtn[replaceableIndex] = temp1;
+            ParametresBtn[replaceableIndex] = temp2;
+            DeleteBtn[replaceableIndex] = temp3;
+
+            FieldNode temp = nodes[draggableIndex];
+            nodes[draggableIndex] = nodes[replaceableIndex];
+            nodes[replaceableIndex] = temp;
+        }
+        // End Drag and Drop functions
 
         private void button1_Click(object sender, EventArgs e)
         {

@@ -493,6 +493,9 @@ namespace QA_Helper
             // 
             // LeftPanel
             // 
+            this.LeftPanel.HorizontalScroll.Maximum = 0; // Следующие 4 параметры служат принудительным отключением горизонтального скролла. Не удалять!
+            this.LeftPanel.AutoScroll = false;
+            this.LeftPanel.VerticalScroll.Visible = false;
             this.LeftPanel.AutoScroll = true;
             this.LeftPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LeftPanel.Location = new System.Drawing.Point(8, 12);
@@ -553,6 +556,16 @@ namespace QA_Helper
             this.PerformLayout();
 
         }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+                return cp;
+            }
+        } 
 
         #endregion
 
