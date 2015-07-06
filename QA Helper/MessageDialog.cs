@@ -46,7 +46,7 @@ namespace QA_Helper
         {
             textBox1.Visible = false;
             label1.Visible = false;
-            continueButton.Location = new Point(43, 38);
+            continueButton.Location = new Point(43, 68);
             if (type == 0)
             {
                 textBox1.Visible = true;
@@ -61,7 +61,7 @@ namespace QA_Helper
                 errorTxt.Location = new Point(errorTxt.Location.X + 50, errorTxt.Location.Y);
                 Button openBtn = new Button();
                 openBtn.Size = new Size(95, 23);
-                openBtn.Location = new Point(145, 62);
+                openBtn.Location = new Point(145, 68);
                 openBtn.Visible = true;
                 openBtn.Text = "Открыть файл";
                 openBtn.Font = new Font("Segoe UI", 8);
@@ -77,7 +77,7 @@ namespace QA_Helper
             {
                 if (filename != "")
                 {
-                    System.Diagnostics.Process.Start("explorer", filename);
+                    System.Diagnostics.Process.Start("notepad", filename);
                 }
                 else
                 {
