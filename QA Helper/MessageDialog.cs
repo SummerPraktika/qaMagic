@@ -49,7 +49,7 @@ namespace QA_Helper
             continueButton.Location = new Point(43, 68);
             if (type == 0)
             {
-                textBox1.Visible = true;
+                textBox1.Visible = true; 
                 label1.Visible = true;
                 continueButton.Location = new Point(43, 68);
                 this.Text = "Сохранение шаблона";
