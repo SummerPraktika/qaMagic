@@ -14,10 +14,16 @@ namespace QA_Helper
     public partial class MessageDialog : Form
     {
         string filename = "";
+        int type = -1;
         public MessageDialog(string filename)
         {
             InitializeComponent();
             this.filename = filename;
+        }
+        public MessageDialog(int a)
+        {
+            InitializeComponent();
+            type = a;
         }
 
         public MessageDialog()
@@ -27,11 +33,28 @@ namespace QA_Helper
 
         private void continueButton_Click(object sender, EventArgs e)
         {
+            filename = textBox1.Text;
             this.Close();
+        }
+
+        public string NameT
+        {
+            get { return filename; }
         }
 
         private void MessageDialog_Load(object sender, EventArgs e)
         {
+            textBox1.Visible = false;
+            label1.Visible = false;
+            continueButton.Location = new Point(43, 38);
+            if (type == 0)
+            {
+                textBox1.Visible = true;
+                label1.Visible = true;
+                continueButton.Location = new Point(43, 68);
+                this.Text = "Сохранение шаблона";
+            }
+            
             if (filename != "")
             {
                 this.Size = new Size(this.Size.Width + 100, this.Size.Height);
@@ -44,6 +67,7 @@ namespace QA_Helper
                 openBtn.Font = new Font("Segoe UI", 8);
                 this.Controls.Add(openBtn);
                 openBtn.Click += new System.EventHandler(this.openBtn_Click);
+                this.Text = "Готово";
             }
         }
 

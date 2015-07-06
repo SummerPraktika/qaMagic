@@ -19,7 +19,7 @@ namespace QA_Helper
         public DateTime dfrom, dto;
         public long start, step;
         Random rand = new Random();
-        string[] standartListArray = new string[] { "Фамилии", "Имена", "Отчества", "Города", "Телефоны", "E-mail" };
+        string[] standartListArray = new string[] { "Фамилии", "Имена", "Отчества", "Города", "Телефоны", "e-mail" };
 
         public FieldNode(int type, string name, string pathToFile)
         {

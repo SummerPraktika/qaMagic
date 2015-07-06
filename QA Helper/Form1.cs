@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
+//using System.Data.SQLite;
+using System.Data.Entity;
+using System.Data.Common;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QA_Helper
 {
@@ -21,20 +25,18 @@ namespace QA_Helper
         Color defaultColor = SystemColors.Control;
 
         private int locationX = 0, locationY = 0, deltaY = 32; // Исходные параметры для кнопок - в панели слева
+        private int locationXT = 0, locationYT = 0, deltaYT = 32; // Исходные параметры для кнопок - в панели шаблонов
         private List<Button> FieldBtn = new List<Button>(); // массив всех кнопок
         private List<Button> ParametresBtn = new List<Button>();
         private List<Button> DeleteBtn = new List<Button>();
         int tBtn = 0; //текущий номер кнопки 
         int clickedBtnIndex = -1; //номер нажатой кнопки, -1 - не нажата
-        string[] standartListArray = new string[] { "Фамилии", "Имена", "Отчества", "Города", "Телефоны", "E-mail" };
+        string[] standartListArray = new string[] { "Фамилии", "Имена", "Отчества", "Города", "Телефоны", "e-mail" };
 
         public Form1()
         {
             InitializeComponent();
-
-            this.CenterToScreen();
         }
-
 
         private void defaultButtons()
         {
@@ -156,7 +158,7 @@ namespace QA_Helper
             simpleMessage("Генерация выполнена", pathSaveFile);
         }
 
-         void errorMessage(string text)
+        void errorMessage(string text)
          {
              MessageDialog form = new MessageDialog();
              form.errorTxt.Text = text;
@@ -166,7 +168,7 @@ namespace QA_Helper
              form.Show(this);
          }
 
-         void simpleMessage(string text, string filename)
+        void simpleMessage(string text, string filename)
          {
              MessageDialog form = new MessageDialog(filename);
              form.errorTxt.Text = text;
@@ -273,10 +275,7 @@ namespace QA_Helper
                 DeleteBtn[i].Location = new Point(DeleteBtn[i].Location.X, DeleteBtn[i].Location.Y - deltaY);
             }
             tBtn--;
-
-            fitButtons();
         }
-
 
         private void parametres_Click(object sender, EventArgs e) // Клик по кнопке на панели слева
         {
@@ -462,19 +461,6 @@ namespace QA_Helper
             aboutText.Visible = true;
             fd.FileName = "";
 
-            fitButtons();
-        }
-
-        private void fitButtons()
-        {
-            if (this.LeftPanel.VerticalScroll.Visible)
-            {
-                LeftPanel.Size = new Size(250, 366);
-            }
-            else
-            {
-                LeftPanel.Size = new Size(230, 366);
-            }
         }
 
         private void saveField()
@@ -661,6 +647,319 @@ namespace QA_Helper
             this.datePickerTo.Value = DateTime.Now;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //сохранение шаблона
+            //StreamWriter sr = new StreamWriter(@"test.txt");
+            if (nodes.Count == 0)
+            {
+                errorMessage("Добавьте хотя бы одно поле");
+                return;
+            }
 
+            MessageDialog md = new MessageDialog(0);
+            md.StartPosition = FormStartPosition.Manual;
+            md.Location = new Point(this.Location.X + (this.Width - md.Width) / 2, this.Location.Y + (this.Height - md.Height) / 2);
+            md.ShowDialog();
+            string nameT = md.NameT;
+            string result_str = "";
+            foreach (FieldNode a in nodes)
+            {
+                result_str += a.type.ToString() + ";";
+                if (a.type == 0)
+                {
+                    result_str += a.name + ";";
+                    if (a.pathToFile != "")
+                    {
+                        result_str += a.pathToFile.ToString() + ";";
+                    }
+                    else
+                    {
+                        result_str += standartList.SelectedItem.ToString() + ";";
+                    }
+                }
+                if (a.type == 1)
+                {
+                    result_str += a.name + ";";
+                    result_str += a.from.ToString() + ";";
+                    result_str += a.to.ToString() + ";";
+                }
+                if(a.type == 2)
+                {
+                    result_str += a.name + ";";
+                    result_str += a.dateFormat.ToString() + ";";
+                    result_str += a.dfrom.ToString() + ";";
+                    result_str += a.dto.ToString() + ";";
+                }
+                if(a.type == 3)
+                {
+                    result_str += a.name.ToString() + ";";
+                    result_str += long.Parse(this.seqFromTxt.Text.Trim()) + ";";
+                    result_str += long.Parse(this.seqStepTxt.Text.Trim()) + ";";
+                }
+                if (a.type == 4)
+                {
+                    result_str += a.name + ";";
+                    if (a.pathToFile != "")
+                        result_str += a.pathToFile.ToString() + ";";
+                    else
+                        result_str += standartList.SelectedValue.ToString() + ";";
+                }
+                result_str += "_";
+            }
+            using (var db = new MyDBContext())
+            {
+                db.Templetes.Add(new Templete { Name = nameT, Tmp = result_str });
+                db.SaveChanges();
+            }
+            MessageBox.Show("Шаблон сохранен!");
+        }
+
+        int kolVo = 0;
+        Point location = new Point(0, 0);
+        List<Button> TemplateBtnArray = new List<Button>();
+        List<Button> DeleteBtnArray = new List<Button>();
+        Form f2;
+        Panel leftPanelT;
+        int clickedBtnIndexT = -1;
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //обозреватель шаблонов
+            int i = 0;
+            TemplateBtnArray.Clear();
+            DeleteBtnArray.Clear();
+            f2 = new Form();
+            f2.MinimizeBox = false;
+            f2.MaximizeBox = false;
+            f2.Size = new Size(260, 430);
+            f2.FormBorderStyle = FormBorderStyle.FixedDialog;
+            f2.StartPosition = FormStartPosition.Manual;
+            f2.Location = new Point(this.Location.X + (this.Width - f2.Width) / 2, this.Location.Y + (this.Height - f2.Height) / 2);
+
+            Label lblT = new Label();
+            lblT.Location = new Point(90, 10);
+            lblT.Text = "Шаблоны";
+            lblT.Font = new Font("Segoe UI", 12);
+            f2.Controls.Add(lblT);
+
+            leftPanelT = new Panel();
+            leftPanelT.AutoScroll = true;
+            leftPanelT.Size = new Size(220, 300);
+            leftPanelT.Location = new Point(10, 50);
+            leftPanelT.BorderStyle = BorderStyle.FixedSingle;
+            leftPanelT.Visible = true;
+            f2.Controls.Add(leftPanelT);
+
+            Button saveT = new Button();
+            saveT.Location = new Point(130, 355);
+            saveT.Size = new Size(100, 30);
+            saveT.Font = new Font("Segoe UI", 8);
+            saveT.Text = "Продолжить";
+            saveT.Click += new System.EventHandler(this.saveT_Click);
+            f2.Controls.Add(saveT);
+
+            Button cancelT = new Button();
+            cancelT.Location = new Point(20, 355);
+            cancelT.Size = new Size(100, 30);
+            cancelT.Font = new Font("Segoe UI", 8);
+            cancelT.Text = "Отмена";
+            cancelT.Click += new System.EventHandler(this.cancelT_Click);
+            f2.Controls.Add(cancelT);
+
+            using (var db = new MyDBContext())
+            {
+                foreach (var templete in db.Templetes)
+                {
+                    Button TemplateBtnT = new Button();
+                    TemplateBtnT.Size = new Size(164, 32);
+
+                    Button deleteBtnT = new Button();
+                    deleteBtnT.Size = new Size(32, 32);
+
+                    int newLocationY;
+                    if (TemplateBtnArray.Count == 0)
+                        newLocationY = locationYT;
+                    else
+                    {
+                        int maxY = TemplateBtnArray[TemplateBtnArray.Count - 1].Location.Y;
+                        newLocationY = maxY + deltaYT;
+                    }
+
+                    TemplateBtnT.Location = new Point(locationXT, newLocationY);
+                    TemplateBtnT.Visible = true;
+                    TemplateBtnT.Text = templete.Name;
+                    TemplateBtnT.Font = new Font("Segoe UI", 8);
+                    TemplateBtnT.BackColor = defaultColor;
+                    TemplateBtnT.Name = templete.Id.ToString();
+                    
+
+                    deleteBtnT.Location = new Point(locationXT + 164, newLocationY);
+                    deleteBtnT.Visible = true;
+                    deleteBtnT.Font = new Font("Segoe UI", 8);
+                    deleteBtnT.BackgroundImage = Properties.Resources._1435861214_remove_sign;
+                    deleteBtnT.BackgroundImageLayout = ImageLayout.Center;
+                    deleteBtnT.Name = templete.Id.ToString();
+
+                    TemplateBtnT.Click += new System.EventHandler(this.TemplateBtnT_Click);
+                    deleteBtnT.Click += new System.EventHandler(this.deleteBtnT_Click);
+
+                    TemplateBtnArray.Add(TemplateBtnT);
+                    DeleteBtnArray.Add(deleteBtnT);
+
+                    leftPanelT.Controls.Add(TemplateBtnT);
+                    leftPanelT.Controls.Add(deleteBtnT);
+                    i++;
+                }
+            }
+            f2.Show();
+        }
+
+        private void cancelT_Click(object sender, EventArgs e)
+        {
+            f2.Close();
+        }
+
+        private void saveT_Click(object sender, EventArgs e)
+        {
+            if (clickedBtnIndexT == -1)
+            {
+                errorMessage("Выберите шаблон");
+                return;
+            }
+            nodes.Clear();
+            foreach (Button b in FieldBtn)
+                LeftPanel.Controls.Remove(b);
+            foreach (Button b in ParametresBtn)
+                LeftPanel.Controls.Remove(b);
+            foreach (Button b in DeleteBtn)
+                LeftPanel.Controls.Remove(b);
+            FieldBtn.Clear();
+            ParametresBtn.Clear();
+            DeleteBtn.Clear();
+            tBtn = 0;
+            string f = TemplateBtnArray[clickedBtnIndexT].Name.ToString();
+            using (var db = new MyDBContext())
+            {
+                var find = from templ in db.Templetes
+                           where templ.Id.ToString() == f
+                           select templ;
+                if (find != null)
+                {
+                    foreach (var t in find)
+                    {
+                        string[] record = t.Tmp.Split(new Char[] { '_' });
+                        foreach (var r in record)
+                        {
+                            FieldNode fn = null;
+                            string[] pole = r.Split(new Char[] { ';' });
+                            if (pole[0] == "0")
+                            {
+                                fn = new FieldNode(Int32.Parse(pole[0]), pole[1], pole[2]);
+                            }
+                            if (pole[0] == "1")
+                            {
+                                fn = new FieldNode(Int32.Parse(pole[0]), pole[1], long.Parse(pole[2]), long.Parse(pole[3]));
+                            }
+                            if (pole[0] == "2")
+                            {
+                                DateTime from = new DateTime();
+                                DateTime to = new DateTime();
+                                DateTime.TryParse(pole[3], out from);
+                                DateTime.TryParse(pole[4], out to);
+                                fn = new FieldNode(Int32.Parse(pole[0]), pole[1], pole[2], from, to);
+                            }
+                            if (pole[0] == "3")
+                            {
+                                fn = new FieldNode(pole[1], Int32.Parse(pole[0]), long.Parse(pole[2]), long.Parse(pole[3]));
+                            }
+                            if (pole[0] == "4")
+                            {
+                                fn = new FieldNode(Int32.Parse(pole[0]), pole[1], pole[2]);
+                            }
+                            if (fn != null)
+                            {
+                                nodes.Add(fn);
+                                nameTxt.Text = fn.name;
+                                NewButton();
+                            }
+                        }
+                        //foreach(var n in nodes)
+                        //  MessageBox.Show(n.type.ToString() + " : " + n.name.ToString());
+                        //MessageBox.Show(t.Tmp);
+                    }
+                }
+            }
+
+            f2.Close();
+        }
+
+        private void deleteBtnT_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse((sender as Button).Name.ToString());
+            using (var db = new MyDBContext())
+            {
+                var del = db.Templetes.SingleOrDefault(x => x.Id == id);
+                if (del != null)
+                {
+                    db.Templetes.Remove(del);
+                    db.SaveChanges();
+                }
+            }
+            int i = 0;
+            foreach (Button b in DeleteBtnArray)
+            {
+                if (sender == b)
+                {
+                    leftPanelT.Controls.Remove(TemplateBtnArray[i]);
+                    TemplateBtnArray[i].Dispose();
+                    TemplateBtnArray.RemoveAt(i);
+                    
+                    leftPanelT.Controls.Remove(DeleteBtnArray[i]);
+                    DeleteBtnArray[i].Dispose();
+                    DeleteBtnArray.RemoveAt(i);
+
+                    for (int j = i; j < TemplateBtnArray.Count; j++)
+                    {
+                        TemplateBtnArray[j].Location = new Point(TemplateBtnArray[j].Location.X, TemplateBtnArray[j].Location.Y - deltaY);
+                        DeleteBtnArray[j].Location = new Point(DeleteBtnArray[j].Location.X, DeleteBtnArray[j].Location.Y - deltaY);
+                    }
+                    break;
+                }
+                i++;
+            }
+        }
+
+        private void TemplateBtnT_Click(object sender, EventArgs e)
+        {
+            foreach (Button b in TemplateBtnArray)
+            {
+                b.BackColor = defaultColor;
+            }
+            int i = 0;
+            foreach (Button b in TemplateBtnArray) {
+                if (sender == b)
+                {
+                    clickedBtnIndexT = i;
+                    b.BackColor = Color.Aqua;
+                    break;
+                }
+                i++;
+            }
+        }
+
+        public class Templete
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Tmp { get; set; }
+        }
+        public class MyDBContext : DbContext
+        {
+            public MyDBContext() : base("DBTemplete16")
+            {
+            }
+            public DbSet<Templete> Templetes { get; set; }
+        }
     }
 }
