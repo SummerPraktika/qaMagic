@@ -22,6 +22,7 @@ namespace QA_Helper
         private Boolean isDragging = false;
         int draggableY, replaceableY, upperBound;
         int replaceableFirst, replaceableSecond = -1;
+        Boolean scrollIsVisible = false;
 
         private int locationX = 0, locationY = 0, deltaY = 32; // Исходные параметры для кнопок - в панели слева
         private List<Button> FieldBtn = new List<Button>(); // массив всех кнопок
@@ -732,6 +733,19 @@ namespace QA_Helper
                         delete.Location = new Point(delete.Location.X, draggableY);
                         draggableY = Y;
 
+                        if (draggableIndex < i)
+                        {
+                            LeftPanel.VerticalScroll.Value = i;
+                        }
+                        else
+                        {
+                            LeftPanel.VerticalScroll.Value = i;
+                            if (i == 1)
+                            {
+                                LeftPanel.VerticalScroll.Value = 0;
+                            }
+                        }
+
                         replaceableSecond = replaceableFirst;
                         replaceableFirst = i;
 
@@ -743,6 +757,8 @@ namespace QA_Helper
                         parameters.Location = new Point(parameters.Location.X, replaceableY);
                         delete.Location = new Point(delete.Location.X, replaceableY);
                         replaceableY = draggableY;
+
+                        LeftPanel.VerticalScroll.Visible = scrollIsVisible;
                     }
                 }
             }
