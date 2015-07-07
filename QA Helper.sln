@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA Helper", "QA Helper\QA Helper.csproj", "{FB6722E4-B28F-4DED-B727-46489CFBFA22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA Helper.UnitTests", "QA Helper.UnitTests\QA Helper.UnitTests.csproj", "{2EE5283F-CD74-4895-82B3-0018C6B729FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,10 @@ Global
 		{FB6722E4-B28F-4DED-B727-46489CFBFA22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB6722E4-B28F-4DED-B727-46489CFBFA22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB6722E4-B28F-4DED-B727-46489CFBFA22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EE5283F-CD74-4895-82B3-0018C6B729FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EE5283F-CD74-4895-82B3-0018C6B729FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EE5283F-CD74-4895-82B3-0018C6B729FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EE5283F-CD74-4895-82B3-0018C6B729FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
