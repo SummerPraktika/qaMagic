@@ -102,17 +102,17 @@ namespace QA_Helper
             this.controlPanel.Controls.Add(this.generateButton);
             this.controlPanel.Controls.Add(this.addButton);
             this.controlPanel.Controls.Add(this.settingButton);
-            this.controlPanel.Location = new System.Drawing.Point(16, 396);
+            this.controlPanel.Location = new System.Drawing.Point(8, 396);
             this.controlPanel.Name = "controlPanel";
-            this.controlPanel.Size = new System.Drawing.Size(228, 38);
+            this.controlPanel.Size = new System.Drawing.Size(230, 38);
             this.controlPanel.TabIndex = 0;
             // 
             // generateButton
             // 
             this.generateButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.generateButton.Location = new System.Drawing.Point(54, 1);
+            this.generateButton.Location = new System.Drawing.Point(58, 1);
             this.generateButton.Name = "generateButton";
-            this.generateButton.Size = new System.Drawing.Size(120, 34);
+            this.generateButton.Size = new System.Drawing.Size(113, 34);
             this.generateButton.TabIndex = 2;
             this.generateButton.Text = "Генерировать";
             this.toolTip1.SetToolTip(this.generateButton, "Сгенерировать входные данные");
@@ -137,7 +137,7 @@ namespace QA_Helper
             this.settingButton.BackgroundImage = global::QA_Helper.Properties.Resources._1435861266_gears;
             this.settingButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.settingButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.settingButton.Location = new System.Drawing.Point(189, 1);
+            this.settingButton.Location = new System.Drawing.Point(191, 1);
             this.settingButton.Name = "settingButton";
             this.settingButton.Size = new System.Drawing.Size(34, 34);
             this.settingButton.TabIndex = 0;
@@ -249,13 +249,13 @@ namespace QA_Helper
             this.standartList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.standartList.FormattingEnabled = true;
             this.standartList.Items.AddRange(new object[] {
-            "",
+            "Не выбрано",
             "Фамилии",
             "Имена",
             "Отчества",
             "Города",
             "Телефоны",
-            "e-mail"});
+            "E-mail"});
             this.standartList.Location = new System.Drawing.Point(218, 126);
             this.standartList.Name = "standartList";
             this.standartList.Size = new System.Drawing.Size(154, 21);
@@ -298,8 +298,8 @@ namespace QA_Helper
             this.dateFormatCbox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateFormatCbox.FormattingEnabled = true;
             this.dateFormatCbox.Items.AddRange(new object[] {
-            "DD.MM.YYYY",
             "MM.DD.YYYY",
+            "DD.MM.YYYY",
             "MM.DD.YY",
             "DD.MM.YY",
             "YYYY.DD.MM",
@@ -493,14 +493,11 @@ namespace QA_Helper
             // 
             // LeftPanel
             // 
-            this.LeftPanel.HorizontalScroll.Maximum = 0; // Следующие 4 параметры служат принудительным отключением горизонтального скролла. Не удалять!
-            this.LeftPanel.AutoScroll = false;
-            this.LeftPanel.VerticalScroll.Visible = false;
             this.LeftPanel.AutoScroll = true;
             this.LeftPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LeftPanel.Location = new System.Drawing.Point(8, 12);
             this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(250, 314);
+            this.LeftPanel.Size = new System.Drawing.Size(230, 314);
             this.LeftPanel.TabIndex = 25;
             // 
             // fd
@@ -510,9 +507,9 @@ namespace QA_Helper
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(8, 336);
+            this.button1.Location = new System.Drawing.Point(8, 334);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(249, 23);
+            this.button1.Size = new System.Drawing.Size(230, 25);
             this.button1.TabIndex = 26;
             this.button1.Text = "Сохранить шаблон";
             this.button1.UseVisualStyleBackColor = true;
@@ -520,9 +517,9 @@ namespace QA_Helper
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(8, 359);
+            this.button2.Location = new System.Drawing.Point(8, 365);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(249, 23);
+            this.button2.Size = new System.Drawing.Size(230, 25);
             this.button2.TabIndex = 27;
             this.button2.Text = "Открыть шаблон";
             this.button2.UseVisualStyleBackColor = true;
@@ -542,6 +539,7 @@ namespace QA_Helper
             this.Controls.Add(this.welcomePanel);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "QA Helper";
             this.statusStrip.ResumeLayout(false);

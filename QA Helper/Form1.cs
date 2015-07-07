@@ -31,7 +31,7 @@ namespace QA_Helper
         private List<Button> DeleteBtn = new List<Button>();
         int tBtn = 0; //текущий номер кнопки 
         int clickedBtnIndex = -1; //номер нажатой кнопки, -1 - не нажата
-        string[] standartListArray = new string[] { "Фамилии", "Имена", "Отчества", "Города", "Телефоны", "e-mail" };
+        string[] standartListArray = new string[] { "Фамилии", "Имена", "Отчества", "Города", "Телефоны", "E-mail" };
 
         private Boolean isDragging = false;
         int delta = 32, draggableIndex, replaceableY, upperBound;
@@ -39,6 +39,7 @@ namespace QA_Helper
         public Form1()
         {
             InitializeComponent();
+            this.CenterToScreen();
         }
 
         private void defaultButtons()
@@ -284,6 +285,8 @@ namespace QA_Helper
                 DeleteBtn[i].Location = new Point(DeleteBtn[i].Location.X, DeleteBtn[i].Location.Y - deltaY);
             }
             tBtn--;
+
+            fitScrollBar();
         }
 
         private void parametres_Click(object sender, EventArgs e) // Клик по кнопке на панели слева
@@ -470,7 +473,20 @@ namespace QA_Helper
             aboutText.Visible = true;
             fd.FileName = "";
 
+            fitScrollBar();
         }
+
+        private void fitScrollBar()
+        {
+            if (this.LeftPanel.VerticalScroll.Visible)
+            {
+                LeftPanel.Size = new Size(250, 314);
+            }
+            else
+            {
+                LeftPanel.Size = new Size(230, 314);
+           }
+         }
 
         private void saveField()
         {
