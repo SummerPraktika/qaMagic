@@ -887,6 +887,7 @@ namespace QA_Helper
             TemplateBtnArray.Clear();
             DeleteBtnArray.Clear();
             f2 = new Form();
+            f2.Text = "Шаблоны";
             f2.MinimizeBox = false;
             f2.MaximizeBox = false;
             f2.Size = new Size(260, 430);
@@ -895,30 +896,32 @@ namespace QA_Helper
             f2.Location = new Point(this.Location.X + (this.Width - f2.Width) / 2, this.Location.Y + (this.Height - f2.Height) / 2);
 
             Label lblT = new Label();
-            lblT.Location = new Point(90, 10);
-            lblT.Text = "Шаблоны";
+            lblT.Location = new Point(25, 10);
+            lblT.Size = new Size(198, 30);
+            lblT.Text = "Список шаблонов :";
             lblT.Font = new Font("Segoe UI", 12);
             f2.Controls.Add(lblT);
 
             leftPanelT = new Panel();
             leftPanelT.AutoScroll = true;
-            leftPanelT.Size = new Size(220, 300);
-            leftPanelT.Location = new Point(10, 50);
+            leftPanelT.Size = new Size(198, 300);
+            leftPanelT.Location = new Point(25, 50);
             leftPanelT.BorderStyle = BorderStyle.FixedSingle;
             leftPanelT.Visible = true;
             f2.Controls.Add(leftPanelT);
 
             Button saveT = new Button();
-            saveT.Location = new Point(130, 355);
-            saveT.Size = new Size(100, 30);
+
+            saveT.Location = new Point(23, 355);
+            saveT.Size = new Size(98, 30);
             saveT.Font = new Font("Segoe UI", 8);
             saveT.Text = "Продолжить";
             saveT.Click += new System.EventHandler(this.saveT_Click);
             f2.Controls.Add(saveT);
 
             Button cancelT = new Button();
-            cancelT.Location = new Point(20, 355);
-            cancelT.Size = new Size(100, 30);
+            cancelT.Location = new Point(127, 355);
+            cancelT.Size = new Size(98, 30);
             cancelT.Font = new Font("Segoe UI", 8);
             cancelT.Text = "Отмена";
             cancelT.Click += new System.EventHandler(this.cancelT_Click);
