@@ -40,7 +40,7 @@
             this.continueButton.Location = new System.Drawing.Point(88, 66);
             this.continueButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
             this.continueButton.Name = "continueButton";
-            this.continueButton.Size = new System.Drawing.Size(95, 23);
+            this.continueButton.Size = new System.Drawing.Size(124, 23);
             this.continueButton.TabIndex = 1;
             this.continueButton.Text = "Продолжить";
             this.continueButton.UseVisualStyleBackColor = true;
@@ -61,11 +61,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 12);
+            this.label1.Location = new System.Drawing.Point(87, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 13);
+            this.label1.Size = new System.Drawing.Size(15, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Введите имя шаблона";
+            this.label1.Text = "ы";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Visible = false;
             // 

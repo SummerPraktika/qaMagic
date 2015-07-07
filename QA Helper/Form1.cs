@@ -77,7 +77,8 @@ namespace QA_Helper
             else
             {
                 pathSaveFile = "";
-                errorMessage("Генерация отменена");
+                Message mess = new Message(this, "Oшибка", "Генерация отменена", MessageBoxIcon.Warning);
+                mess.switchMessage();
                 return;
             }
 
@@ -113,7 +114,9 @@ namespace QA_Helper
                 countLines = "10";
             if (nodes.Count == 0)
             {
-                errorMessage("Создайте хотя бы одно поле");
+
+                Message mess = new Message(this, "Oшибка", "Создайте хотя бы одно поле !", MessageBoxIcon.Warning);
+                mess.switchMessage();
                 return;
             }
             try
@@ -159,31 +162,37 @@ namespace QA_Helper
                 }
             }
             catch (Exception) {
-                errorMessage("Файл не доступен для записи");
-                return;
+                Message mess = new Message(this, "Oшибка", "Файл не доступен для записи", MessageBoxIcon.Warning);
+                mess.switchMessage();
+                
             }
-            simpleMessage("Генерация выполнена", pathSaveFile);
+            Message mes1 = new Message(this, "Успех", "Открыть сгенерированный файл ?", pathSaveFile);
+            mes1.switchMessage();
         }
 
-        void errorMessage(string text)
-         {
-             MessageDialog form = new MessageDialog();
-             form.errorTxt.Text = text;
-             form.Text = "Ошибка";
-             form.StartPosition = FormStartPosition.Manual;
-             form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
-             form.Show(this);
-         }
+        //void errorMessage(string text)
+        // {
+        //     Message mess = new Message(this, "Oшибка", "Что-то пошло не так :(",MessageBoxIcon.Warning);
+        //     mess.switchMessage();
+        //     //MessageDialog form = new MessageDialog();
+        //     //form.errorTxt.Text = text;
+        //     //form.Text = "Ошибка";
+        //     //form.StartPosition = FormStartPosition.Manual;
+        //     //form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
+        //     //form.Show(this);
+        // }
 
-        void simpleMessage(string text, string filename)
-         {
-             MessageDialog form = new MessageDialog(filename);
-             form.errorTxt.Text = text;
-             form.Text = "Успех";
-             form.StartPosition = FormStartPosition.Manual;
-             form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
-             form.Show(this);
-         }
+        //void simpleMessage(string text, string filename)
+        // {
+
+             
+        //     //MessageDialog form = new MessageDialog(filename);
+        //     //form.errorTxt.Text = text;
+        //     //form.Text = "Успех";
+        //     //form.StartPosition = FormStartPosition.Manual;
+        //     //form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
+        //     //form.Show(this);
+        // }
 
         private void generateButton_Click(object sender, EventArgs e)
         {
@@ -383,12 +392,14 @@ namespace QA_Helper
             {
                 if (fd.FileName == "" && standartList.SelectedIndex == 0)
                 {
-                    errorMessage("Не выбран файл со строками или стандартный список!");
+                    Message mess = new Message(this, "Oшибка", "Не выбран файл со строками или стандартный список!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
                 if (fd.FileName != "" && standartList.SelectedIndex != 0)
                 {
-                    errorMessage("Выберите либо файл со строками, либо стандартный список!");
+                    Message mess = new Message(this, "Oшибка", "Выберите либо файл со строками, либо стандартный список!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
             }
@@ -398,7 +409,8 @@ namespace QA_Helper
                 this.rangeToTxt.Text = this.rangeToTxt.Text.Trim();
                 if (this.rangeFromTxt.Text == "" || this.rangeToTxt.Text == "")
                 {
-                    errorMessage("Заполните все поля!");
+                    Message mess = new Message(this, "Oшибка", "Заполните все поля!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
 
@@ -410,12 +422,14 @@ namespace QA_Helper
                 }
                 catch (FormatException)
                 {
-                    errorMessage("Неверный формат ввода");
+                    Message mess = new Message(this, "Oшибка", "Неверный формат ввода", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
                 if (a > b)
                 {
-                    errorMessage("Начало диапазона не должно быть больше конца диапазона");
+                    Message mess = new Message(this, "Oшибка", "Начало диапазона не должно быть больше конца диапазона", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
             }
@@ -423,7 +437,8 @@ namespace QA_Helper
             {
                 if (datePickerFrom.Value > datePickerTo.Value)
                 {
-                    errorMessage("Начало диапазона дат не должно быть больше конца диапазона дат");
+                    Message mess = new Message(this, "Oшибка", "Начало диапазона дат не должно быть больше конца диапазона дат", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
             }
@@ -433,7 +448,8 @@ namespace QA_Helper
                 this.seqStepTxt.Text = this.seqStepTxt.Text.Trim();
                 if (this.seqFromTxt.Text == "" || this.seqStepTxt.Text == "")
                 {
-                    errorMessage("Заполните все поля!");
+                    Message mess = new Message(this, "Oшибка", "Заполните все поля!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
                 long a, b;
@@ -444,7 +460,8 @@ namespace QA_Helper
                 }
                 catch (FormatException)
                 {
-                    errorMessage("Неверный формат ввода");
+                    Message mess = new Message(this, "Oшибка", "Неверный формат ввода", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
             }
@@ -452,12 +469,14 @@ namespace QA_Helper
             {
                 if (fd.FileName == "" && standartList.SelectedIndex == 0)
                 {
-                    errorMessage("Не выбран файл со строками или стандартный список!");
+                    Message mess = new Message(this, "Oшибка", "Не выбран файл со строками или стандартный список!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
                 if (fd.FileName != "" && standartList.SelectedIndex != 0)
                 {
-                    errorMessage("Выберите либо файл со строками, либо стандартный список!");
+                    Message mess = new Message(this, "Oшибка", "Выберите либо файл со строками, либо стандартный список!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
             }
@@ -775,7 +794,8 @@ namespace QA_Helper
             //StreamWriter sr = new StreamWriter(@"test.txt");
             if (nodes.Count == 0)
             {
-                errorMessage("Добавьте хотя бы одно поле");
+                Message mess = new Message(this, "Ошибка", "Добавьте хотя бы одно поле", MessageBoxIcon.Warning);
+                mess.switchMessage();
                 return;
             }
 
@@ -787,7 +807,8 @@ namespace QA_Helper
             string result_str = "";
             if (nameT.Trim() == "")// исправлен баг  с некорректным именем
             {
-                errorMessage("Введите корректное имя шаблона!");
+                Message mess = new Message(this, "Oшибка", "Введите корректное имя шаблона!", MessageBoxIcon.Warning);
+                mess.switchMessage();
                 return;
             }
             foreach (FieldNode a in nodes)
@@ -836,16 +857,19 @@ namespace QA_Helper
             }
             using (var db = new MyDBContext())
             {
-                var find = db.Templetes.FirstOrDefault(x => x.Name == nameT);
+                var find = db.Templates.FirstOrDefault(x => x.Name == nameT);
                 if (find != null)
                 {
-                    errorMessage("Такое имя шаблона уже существует!");
+                    Message mess = new Message(this, "Oшибка!!!", "Такое имя шаблона уже существует!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
-                db.Templetes.Add(new Templete { Name = nameT, Tmp = result_str });
+                db.Templates.Add(new Template { Name = nameT, Tmp = result_str });
                 db.SaveChanges();
             }
-            MessageBox.Show("Шаблон сохранен!");
+            Message mes1 = new Message(this, "Ошибка!", "Шаблон сохранен!", MessageBoxIcon.Warning);
+            mes1.switchMessage();
+           
         }
 
         int kolVo = 0;
@@ -902,7 +926,7 @@ namespace QA_Helper
 
             using (var db = new MyDBContext())
             {
-                foreach (var templete in db.Templetes)
+                foreach (var templete in db.Templates)
                 {
                     Button TemplateBtnT = new Button();
                     TemplateBtnT.Size = new Size(164, 32);
@@ -959,7 +983,8 @@ namespace QA_Helper
         {
             if (clickedBtnIndexT == -1)
             {
-                errorMessage("Выберите шаблон");
+                Message mess = new Message(this, "Oшибка", "Выберите шаблон!", MessageBoxIcon.Warning);
+                mess.switchMessage();
                 return;
             }
             nodes.Clear();
@@ -975,13 +1000,23 @@ namespace QA_Helper
             tBtn = 0;
             if (tBtn == -1)
             {
-                errorMessage("Выберите шаблон!");
+                Message mess = new Message(this, "Oшибка", "Выберите шаблон!", MessageBoxIcon.Warning);
+                mess.switchMessage();
                 return;
             }
-            string f = TemplateBtnArray[clickedBtnIndexT].Name.ToString();
+            string f = "";
+            try
+            {
+
+                 f = TemplateBtnArray[clickedBtnIndexT].Name.ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Не выбран шаблон ");
+            }
             using (var db = new MyDBContext())
             {
-                var find = from templ in db.Templetes
+                var find = from templ in db.Templates
                            where templ.Id.ToString() == f
                            select templ;
                 if (find != null)
@@ -1039,10 +1074,10 @@ namespace QA_Helper
             int id = int.Parse((sender as Button).Name.ToString());
             using (var db = new MyDBContext())
             {
-                var del = db.Templetes.SingleOrDefault(x => x.Id == id);
+                var del = db.Templates.SingleOrDefault(x => x.Id == id);
                 if (del != null)
                 {
-                    db.Templetes.Remove(del);
+                    db.Templates.Remove(del);
                     db.SaveChanges();
                 }
             }
@@ -1089,16 +1124,13 @@ namespace QA_Helper
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            using (DialogCenteringService centeringService = new DialogCenteringService(this)) // center message box
-            {
-                var dg = MessageBox.Show(this, "Вы действительно хотите выйти?", "Закрытие приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dg == DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
-            }
+            Message mess = new Message(this, "Закрытие приложения", "Вы действительно хотите закрыть приложение ?", e);
+            mess.switchMessage();
 
         }
+       
+
+
        
 
        

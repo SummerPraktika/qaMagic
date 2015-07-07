@@ -16,7 +16,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QA_Helper
 {
-    public class Templete
+    public class Template
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -24,10 +24,10 @@ namespace QA_Helper
     }
     public class MyDBContext : DbContext
     {
-        public MyDBContext(): base("DBTemplete16")
+        public MyDBContext(): base("DBTemplate16")
         {
         }
-        public DbSet<Templete> Templetes { get; set; }
+        public DbSet<Template> Templates { get; set; }
     }
     
     
