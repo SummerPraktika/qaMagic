@@ -16,10 +16,10 @@ namespace QA_Helper.UnitTests
         /// <summary>
         /// Тест FieldNode для  строки
         /// </summary>
-        [SetUp ()]
+        [SetUp()]
         public void initFieldNodeString()
         {
-            a = new FieldNode(0, "name", "Фамилии");
+            a = new FieldNodeString(0, "name", "Фамилии");
 
         }
         [Test]
@@ -27,7 +27,7 @@ namespace QA_Helper.UnitTests
         {
 
             int i = 3;
-             string st = "";
+            string st = "";
             try
             {
                 st = a.getSequentialString(i).ToString();
@@ -39,7 +39,7 @@ namespace QA_Helper.UnitTests
         public void getRndStringTest()
         {
 
-            
+
              string st = "";
             try
             {
@@ -47,22 +47,22 @@ namespace QA_Helper.UnitTests
             }
             catch { }
             Assert.Contains(st, a.data); // требуется изменение List<string> data на public доступ 
-            
+
         }
 
-        /// <summary>
-        /// Тест FieldNode для последовательности
-        /// </summary>
+         //<summary>
+         //Тест FieldNode для последовательности
+         //</summary>
         [SetUp()]
         public void initFieldNodeStep()
         {
-            b = new FieldNode("name", 2, 1, 1);
+            b = new FieldNodeSequence("name", 2, 1, 1);
 
         }
         [Test]
         public void getSequenceNumberTest()
         {
-            
+
             string st = "";
             try
             {
@@ -91,16 +91,16 @@ namespace QA_Helper.UnitTests
         [SetUp()]
         public void initFieldNodeRand()
         {
-            c = new FieldNode( 1 ,"name", 5, 7);
+            c = new FieldNodeNum(1, "name", 5, 7);
 
         }
         [Test]
         public void getRndNumberTest()
         {
-           
-             Assert.IsInstanceOfType(typeof(long), c.getRndNumber());
-          //  Assert.That(c.getRndNumber(), Is.TypeOf(long));
-        
+
+            Assert.IsInstanceOfType(typeof(long), c.getRndNumber());
+            //  Assert.That(c.getRndNumber(), Is.TypeOf(long));
+
         }
         [Test]
         public void getRndNumberTest2()
@@ -117,7 +117,7 @@ namespace QA_Helper.UnitTests
             Assert.True(namber);
 
         }
-    
+
 
         /// <summary>
         /// Тест FieldNode для даты
@@ -125,7 +125,7 @@ namespace QA_Helper.UnitTests
         [SetUp()]
         public void initFieldNodeDate()
         {
-            d = new FieldNode(1, "name", "dd.MM.yyyy", new DateTime(2015, 5, 1), new DateTime(2015, 5, 2));
+            d = new FieldNodeDate(1, "name", "dd.MM.yyyy", new DateTime(2015, 5, 1), new DateTime(2015, 5, 2));
 
         }
         [Test]
@@ -139,14 +139,14 @@ namespace QA_Helper.UnitTests
                 st = d.getRndDate().ToString();
             }
             catch { }
-            if ((st == "01.05.2015")||(st == "02.05.2015")) 
+            if ((st == "01.05.2015") || (st == "02.05.2015"))
                 date = true;
             Assert.True(date);
-            
+
 
         }
-        
 
-       
+
+
     }
 }

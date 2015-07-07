@@ -18,7 +18,7 @@ namespace QA_Helper
 {
     public partial class Form1 : Form
     {
-        public static List<IFieldNode> nodes = new List<IFieldNode>();
+        public static List<FieldNode> nodes = new List<FieldNode>();
         public static string mode = "add";
         string pathToFile = "";
         public static int editable = 0;
@@ -311,59 +311,59 @@ namespace QA_Helper
             //    FieldUpBtn.Enabled = false;
             //if (clickedBtnIndex == tBtn - 1)
             //    FieldDownBtn.Enabled = false;
-            IFieldNode node = nodes[clickedBtnIndex];
+            FieldNode node = nodes[clickedBtnIndex];
 
-            if (node.type() == 0)
+            if (node.type == 0)
             {
                 typeBox.SelectedIndex = 0;
-                nameTxt.Text = node.name();
-                if (!standartListArray.Contains(node.pathToFile()))
+                nameTxt.Text = node.name;
+                if (!standartListArray.Contains(node.pathToFile))
                 {
-                    fd.FileName = node.pathToFile();
-                    chooseLabel.Text = node.pathToFile().Substring(node.pathToFile().LastIndexOf("\\") + 1);
+                    fd.FileName = node.pathToFile;
+                    chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
                 }
                 else
                 {
-                    standartList.SelectedItem = node.pathToFile();
+                    standartList.SelectedItem = node.pathToFile;
                 }
             }
-            else if (node.type() == 1)
+            else if (node.type == 1)
             {
                 typeBox.SelectedIndex = 1;
-                nameTxt.Text = node.name();
-                rangeFromTxt.Text = node.from().ToString();
-                rangeToTxt.Text = node.to().ToString();
+                nameTxt.Text = node.name;
+                rangeFromTxt.Text = node.from.ToString();
+                rangeToTxt.Text = node.to.ToString();
                
             }
-            else if (node.type() == 2)
+            else if (node.type == 2)
             {
                 typeBox.SelectedIndex = 2;
-                nameTxt.Text = node.name();
-                dateFormatCbox.SelectedItem = node.dateFormat().ToString();
-                datePickerFrom.Value = node.dfrom();
-                datePickerTo.Value = node.dto();
+                nameTxt.Text = node.name;
+                dateFormatCbox.SelectedItem = node.dateFormat.ToString();
+                datePickerFrom.Value = node.dfrom;
+                datePickerTo.Value = node.dto;
               
             }
-            else if (node.type() == 3)
+            else if (node.type == 3)
             {
                 typeBox.SelectedIndex = 3;
-                nameTxt.Text = node.name();
-                seqFromTxt.Text = node.start().ToString();
-                seqStepTxt.Text = node.step().ToString();
+                nameTxt.Text = node.name;
+                seqFromTxt.Text = node.start.ToString();
+                seqStepTxt.Text = node.step.ToString();
                 
             }
-            else if (node.type() == 4)
+            else if (node.type == 4)
             {
                 typeBox.SelectedIndex = 4;
-                nameTxt.Text = node.name();
-                if (!standartListArray.Contains(node.pathToFile()))
+                nameTxt.Text = node.name;
+                if (!standartListArray.Contains(node.pathToFile))
                 {
-                    fd.FileName = node.pathToFile();
-                    chooseLabel.Text = node.pathToFile().Substring(node.pathToFile().LastIndexOf("\\") + 1);
+                    fd.FileName = node.pathToFile;
+                    chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
                 }
                 else
                 {
-                    standartList.SelectedItem = node.pathToFile();
+                    standartList.SelectedItem = node.pathToFile;
                 }
             }
         }
@@ -506,9 +506,9 @@ namespace QA_Helper
                     pathToFile = standartList.SelectedItem.ToString();
                 }
                 if (clickedBtnIndex == -1)
-                    nodes.Add(new FieldNode(type, name, pathToFile));
+                    nodes.Add(new FieldNodeString(type, name, pathToFile));
                 else
-                    nodes[clickedBtnIndex] = new FieldNode(type, name, pathToFile);
+                    nodes[clickedBtnIndex] = new FieldNodeString(type, name, pathToFile);
                 
             }
             else if (this.typeBox.SelectedIndex == 1)
@@ -518,9 +518,9 @@ namespace QA_Helper
                 long from = long.Parse(this.rangeFromTxt.Text.Trim());
                 long to = long.Parse(this.rangeToTxt.Text.Trim());
                 if (clickedBtnIndex == -1)
-                    nodes.Add(new FieldNode(type, name, from, to));
+                    nodes.Add(new FieldNodeNum(type, name, from, to));
                 else
-                    nodes[clickedBtnIndex] = new FieldNode(type, name, from, to);
+                    nodes[clickedBtnIndex] = new FieldNodeNum(type, name, from, to);
             }
             else if (this.typeBox.SelectedIndex == 2)
             {
@@ -530,9 +530,9 @@ namespace QA_Helper
                 DateTime dfrom = this.datePickerFrom.Value;
                 DateTime dto = this.datePickerTo.Value;
                 if (clickedBtnIndex == -1)
-                    nodes.Add(new FieldNode(type, name, dateFormat, dfrom, dto));
+                    nodes.Add(new FieldNodeDate(type, name, dateFormat, dfrom, dto));
                 else
-                    nodes[clickedBtnIndex] = new FieldNode(type, name, dateFormat, dfrom, dto);
+                    nodes[clickedBtnIndex] = new FieldNodeDate(type, name, dateFormat, dfrom, dto);
             }
             else if (this.typeBox.SelectedIndex == 3)
             {
@@ -541,9 +541,9 @@ namespace QA_Helper
                 long start = long.Parse(this.seqFromTxt.Text.Trim());
                 long step = long.Parse(this.seqStepTxt.Text.Trim());
                 if (clickedBtnIndex == -1)
-                    nodes.Add(new FieldNode(name, type, start, step));
+                    nodes.Add(new FieldNodeSequence(name, type, start, step));
                 else
-                    nodes[clickedBtnIndex] = new FieldNode(name, type, start, step);
+                    nodes[clickedBtnIndex] = new FieldNodeSequence(name, type, start, step);
             }
             else if (this.typeBox.SelectedIndex == 4)
             {
@@ -560,9 +560,9 @@ namespace QA_Helper
                     pathToFile = standartList.SelectedItem.ToString();
                 }
                 if (clickedBtnIndex == -1)
-                    nodes.Add(new FieldNode(type, name, pathToFile));
+                    nodes.Add(new FieldNodeString(type, name, pathToFile));
                 else
-                    nodes[clickedBtnIndex] = new FieldNode(type, name, pathToFile);
+                    nodes[clickedBtnIndex] = new FieldNodeString(type, name, pathToFile);
             }
         }
 
@@ -792,7 +792,7 @@ namespace QA_Helper
                 result_str += a.type.ToString() + ";";
                 if (a.type == 0)
                 {
-                    result_str += a.name() + ";";
+                    result_str += a.name + ";";
                     if (a.pathToFile != "")
                     {
                         result_str += a.pathToFile.ToString() + ";";
@@ -804,7 +804,7 @@ namespace QA_Helper
                 }
                 if (a.type == 1)
                 {
-                    result_str += a.name() + ";";
+                    result_str += a.name + ";";
                     result_str += a.from.ToString() + ";";
                     result_str += a.to.ToString() + ";";
                 }
@@ -979,11 +979,11 @@ namespace QA_Helper
                             string[] pole = r.Split(new Char[] { ';' });
                             if (pole[0] == "0")
                             {
-                                fn = new FieldNode(Int32.Parse(pole[0]), pole[1], pole[2]);
+                                fn = new FieldNodeString(Int32.Parse(pole[0]), pole[1], pole[2]);
                             }
                             if (pole[0] == "1")
                             {
-                                fn = new FieldNode(Int32.Parse(pole[0]), pole[1], long.Parse(pole[2]), long.Parse(pole[3]));
+                                fn = new FieldNodeNum(Int32.Parse(pole[0]), pole[1], long.Parse(pole[2]), long.Parse(pole[3]));
                             }
                             if (pole[0] == "2")
                             {
@@ -991,15 +991,15 @@ namespace QA_Helper
                                 DateTime to = new DateTime();
                                 DateTime.TryParse(pole[3], out from);
                                 DateTime.TryParse(pole[4], out to);
-                                fn = new FieldNode(Int32.Parse(pole[0]), pole[1], pole[2], from, to);
+                                fn = new FieldNodeDate(Int32.Parse(pole[0]), pole[1], pole[2], from, to);
                             }
                             if (pole[0] == "3")
                             {
-                                fn = new FieldNode(pole[1], Int32.Parse(pole[0]), long.Parse(pole[2]), long.Parse(pole[3]));
+                                fn = new FieldNodeSequence(pole[1], Int32.Parse(pole[0]), long.Parse(pole[2]), long.Parse(pole[3]));
                             }
                             if (pole[0] == "4")
                             {
-                                fn = new FieldNode(Int32.Parse(pole[0]), pole[1], pole[2]);
+                                fn = new FieldNodeString(Int32.Parse(pole[0]), pole[1], pole[2]);
                             }
                             if (fn != null)
                             {

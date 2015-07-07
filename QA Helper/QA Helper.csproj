@@ -82,14 +82,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FieldNode.cs" />
+    <Compile Include="FieldNodeDate.cs" />
+    <Compile Include="FieldNodeNum.cs" />
+    <Compile Include="FieldNodeSequence.cs" />
+    <Compile Include="FieldNodeString.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="IFieldNode.cs" />
+    <Compile Include="FieldNode.cs" />
     <Compile Include="MessageDialog.cs">
       <SubType>Form</SubType>
     </Compile>
