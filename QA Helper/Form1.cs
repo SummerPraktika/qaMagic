@@ -158,7 +158,10 @@ namespace QA_Helper
                     }
                 }
             }
-            catch (FileLoadException) { }
+            catch (Exception) {
+                errorMessage("Файл не доступен для записи");
+                return;
+            }
             simpleMessage("Генерация выполнена", pathSaveFile);
         }
 
@@ -305,12 +308,7 @@ namespace QA_Helper
             }
             FieldBtn[clickedBtnIndex].BackColor = Color.Aqua;
 
-            //FieldUpBtn.Enabled = true; // Кнопки перемещения поля вверх / вниз
-            //FieldDownBtn.Enabled = true;
-            //if (clickedBtnIndex == 0)
-            //    FieldUpBtn.Enabled = false;
-            //if (clickedBtnIndex == tBtn - 1)
-            //    FieldDownBtn.Enabled = false;
+           
             FieldNode node = nodes[clickedBtnIndex];
 
             if (node.type == 0)
@@ -787,6 +785,11 @@ namespace QA_Helper
             md.ShowDialog();
             string nameT = md.NameT;
             string result_str = "";
+            if (nameT.Trim() == "")// исправлен баг  с некорректным именем
+            {
+                errorMessage("Введите корректное имя шаблона!");
+                return;
+            }
             foreach (FieldNode a in nodes)
             {
                 result_str += a.type.ToString() + ";";
@@ -833,6 +836,12 @@ namespace QA_Helper
             }
             using (var db = new MyDBContext())
             {
+                var find = db.Templetes.FirstOrDefault(x => x.Name == nameT);
+                if (find != null)
+                {
+                    errorMessage("Такое имя шаблона уже существует!");
+                    return;
+                }
                 db.Templetes.Add(new Templete { Name = nameT, Tmp = result_str });
                 db.SaveChanges();
             }
@@ -906,6 +915,7 @@ namespace QA_Helper
                         newLocationY = locationYT;
                     else
                     {
+
                         int maxY = TemplateBtnArray[TemplateBtnArray.Count - 1].Location.Y;
                         newLocationY = maxY + deltaYT;
                     }
@@ -938,6 +948,7 @@ namespace QA_Helper
             }
             f2.Show();
         }
+        
 
         private void cancelT_Click(object sender, EventArgs e)
         {
@@ -962,6 +973,11 @@ namespace QA_Helper
             ParametresBtn.Clear();
             DeleteBtn.Clear();
             tBtn = 0;
+            if (tBtn == -1)
+            {
+                errorMessage("Выберите шаблон!");
+                return;
+            }
             string f = TemplateBtnArray[clickedBtnIndexT].Name.ToString();
             using (var db = new MyDBContext())
             {
@@ -1071,19 +1087,20 @@ namespace QA_Helper
                 i++;
             }
         }
-
-        public class Templete
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Tmp { get; set; }
-        }
-        public class MyDBContext : DbContext
-        {
-            public MyDBContext() : base("DBTemplete16")
+            using (DialogCenteringService centeringService = new DialogCenteringService(this)) // center message box
             {
+                var dg = MessageBox.Show(this, "Вы действительно хотите выйти?", "Закрытие приложения", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dg == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
             }
-            public DbSet<Templete> Templetes { get; set; }
+
         }
+       
+
+       
     }
 }

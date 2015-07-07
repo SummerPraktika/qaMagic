@@ -542,6 +542,7 @@ namespace QA_Helper
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "QA Helper";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.controlPanel.ResumeLayout(false);

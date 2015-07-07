@@ -37,7 +37,7 @@
             // continueButton
             // 
             this.continueButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.continueButton.Location = new System.Drawing.Point(43, 38);
+            this.continueButton.Location = new System.Drawing.Point(88, 66);
             this.continueButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
             this.continueButton.Name = "continueButton";
             this.continueButton.Size = new System.Drawing.Size(95, 23);
@@ -54,7 +54,7 @@
             this.errorTxt.Multiline = true;
             this.errorTxt.Name = "errorTxt";
             this.errorTxt.ReadOnly = true;
-            this.errorTxt.Size = new System.Drawing.Size(166, 20);
+            this.errorTxt.Size = new System.Drawing.Size(247, 20);
             this.errorTxt.TabIndex = 2;
             this.errorTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -66,11 +66,12 @@
             this.label1.Size = new System.Drawing.Size(125, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Введите имя шаблона";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Visible = false;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(32, 38);
+            this.textBox1.Location = new System.Drawing.Point(88, 38);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(124, 22);
             this.textBox1.TabIndex = 4;
@@ -80,7 +81,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(181, 106);
+            this.ClientSize = new System.Drawing.Size(284, 161);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.continueButton);
             this.Controls.Add(this.textBox1);
