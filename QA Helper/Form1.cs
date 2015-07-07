@@ -18,7 +18,7 @@ namespace QA_Helper
 {
     public partial class Form1 : Form
     {
-        public static List<FieldNode> nodes = new List<FieldNode>();
+        public static List<IFieldNode> nodes = new List<IFieldNode>();
         public static string mode = "add";
         string pathToFile = "";
         public static int editable = 0;
@@ -311,59 +311,59 @@ namespace QA_Helper
             //    FieldUpBtn.Enabled = false;
             //if (clickedBtnIndex == tBtn - 1)
             //    FieldDownBtn.Enabled = false;
-            FieldNode node = nodes[clickedBtnIndex];
+            IFieldNode node = nodes[clickedBtnIndex];
 
-            if (node.type == 0)
+            if (node.type() == 0)
             {
                 typeBox.SelectedIndex = 0;
-                nameTxt.Text = node.name;
-                if (!standartListArray.Contains(node.pathToFile))
+                nameTxt.Text = node.name();
+                if (!standartListArray.Contains(node.pathToFile()))
                 {
-                    fd.FileName = node.pathToFile;
-                    chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
+                    fd.FileName = node.pathToFile();
+                    chooseLabel.Text = node.pathToFile().Substring(node.pathToFile().LastIndexOf("\\") + 1);
                 }
                 else
                 {
-                    standartList.SelectedItem = node.pathToFile;
+                    standartList.SelectedItem = node.pathToFile();
                 }
             }
-            else if (node.type == 1)
+            else if (node.type() == 1)
             {
                 typeBox.SelectedIndex = 1;
-                nameTxt.Text = node.name;
-                rangeFromTxt.Text = node.from.ToString();
-                rangeToTxt.Text = node.to.ToString();
+                nameTxt.Text = node.name();
+                rangeFromTxt.Text = node.from().ToString();
+                rangeToTxt.Text = node.to().ToString();
                
             }
-            else if (node.type == 2)
+            else if (node.type() == 2)
             {
                 typeBox.SelectedIndex = 2;
-                nameTxt.Text = node.name;
-                dateFormatCbox.SelectedItem = node.dateFormat.ToString();
-                datePickerFrom.Value = node.dfrom;
-                datePickerTo.Value = node.dto;
+                nameTxt.Text = node.name();
+                dateFormatCbox.SelectedItem = node.dateFormat().ToString();
+                datePickerFrom.Value = node.dfrom();
+                datePickerTo.Value = node.dto();
               
             }
-            else if (node.type == 3)
+            else if (node.type() == 3)
             {
                 typeBox.SelectedIndex = 3;
-                nameTxt.Text = node.name;
-                seqFromTxt.Text = node.start.ToString();
-                seqStepTxt.Text = node.step.ToString();
+                nameTxt.Text = node.name();
+                seqFromTxt.Text = node.start().ToString();
+                seqStepTxt.Text = node.step().ToString();
                 
             }
-            else if (node.type == 4)
+            else if (node.type() == 4)
             {
                 typeBox.SelectedIndex = 4;
-                nameTxt.Text = node.name;
-                if (!standartListArray.Contains(node.pathToFile))
+                nameTxt.Text = node.name();
+                if (!standartListArray.Contains(node.pathToFile()))
                 {
-                    fd.FileName = node.pathToFile;
-                    chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
+                    fd.FileName = node.pathToFile();
+                    chooseLabel.Text = node.pathToFile().Substring(node.pathToFile().LastIndexOf("\\") + 1);
                 }
                 else
                 {
-                    standartList.SelectedItem = node.pathToFile;
+                    standartList.SelectedItem = node.pathToFile();
                 }
             }
         }
@@ -792,7 +792,7 @@ namespace QA_Helper
                 result_str += a.type.ToString() + ";";
                 if (a.type == 0)
                 {
-                    result_str += a.name + ";";
+                    result_str += a.name() + ";";
                     if (a.pathToFile != "")
                     {
                         result_str += a.pathToFile.ToString() + ";";
@@ -804,7 +804,7 @@ namespace QA_Helper
                 }
                 if (a.type == 1)
                 {
-                    result_str += a.name + ";";
+                    result_str += a.name() + ";";
                     result_str += a.from.ToString() + ";";
                     result_str += a.to.ToString() + ";";
                 }

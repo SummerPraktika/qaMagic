@@ -8,16 +8,19 @@ using System.Resources;
 
 namespace QA_Helper
 {
-    public class FieldNode
+    public class FieldNode : IFieldNode
     {
-        List<string> data = new List<string>();
-        public int type;
-        public string name;
-        public string pathToFile;
-        public string dateFormat;
-        public long from, to;
-        public DateTime dfrom, dto;
-        public long start, step;
+         List<string> data = new List<string>();
+       int type { get; set;}
+        string name { get; set;}
+        public string pathToFile { get; set;}
+        public string dateFormat { get; set; }
+        public long from { get; set;}
+        public long to { get; set; }
+        public DateTime dfrom { get; set; }
+        public DateTime dto { get; set; }
+        public long start { get; set; }
+        public long step { get; set; }
         Random rand = new Random();
         string[] standartListArray = new string[] { "Фамилии", "Имена", "Отчества", "Города", "Телефоны", "E-mail" };
 

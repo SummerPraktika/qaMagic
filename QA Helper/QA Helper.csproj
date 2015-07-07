@@ -89,6 +89,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="IFieldNode.cs" />
     <Compile Include="MessageDialog.cs">
       <SubType>Form</SubType>
     </Compile>
