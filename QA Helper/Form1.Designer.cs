@@ -92,9 +92,10 @@ namespace QA_Helper
             // tooltip
             // 
             this.tooltip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tooltip.Margin = new System.Windows.Forms.Padding(190, 3, 0, 2);
+            this.tooltip.Margin = new System.Windows.Forms.Padding(3, 3, 0, 2);
             this.tooltip.Name = "tooltip";
-            this.tooltip.Size = new System.Drawing.Size(244, 17);
+            this.tooltip.Size = new System.Drawing.Size(613, 17);
+            this.tooltip.Spring = true;
             this.tooltip.Text = "Добавьте поля для генерирования записей";
             // 
             // controlPanel

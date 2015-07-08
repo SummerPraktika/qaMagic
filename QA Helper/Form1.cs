@@ -303,6 +303,11 @@ namespace QA_Helper
             tBtn--;
 
             fitScrollBar();
+
+            if (nodes.Count == 0)
+            {
+                this.tooltip.Text = "Добавьте поля для генерирования записей";
+            }
         }
 
         private void parametres_Click(object sender, EventArgs e) // Клик по кнопке на панели слева
@@ -501,6 +506,11 @@ namespace QA_Helper
             fd.FileName = "";
 
             fitScrollBar();
+
+            if (nodes.Count > 0)
+            {
+                this.tooltip.Text = "Нажмите \"Генерировать\" или нажмите \"Настройки\" для изменения формата выходного файла";
+            }
         }
 
         private void fitScrollBar()
