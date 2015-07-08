@@ -10,7 +10,7 @@ namespace QA_Helper
 {
     public class FieldNode
     {
-        List<string> data = new List<string>();
+        public List<string> data = new List<string>();
         public int type;
         public string name;
         public string pathToFile;
