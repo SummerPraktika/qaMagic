@@ -94,7 +94,7 @@ namespace QA_Helper
             this.tooltip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tooltip.Margin = new System.Windows.Forms.Padding(3, 3, 0, 2);
             this.tooltip.Name = "tooltip";
-            this.tooltip.Size = new System.Drawing.Size(613, 17);
+            this.tooltip.Size = new System.Drawing.Size(644, 17);
             this.tooltip.Spring = true;
             this.tooltip.Text = "Добавьте поля для генерирования записей";
             // 
@@ -215,7 +215,7 @@ namespace QA_Helper
             // cancel
             // 
             this.cancel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancel.Location = new System.Drawing.Point(199, 195);
+            this.cancel.Location = new System.Drawing.Point(242, 194);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(109, 23);
             this.cancel.TabIndex = 27;
@@ -244,17 +244,17 @@ namespace QA_Helper
             "Города",
             "Телефоны",
             "E-mail"});
-            this.standartList.Location = new System.Drawing.Point(106, 111);
+            this.standartList.Location = new System.Drawing.Point(122, 112);
             this.standartList.Name = "standartList";
-            this.standartList.Size = new System.Drawing.Size(175, 21);
+            this.standartList.Size = new System.Drawing.Size(181, 21);
             this.standartList.TabIndex = 25;
             // 
             // datePickerFrom
             // 
             this.datePickerFrom.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePickerFrom.Location = new System.Drawing.Point(106, 149);
+            this.datePickerFrom.Location = new System.Drawing.Point(83, 149);
             this.datePickerFrom.Name = "datePickerFrom";
-            this.datePickerFrom.Size = new System.Drawing.Size(80, 22);
+            this.datePickerFrom.Size = new System.Drawing.Size(133, 22);
             this.datePickerFrom.TabIndex = 21;
             this.datePickerFrom.Visible = false;
             // 
@@ -294,9 +294,9 @@ namespace QA_Helper
             "YYYY.MM.DD",
             "YY.DD.MM",
             "YY.MM.DD"});
-            this.dateFormatCbox.Location = new System.Drawing.Point(106, 111);
+            this.dateFormatCbox.Location = new System.Drawing.Point(122, 111);
             this.dateFormatCbox.Name = "dateFormatCbox";
-            this.dateFormatCbox.Size = new System.Drawing.Size(175, 21);
+            this.dateFormatCbox.Size = new System.Drawing.Size(183, 21);
             this.dateFormatCbox.TabIndex = 23;
             this.dateFormatCbox.Visible = false;
             // 
@@ -314,7 +314,7 @@ namespace QA_Helper
             // rangeFromTxt
             // 
             this.rangeFromTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rangeFromTxt.Location = new System.Drawing.Point(136, 141);
+            this.rangeFromTxt.Location = new System.Drawing.Point(122, 141);
             this.rangeFromTxt.MaxLength = 18;
             this.rangeFromTxt.Name = "rangeFromTxt";
             this.rangeFromTxt.Size = new System.Drawing.Size(60, 22);
@@ -337,7 +337,7 @@ namespace QA_Helper
             // applyFieldButton
             // 
             this.applyFieldButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.applyFieldButton.Location = new System.Drawing.Point(81, 194);
+            this.applyFieldButton.Location = new System.Drawing.Point(106, 194);
             this.applyFieldButton.Name = "applyFieldButton";
             this.applyFieldButton.Size = new System.Drawing.Size(109, 23);
             this.applyFieldButton.TabIndex = 9;
@@ -358,9 +358,9 @@ namespace QA_Helper
             // nameTxt
             // 
             this.nameTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameTxt.Location = new System.Drawing.Point(106, 68);
+            this.nameTxt.Location = new System.Drawing.Point(122, 68);
             this.nameTxt.Name = "nameTxt";
-            this.nameTxt.Size = new System.Drawing.Size(175, 22);
+            this.nameTxt.Size = new System.Drawing.Size(183, 22);
             this.nameTxt.TabIndex = 7;
             this.nameTxt.Text = "Безымянное";
             // 
@@ -395,9 +395,9 @@ namespace QA_Helper
             "Дата",
             "Числовая последовательность",
             "Последовательные строки"});
-            this.typeBox.Location = new System.Drawing.Point(106, 41);
+            this.typeBox.Location = new System.Drawing.Point(122, 41);
             this.typeBox.Name = "typeBox";
-            this.typeBox.Size = new System.Drawing.Size(175, 21);
+            this.typeBox.Size = new System.Drawing.Size(183, 21);
             this.typeBox.TabIndex = 24;
             this.typeBox.SelectedIndexChanged += new System.EventHandler(this.typeBox_SelectedIndexChanged);
             // 
@@ -405,7 +405,7 @@ namespace QA_Helper
             // 
             this.addInfo.AutoSize = true;
             this.addInfo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addInfo.Location = new System.Drawing.Point(126, 7);
+            this.addInfo.Location = new System.Drawing.Point(153, 0);
             this.addInfo.Name = "addInfo";
             this.addInfo.Size = new System.Drawing.Size(135, 21);
             this.addInfo.TabIndex = 0;
@@ -415,7 +415,7 @@ namespace QA_Helper
             // seqFromTxt
             // 
             this.seqFromTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.seqFromTxt.Location = new System.Drawing.Point(122, 140);
+            this.seqFromTxt.Location = new System.Drawing.Point(90, 166);
             this.seqFromTxt.MaxLength = 18;
             this.seqFromTxt.Name = "seqFromTxt";
             this.seqFromTxt.Size = new System.Drawing.Size(60, 22);
@@ -427,9 +427,9 @@ namespace QA_Helper
             // datePickerTo
             // 
             this.datePickerTo.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePickerTo.Location = new System.Drawing.Point(201, 149);
+            this.datePickerTo.Location = new System.Drawing.Point(242, 149);
             this.datePickerTo.Name = "datePickerTo";
-            this.datePickerTo.Size = new System.Drawing.Size(80, 22);
+            this.datePickerTo.Size = new System.Drawing.Size(123, 22);
             this.datePickerTo.TabIndex = 22;
             this.datePickerTo.Visible = false;
             // 
@@ -447,7 +447,7 @@ namespace QA_Helper
             // rangeToTxt
             // 
             this.rangeToTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rangeToTxt.Location = new System.Drawing.Point(205, 141);
+            this.rangeToTxt.Location = new System.Drawing.Point(245, 144);
             this.rangeToTxt.MaxLength = 18;
             this.rangeToTxt.Name = "rangeToTxt";
             this.rangeToTxt.Size = new System.Drawing.Size(60, 22);
@@ -459,7 +459,7 @@ namespace QA_Helper
             // seqStepTxt
             // 
             this.seqStepTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.seqStepTxt.Location = new System.Drawing.Point(228, 140);
+            this.seqStepTxt.Location = new System.Drawing.Point(245, 142);
             this.seqStepTxt.MaxLength = 5;
             this.seqStepTxt.Name = "seqStepTxt";
             this.seqStepTxt.Size = new System.Drawing.Size(60, 22);
@@ -471,9 +471,9 @@ namespace QA_Helper
             // chooseButton
             // 
             this.chooseButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseButton.Location = new System.Drawing.Point(141, 141);
+            this.chooseButton.Location = new System.Drawing.Point(157, 140);
             this.chooseButton.Name = "chooseButton";
-            this.chooseButton.Size = new System.Drawing.Size(98, 23);
+            this.chooseButton.Size = new System.Drawing.Size(115, 23);
             this.chooseButton.TabIndex = 6;
             this.chooseButton.Text = "Открыть файл";
             this.chooseButton.UseVisualStyleBackColor = true;

@@ -37,11 +37,13 @@ namespace QA_Helper
         int delta = 32, draggableIndex, replaceableY, upperBound;
 
         private int unnamedIndex = 1;
+        private static Form1 temp;
 
         public Form1()
         {
             InitializeComponent();
             this.CenterToScreen();
+            temp = this;
         }
 
         private void defaultButtons()
@@ -155,7 +157,7 @@ namespace QA_Helper
                                     st += a.getSequentialString(i).ToString() + ((a == nodes[nodes.Count - 1]) ? " " : divider);//  вызов функции печати для поля со строками
                                 }
                             }
-                            st += "\n";
+                            st += "\r\n";
                             writer.Write(st);
                             st = "";
                         }
@@ -164,7 +166,7 @@ namespace QA_Helper
                 }
             }
             catch (Exception) {
-                Message mess = new Message(this, "Oшибка", "Файл не доступен для записи", MessageBoxIcon.Warning);
+                Message mess = new Message(this, "Oшибка", "Файл не доступен для записи", MessageBoxIcon.Error);
                 mess.switchMessage();
                 
             }
@@ -172,29 +174,7 @@ namespace QA_Helper
             mes1.switchMessage();
         }
 
-        //void errorMessage(string text)
-        // {
-        //     Message mess = new Message(this, "Oшибка", "Что-то пошло не так :(",MessageBoxIcon.Warning);
-        //     mess.switchMessage();
-        //     //MessageDialog form = new MessageDialog();
-        //     //form.errorTxt.Text = text;
-        //     //form.Text = "Ошибка";
-        //     //form.StartPosition = FormStartPosition.Manual;
-        //     //form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
-        //     //form.Show(this);
-        // }
-
-        //void simpleMessage(string text, string filename)
-        // {
-
-             
-        //     //MessageDialog form = new MessageDialog(filename);
-        //     //form.errorTxt.Text = text;
-        //     //form.Text = "Успех";
-        //     //form.StartPosition = FormStartPosition.Manual;
-        //     //form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
-        //     //form.Show(this);
-        // }
+      
 
         private void generateButton_Click(object sender, EventArgs e)
         {
@@ -1103,56 +1083,12 @@ namespace QA_Helper
 
         private void deleteBtnT_Click(object sender, EventArgs e)
         {
-            int id = int.Parse((sender as Button).Name.ToString());
-            using (var db = new MyDBContext())
-            {
-                var del = db.Templates.SingleOrDefault(x => x.Id == id);
-                if (del != null)
-                {
-                    db.Templates.Remove(del);
-                    db.SaveChanges();
-                }
-            }
-            int i = 0;
-            foreach (Button b in DeleteBtnArray)
-            {
-                if (sender == b)
-                {
-                    leftPanelT.Controls.Remove(TemplateBtnArray[i]);
-                    TemplateBtnArray[i].Dispose();
-                    TemplateBtnArray.RemoveAt(i);
-                    
-                    leftPanelT.Controls.Remove(DeleteBtnArray[i]);
-                    DeleteBtnArray[i].Dispose();
-                    DeleteBtnArray.RemoveAt(i);
 
-                    for (int j = i; j < TemplateBtnArray.Count; j++)
-                    {
-                        TemplateBtnArray[j].Location = new Point(TemplateBtnArray[j].Location.X, TemplateBtnArray[j].Location.Y - deltaY);
-                        DeleteBtnArray[j].Location = new Point(DeleteBtnArray[j].Location.X, DeleteBtnArray[j].Location.Y - deltaY);
-                    }
-                    break;
-                }
-                i++;
-            }
         }
 
         private void TemplateBtnT_Click(object sender, EventArgs e)
         {
-            foreach (Button b in TemplateBtnArray)
-            {
-                b.BackColor = defaultColor;
-            }
-            int i = 0;
-            foreach (Button b in TemplateBtnArray) {
-                if (sender == b)
-                {
-                    clickedBtnIndexT = i;
-                    b.BackColor = Color.Aqua;
-                    break;
-                }
-                i++;
-            }
+
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -1166,8 +1102,13 @@ namespace QA_Helper
             this.commonAddPanel.Hide();
             defaultButtons();
         }
-       
 
+        public static void errorMessage(string text)
+        {
+            Message mess = new Message(temp,"Ошибка" , text,MessageBoxIcon.Error);
+            mess.switchMessage();
+
+        }
 
        
 

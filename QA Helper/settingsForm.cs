@@ -21,23 +21,32 @@ namespace QA_Helper
 
         private void saveSettingsButton_Click(object sender, EventArgs e)
         {
-            if (this.recordsCountTxt.Text == "")
+            try
             {
-                errorMessage("Количество записей должно быть от 1 до 10000");
-            }
-            else if (Int32.Parse(this.recordsCountTxt.Text) < 1 || Int32.Parse(this.recordsCountTxt.Text) > 10000)
-            {
-                errorMessage("Количество записей должно быть от 1 до 10000");
-            }
-            else
-            {
-                setConfig("format", this.formatBox.Text);
-                setConfig("delimeter", this.delimeterBox.Text);
-                setConfig("encoding", this.encodingBox.Text);
-                setConfig("recordsCount", this.recordsCountTxt.Text);
 
-                this.Close();
+                if (this.recordsCountTxt.Text == "")
+                {
+                    Form1.errorMessage("Количество записей должно быть от 1 до 10000");
+                }
+                else if (Int32.Parse(this.recordsCountTxt.Text) < 1 || Int32.Parse(this.recordsCountTxt.Text) > 10000)
+                {
+                    Form1.errorMessage("Количество записей должно быть от 1 до 10000");
+                }
+                else
+                {
+                    setConfig("format", this.formatBox.Text);
+                    setConfig("delimeter", this.delimeterBox.Text);
+                    setConfig("encoding", this.encodingBox.Text);
+                    setConfig("recordsCount", this.recordsCountTxt.Text);
+
+                    this.Close();
+                }
             }
+            catch (OverflowException)
+            {
+                Form1.errorMessage("Количество записей должно быть от 1 до 10000");
+            }
+               
         }
 
         public static void setConfig(String key, String value)
@@ -73,15 +82,13 @@ namespace QA_Helper
                 val = Regex.Replace(val, @"[^0-9]", "");
                 ((TextBox)sender).Text = val;
             }
+            catch (OverflowException)
+            {
+                Form1.errorMessage("Недопустимое число");
+            }
         }
 
-        private void errorMessage(string text)
-        {
-            MessageDialog form = new MessageDialog();
-            form.errorTxt.Text = text;
-            form.StartPosition = FormStartPosition.Manual;
-            form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
-            form.Show(this);
-        }
+
+       
     }
 }
