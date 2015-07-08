@@ -36,6 +36,8 @@ namespace QA_Helper
         private Boolean isDragging = false;
         int delta = 32, draggableIndex, replaceableY, upperBound;
 
+        private int unnamedIndex = 1;
+
         public Form1()
         {
             InitializeComponent();
@@ -77,7 +79,8 @@ namespace QA_Helper
             else
             {
                 pathSaveFile = "";
-                errorMessage("Генерация отменена");
+                Message mess = new Message(this, "Oшибка", "Генерация отменена", MessageBoxIcon.Warning);
+                mess.switchMessage();
                 return;
             }
 
@@ -113,7 +116,9 @@ namespace QA_Helper
                 countLines = "10";
             if (nodes.Count == 0)
             {
-                errorMessage("Создайте хотя бы одно поле");
+
+                Message mess = new Message(this, "Oшибка", "Создайте хотя бы одно поле !", MessageBoxIcon.Warning);
+                mess.switchMessage();
                 return;
             }
             try
@@ -158,29 +163,38 @@ namespace QA_Helper
                     }
                 }
             }
-            catch (FileLoadException) { }
-            simpleMessage("Генерация выполнена", pathSaveFile);
+            catch (Exception) {
+                Message mess = new Message(this, "Oшибка", "Файл не доступен для записи", MessageBoxIcon.Warning);
+                mess.switchMessage();
+                
+            }
+            Message mes1 = new Message(this, "Успех", "Открыть сгенерированный файл ?", pathSaveFile);
+            mes1.switchMessage();
         }
 
-        void errorMessage(string text)
-         {
-             MessageDialog form = new MessageDialog();
-             form.errorTxt.Text = text;
-             form.Text = "Ошибка";
-             form.StartPosition = FormStartPosition.Manual;
-             form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
-             form.Show(this);
-         }
+        //void errorMessage(string text)
+        // {
+        //     Message mess = new Message(this, "Oшибка", "Что-то пошло не так :(",MessageBoxIcon.Warning);
+        //     mess.switchMessage();
+        //     //MessageDialog form = new MessageDialog();
+        //     //form.errorTxt.Text = text;
+        //     //form.Text = "Ошибка";
+        //     //form.StartPosition = FormStartPosition.Manual;
+        //     //form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
+        //     //form.Show(this);
+        // }
 
-        void simpleMessage(string text, string filename)
-         {
-             MessageDialog form = new MessageDialog(filename);
-             form.errorTxt.Text = text;
-             form.Text = "Успех";
-             form.StartPosition = FormStartPosition.Manual;
-             form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
-             form.Show(this);
-         }
+        //void simpleMessage(string text, string filename)
+        // {
+
+             
+        //     //MessageDialog form = new MessageDialog(filename);
+        //     //form.errorTxt.Text = text;
+        //     //form.Text = "Успех";
+        //     //form.StartPosition = FormStartPosition.Manual;
+        //     //form.Location = new Point(this.Location.X + (this.Width - form.Width) / 2, this.Location.Y + (this.Height - form.Height) / 2);
+        //     //form.Show(this);
+        // }
 
         private void generateButton_Click(object sender, EventArgs e)
         {
@@ -271,6 +285,8 @@ namespace QA_Helper
                     clickedBtnIndex = index;
                 index++;
             }
+
+
             FieldBtn[clickedBtnIndex].Dispose();
             FieldBtn.RemoveAt(clickedBtnIndex);
             ParametresBtn[clickedBtnIndex].Dispose();
@@ -305,12 +321,7 @@ namespace QA_Helper
             }
             FieldBtn[clickedBtnIndex].BackColor = Color.Aqua;
 
-            //FieldUpBtn.Enabled = true; // Кнопки перемещения поля вверх / вниз
-            //FieldDownBtn.Enabled = true;
-            //if (clickedBtnIndex == 0)
-            //    FieldUpBtn.Enabled = false;
-            //if (clickedBtnIndex == tBtn - 1)
-            //    FieldDownBtn.Enabled = false;
+           
             FieldNode node = nodes[clickedBtnIndex];
 
             if (node.type == 0)
@@ -320,7 +331,8 @@ namespace QA_Helper
                 if (!standartListArray.Contains(node.pathToFile))
                 {
                     fd.FileName = node.pathToFile;
-                    chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
+                    //chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
+                    chooseLabel.Text = node.pathToFile;
                 }
                 else
                 {
@@ -359,7 +371,8 @@ namespace QA_Helper
                 if (!standartListArray.Contains(node.pathToFile))
                 {
                     fd.FileName = node.pathToFile;
-                    chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
+                    //chooseLabel.Text = node.pathToFile.Substring(node.pathToFile.LastIndexOf("\\") + 1);
+                    chooseLabel.Text = node.pathToFile;
                 }
                 else
                 {
@@ -374,7 +387,8 @@ namespace QA_Helper
             fieldName = fieldName.ToString().Trim();
             if (fieldName == "")
             {
-                this.nameTxt.Text = "Безымянное";
+                this.nameTxt.Text = "Безымянное_" + unnamedIndex;
+                unnamedIndex++;
             }
             if (fieldName.Contains(" "))
             {
@@ -385,12 +399,14 @@ namespace QA_Helper
             {
                 if (fd.FileName == "" && standartList.SelectedIndex == 0)
                 {
-                    errorMessage("Не выбран файл со строками или стандартный список!");
+                    Message mess = new Message(this, "Oшибка", "Не выбран файл со строками или стандартный список!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
                 if (fd.FileName != "" && standartList.SelectedIndex != 0)
                 {
-                    errorMessage("Выберите либо файл со строками, либо стандартный список!");
+                    Message mess = new Message(this, "Oшибка", "Выберите либо файл со строками, либо стандартный список!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
             }
@@ -400,7 +416,8 @@ namespace QA_Helper
                 this.rangeToTxt.Text = this.rangeToTxt.Text.Trim();
                 if (this.rangeFromTxt.Text == "" || this.rangeToTxt.Text == "")
                 {
-                    errorMessage("Заполните все поля!");
+                    Message mess = new Message(this, "Oшибка", "Заполните все поля!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
 
@@ -412,12 +429,14 @@ namespace QA_Helper
                 }
                 catch (FormatException)
                 {
-                    errorMessage("Неверный формат ввода");
+                    Message mess = new Message(this, "Oшибка", "Неверный формат ввода", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
                 if (a > b)
                 {
-                    errorMessage("Начало диапазона не должно быть больше конца диапазона");
+                    Message mess = new Message(this, "Oшибка", "Начало диапазона не должно быть больше конца диапазона", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
             }
@@ -425,7 +444,8 @@ namespace QA_Helper
             {
                 if (datePickerFrom.Value > datePickerTo.Value)
                 {
-                    errorMessage("Начало диапазона дат не должно быть больше конца диапазона дат");
+                    Message mess = new Message(this, "Oшибка", "Начало диапазона дат не должно быть больше конца диапазона дат", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
             }
@@ -435,7 +455,8 @@ namespace QA_Helper
                 this.seqStepTxt.Text = this.seqStepTxt.Text.Trim();
                 if (this.seqFromTxt.Text == "" || this.seqStepTxt.Text == "")
                 {
-                    errorMessage("Заполните все поля!");
+                    Message mess = new Message(this, "Oшибка", "Заполните все поля!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
                 long a, b;
@@ -446,7 +467,8 @@ namespace QA_Helper
                 }
                 catch (FormatException)
                 {
-                    errorMessage("Неверный формат ввода");
+                    Message mess = new Message(this, "Oшибка", "Неверный формат ввода", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
             }
@@ -454,20 +476,25 @@ namespace QA_Helper
             {
                 if (fd.FileName == "" && standartList.SelectedIndex == 0)
                 {
-                    errorMessage("Не выбран файл со строками или стандартный список!");
+                    Message mess = new Message(this, "Oшибка", "Не выбран файл со строками или стандартный список!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
                 if (fd.FileName != "" && standartList.SelectedIndex != 0)
                 {
-                    errorMessage("Выберите либо файл со строками, либо стандартный список!");
+                    Message mess = new Message(this, "Oшибка", "Выберите либо файл со строками, либо стандартный список!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
                     return;
                 }
             }
-            
+
+
             if (clickedBtnIndex == -1) // если мы добавляем поле
                 NewButton();
             else
+            {
                 FieldBtn[clickedBtnIndex].BackColor = defaultColor;
+            }
             saveField(); // сохраняем изменения в FieldNode
             commonAddPanel.Visible = false;
             aboutText.Visible = true;
@@ -572,7 +599,7 @@ namespace QA_Helper
             
             if (result == DialogResult.OK)
             {
-                chooseLabel.Text = fd.SafeFileName + "";
+                chooseLabel.Text = fd.FileName + "";
             }
         }
 
@@ -628,7 +655,16 @@ namespace QA_Helper
             catch (FormatException)
             {
                 val = Regex.Replace(val, @"[^0-9]", "");
+
                 ((TextBox)sender).Text = val;
+            }
+            if (val.Length > 1)
+            {
+                if (val.ElementAt(0) == '0' && val.ElementAt(1) == '0')
+                {
+                    val = val.Remove(1);
+                    ((TextBox)sender).Text = val;
+                }
             }
         }
 
@@ -777,7 +813,8 @@ namespace QA_Helper
             //StreamWriter sr = new StreamWriter(@"test.txt");
             if (nodes.Count == 0)
             {
-                errorMessage("Добавьте хотя бы одно поле");
+                Message mess = new Message(this, "Ошибка", "Добавьте хотя бы одно поле", MessageBoxIcon.Warning);
+                mess.switchMessage();
                 return;
             }
 
@@ -787,6 +824,12 @@ namespace QA_Helper
             md.ShowDialog();
             string nameT = md.NameT;
             string result_str = "";
+            if (nameT.Trim() == "")// исправлен баг  с некорректным именем
+            {
+                Message mess = new Message(this, "Oшибка", "Введите корректное имя шаблона!", MessageBoxIcon.Warning);
+                mess.switchMessage();
+                return;
+            }
             foreach (FieldNode a in nodes)
             {
                 result_str += a.type.ToString() + ";";
@@ -833,10 +876,19 @@ namespace QA_Helper
             }
             using (var db = new MyDBContext())
             {
-                db.Templetes.Add(new Templete { Name = nameT, Tmp = result_str });
+                var find = db.Templates.FirstOrDefault(x => x.Name == nameT);
+                if (find != null)
+                {
+                    Message mess = new Message(this, "Oшибка!", "Такое имя шаблона уже существует!", MessageBoxIcon.Warning);
+                    mess.switchMessage();
+                    return;
+                }
+                db.Templates.Add(new Template { Name = nameT, Tmp = result_str });
                 db.SaveChanges();
             }
-            MessageBox.Show("Шаблон сохранен!");
+            Message mes1 = new Message(this, "Успех", "Шаблон сохранен", MessageBoxIcon.Warning);
+            mes1.switchMessage();
+           
         }
 
         int kolVo = 0;
@@ -854,6 +906,7 @@ namespace QA_Helper
             TemplateBtnArray.Clear();
             DeleteBtnArray.Clear();
             f2 = new Form();
+            f2.Text = "Шаблоны";
             f2.MinimizeBox = false;
             f2.MaximizeBox = false;
             f2.Size = new Size(260, 430);
@@ -862,30 +915,32 @@ namespace QA_Helper
             f2.Location = new Point(this.Location.X + (this.Width - f2.Width) / 2, this.Location.Y + (this.Height - f2.Height) / 2);
 
             Label lblT = new Label();
-            lblT.Location = new Point(90, 10);
-            lblT.Text = "Шаблоны";
+            lblT.Location = new Point(25, 10);
+            lblT.Size = new Size(198, 30);
+            lblT.Text = "Список шаблонов :";
             lblT.Font = new Font("Segoe UI", 12);
             f2.Controls.Add(lblT);
 
             leftPanelT = new Panel();
             leftPanelT.AutoScroll = true;
-            leftPanelT.Size = new Size(220, 300);
-            leftPanelT.Location = new Point(10, 50);
+            leftPanelT.Size = new Size(198, 300);
+            leftPanelT.Location = new Point(25, 50);
             leftPanelT.BorderStyle = BorderStyle.FixedSingle;
             leftPanelT.Visible = true;
             f2.Controls.Add(leftPanelT);
 
             Button saveT = new Button();
-            saveT.Location = new Point(130, 355);
-            saveT.Size = new Size(100, 30);
+
+            saveT.Location = new Point(23, 355);
+            saveT.Size = new Size(98, 30);
             saveT.Font = new Font("Segoe UI", 8);
             saveT.Text = "Продолжить";
             saveT.Click += new System.EventHandler(this.saveT_Click);
             f2.Controls.Add(saveT);
 
             Button cancelT = new Button();
-            cancelT.Location = new Point(20, 355);
-            cancelT.Size = new Size(100, 30);
+            cancelT.Location = new Point(127, 355);
+            cancelT.Size = new Size(98, 30);
             cancelT.Font = new Font("Segoe UI", 8);
             cancelT.Text = "Отмена";
             cancelT.Click += new System.EventHandler(this.cancelT_Click);
@@ -893,7 +948,7 @@ namespace QA_Helper
 
             using (var db = new MyDBContext())
             {
-                foreach (var templete in db.Templetes)
+                foreach (var templete in db.Templates)
                 {
                     Button TemplateBtnT = new Button();
                     TemplateBtnT.Size = new Size(164, 32);
@@ -906,6 +961,7 @@ namespace QA_Helper
                         newLocationY = locationYT;
                     else
                     {
+
                         int maxY = TemplateBtnArray[TemplateBtnArray.Count - 1].Location.Y;
                         newLocationY = maxY + deltaYT;
                     }
@@ -938,6 +994,7 @@ namespace QA_Helper
             }
             f2.Show();
         }
+        
 
         private void cancelT_Click(object sender, EventArgs e)
         {
@@ -948,7 +1005,8 @@ namespace QA_Helper
         {
             if (clickedBtnIndexT == -1)
             {
-                errorMessage("Выберите шаблон");
+                Message mess = new Message(this, "Oшибка", "Выберите шаблон!", MessageBoxIcon.Warning);
+                mess.switchMessage();
                 return;
             }
             nodes.Clear();
@@ -962,10 +1020,25 @@ namespace QA_Helper
             ParametresBtn.Clear();
             DeleteBtn.Clear();
             tBtn = 0;
-            string f = TemplateBtnArray[clickedBtnIndexT].Name.ToString();
+            if (tBtn == -1)
+            {
+                Message mess = new Message(this, "Oшибка", "Выберите шаблон!", MessageBoxIcon.Warning);
+                mess.switchMessage();
+                return;
+            }
+            string f = "";
+            try
+            {
+
+                 f = TemplateBtnArray[clickedBtnIndexT].Name.ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Не выбран шаблон ");
+            }
             using (var db = new MyDBContext())
             {
-                var find = from templ in db.Templetes
+                var find = from templ in db.Templates
                            where templ.Id.ToString() == f
                            select templ;
                 if (find != null)
@@ -1023,10 +1096,10 @@ namespace QA_Helper
             int id = int.Parse((sender as Button).Name.ToString());
             using (var db = new MyDBContext())
             {
-                var del = db.Templetes.SingleOrDefault(x => x.Id == id);
+                var del = db.Templates.SingleOrDefault(x => x.Id == id);
                 if (del != null)
                 {
-                    db.Templetes.Remove(del);
+                    db.Templates.Remove(del);
                     db.SaveChanges();
                 }
             }
@@ -1071,19 +1144,23 @@ namespace QA_Helper
                 i++;
             }
         }
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Message mess = new Message(this, "Подтверждение", "Вы действительно хотите выйти?", e);
+            mess.switchMessage();
 
-        public class Templete
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Tmp { get; set; }
         }
-        public class MyDBContext : DbContext
+
+        private void cancel_Click(object sender, EventArgs e)
         {
-            public MyDBContext() : base("DBTemplete16")
-            {
-            }
-            public DbSet<Templete> Templetes { get; set; }
+            this.commonAddPanel.Hide();
+            defaultButtons();
         }
+       
+
+
+       
+
+       
     }
 }
