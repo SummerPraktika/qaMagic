@@ -823,12 +823,12 @@ namespace QA_Helper
             md.ShowDialog();
             string nameT = md.NameT;
             string result_str = "";
-            if(!md.cancel){
+            if(md.btn_continuy & !md.cancel & md.closing ){
                 if (nameT.Trim() == "")// исправлен баг  с некорректным именем
                 {
                     Message mess = new Message(this, "Oшибка", "Введите корректное имя шаблона!", MessageBoxIcon.Warning);
                     mess.switchMessage();
-                    return;
+                    button1_Click(sender, e);
                 }
                 foreach (FieldNode a in nodes)
                 {
@@ -881,7 +881,8 @@ namespace QA_Helper
                     {
                         Message mess = new Message(this, "Oшибка!", "Такое имя шаблона уже существует!", MessageBoxIcon.Warning);
                         mess.switchMessage();
-                        return;
+                        button1_Click(sender, e);
+                  
                     }
                     db.Templates.Add(new Template { Name = nameT, Tmp = result_str });
                     db.SaveChanges();
