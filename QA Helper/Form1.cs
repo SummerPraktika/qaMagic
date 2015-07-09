@@ -823,71 +823,73 @@ namespace QA_Helper
             md.ShowDialog();
             string nameT = md.NameT;
             string result_str = "";
-            if (nameT.Trim() == "")// исправлен баг  с некорректным именем
-            {
-                Message mess = new Message(this, "Oшибка", "Введите корректное имя шаблона!", MessageBoxIcon.Warning);
-                mess.switchMessage();
-                return;
-            }
-            foreach (FieldNode a in nodes)
-            {
-                result_str += a.type.ToString() + ";";
-                if (a.type == 0)
+            if(md.btn_continuy & !md.cancel & md.closing ){
+                if (nameT.Trim() == "")// исправлен баг  с некорректным именем
                 {
-                    result_str += a.name + ";";
-                    if (a.pathToFile != "")
-                    {
-                        result_str += a.pathToFile.ToString() + ";";
-                    }
-                    else
-                    {
-                        result_str += standartList.SelectedItem.ToString() + ";";
-                    }
-                }
-                if (a.type == 1)
-                {
-                    result_str += a.name + ";";
-                    result_str += a.from.ToString() + ";";
-                    result_str += a.to.ToString() + ";";
-                }
-                if(a.type == 2)
-                {
-                    result_str += a.name + ";";
-                    result_str += a.dateFormat.ToString() + ";";
-                    result_str += a.dfrom.ToString() + ";";
-                    result_str += a.dto.ToString() + ";";
-                }
-                if(a.type == 3)
-                {
-                    result_str += a.name.ToString() + ";";
-                    result_str += long.Parse(this.seqFromTxt.Text.Trim()) + ";";
-                    result_str += long.Parse(this.seqStepTxt.Text.Trim()) + ";";
-                }
-                if (a.type == 4)
-                {
-                    result_str += a.name + ";";
-                    if (a.pathToFile != "")
-                        result_str += a.pathToFile.ToString() + ";";
-                    else
-                        result_str += standartList.SelectedValue.ToString() + ";";
-                }
-                result_str += "_";
-            }
-            using (var db = new MyDBContext())
-            {
-                var find = db.Templates.FirstOrDefault(x => x.Name == nameT);
-                if (find != null)
-                {
-                    Message mess = new Message(this, "Oшибка!", "Такое имя шаблона уже существует!", MessageBoxIcon.Warning);
+                    Message mess = new Message(this, "Oшибка", "Введите корректное имя шаблона!", MessageBoxIcon.Warning);
                     mess.switchMessage();
-                    return;
+                    button1_Click(sender, e);
                 }
-                db.Templates.Add(new Template { Name = nameT, Tmp = result_str });
-                db.SaveChanges();
+                foreach (FieldNode a in nodes)
+                {
+                    result_str += a.type.ToString() + ";";
+                    if (a.type == 0)
+                    {
+                        result_str += a.name + ";";
+                        if (a.pathToFile != "")
+                        {
+                            result_str += a.pathToFile.ToString() + ";";
+                        }
+                        else
+                        {
+                            result_str += standartList.SelectedItem.ToString() + ";";
+                        }
+                    }
+                    if (a.type == 1)
+                    {
+                        result_str += a.name + ";";
+                        result_str += a.from.ToString() + ";";
+                        result_str += a.to.ToString() + ";";
+                    }
+                    if(a.type == 2)
+                    {
+                        result_str += a.name + ";";
+                        result_str += a.dateFormat.ToString() + ";";
+                        result_str += a.dfrom.ToString() + ";";
+                        result_str += a.dto.ToString() + ";";
+                    }
+                    if(a.type == 3)
+                    {
+                        result_str += a.name.ToString() + ";";
+                        result_str += long.Parse(this.seqFromTxt.Text.Trim()) + ";";
+                        result_str += long.Parse(this.seqStepTxt.Text.Trim()) + ";";
+                    }
+                    if (a.type == 4)
+                    {
+                        result_str += a.name + ";";
+                        if (a.pathToFile != "")
+                            result_str += a.pathToFile.ToString() + ";";
+                        else
+                            result_str += standartList.SelectedValue.ToString() + ";";
+                    }
+                    result_str += "_";
+                }
+                using (var db = new MyDBContext())
+                {
+                    var find = db.Templates.FirstOrDefault(x => x.Name == nameT);
+                    if (find != null)
+                    {
+                        Message mess = new Message(this, "Oшибка!", "Такое имя шаблона уже существует!", MessageBoxIcon.Warning);
+                        mess.switchMessage();
+                        button1_Click(sender, e);
+                        return;
+                    }
+                    db.Templates.Add(new Template { Name = nameT, Tmp = result_str });
+                    db.SaveChanges();
+                }
+                Message mes1 = new Message(this, "Успех", "Шаблон сохранен", MessageBoxIcon.Warning);
+                mes1.switchMessage();
             }
-            Message mes1 = new Message(this, "Успех", "Шаблон сохранен", MessageBoxIcon.Warning);
-            mes1.switchMessage();
-           
         }
 
         int kolVo = 0;
@@ -1007,7 +1009,7 @@ namespace QA_Helper
             {
                 Message mess = new Message(this, "Oшибка", "Выберите шаблон!", MessageBoxIcon.Warning);
                 mess.switchMessage();
-                return;
+                cancelT_Click(sender, e);
             }
             nodes.Clear();
             foreach (Button b in FieldBtn)
@@ -1024,7 +1026,7 @@ namespace QA_Helper
             {
                 Message mess = new Message(this, "Oшибка", "Выберите шаблон!", MessageBoxIcon.Warning);
                 mess.switchMessage();
-                return;
+                cancelT_Click(sender, e);
             }
             string f = "";
             try
@@ -1034,7 +1036,9 @@ namespace QA_Helper
             }
             catch (Exception)
             {
-                MessageBox.Show("Не выбран шаблон ");
+                Message mess = new Message(this, "Oшибка", "Выберите шаблон!", MessageBoxIcon.Warning);
+                mess.switchMessage();
+                cancelT_Click(sender, e);
             }
             using (var db = new MyDBContext())
             {

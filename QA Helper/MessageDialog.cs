@@ -15,6 +15,10 @@ namespace QA_Helper
     {
         string filename = "";
         int type = -1;
+        public bool cancel = false;
+        private bool cancelCheked = false;
+        public bool btn_continuy = false;
+        public bool closing = false;
         public MessageDialog(string filename)
         {
             InitializeComponent();
@@ -34,7 +38,20 @@ namespace QA_Helper
         private void continueButton_Click(object sender, EventArgs e)
         {
             filename = textBox1.Text;
-            this.Close();
+            if (filename != "")
+            {
+                cancel = false;
+                btn_continuy = true;
+                this.Close();
+            }
+            else
+            {
+                cancel = false;
+                Message mess = new Message(this, "Oшибка", "Введите корректное имя шаблона!", MessageBoxIcon.Warning);
+                mess.switchMessage();
+                
+            }
+
         }
 
         public string NameT
@@ -49,17 +66,36 @@ namespace QA_Helper
             //continueButton.Location = new Point(43, 68);
             if (type == 0)
             {
-                textBox1.Visible = true; 
+                textBox1.Visible = true;
                 label1.Visible = true;
                 //continueButton.Location = new Point(88, 68);
                 this.Text = "Сохранение шаблона";
             }
-            
-            
-        }
-       
 
-        
+
+        }
+
+        private void cancel_Click(object sender, EventArgs e)
+        {
+            cancel = true;
+            cancelCheked = true;
+            this.Close();
+            return;
+        }
+
+        private void MessageDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            closing = true;
+            if (cancelCheked)
+            {
+                Message mess = new Message(this, "Подтверждение", "Вы действительно хотите выйти?", e);
+                mess.switchMessage();
+            }
+
+        }
+
+
+
 
     }
 }

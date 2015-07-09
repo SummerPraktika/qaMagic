@@ -18,7 +18,7 @@ namespace QA_Helper
     class Message
     {
 
-        private Form1 form;
+        private Form form;
         private string title;
         private string message;
         private MessageBoxIcon icon;
@@ -32,7 +32,7 @@ namespace QA_Helper
         /// <param name="title">заголовок окна</param>
         /// <param name="message">сообщение окна</param>
         /// <param name="icon">иконка сообщения</param>
-        public Message(Form1 form, string title, string message, MessageBoxIcon icon)
+        public Message(Form form, string title, string message, MessageBoxIcon icon)
         {
             this.form = form;
             this.title = title;
@@ -51,7 +51,7 @@ namespace QA_Helper
         /// <param name="title">заголовок окна</param>
         /// <param name="message">сообщение окна</param>
         /// <param name="e">  аргумент события закрытия формы</param>
-        public Message(Form1 form, string title, string message, FormClosingEventArgs e)
+        public Message(Form form, string title, string message, FormClosingEventArgs e)
         {
             this.form = form;
             this.title = title;
@@ -70,7 +70,7 @@ namespace QA_Helper
         /// <param name="titrle"></param>
         /// <param name="message"></param>
         /// <param name="?"></param>
-        public Message(Form1 form, string title, string message, string filepath)
+        public Message(Form form, string title, string message, string filepath)
         {
             this.form = form;
             this.title = title;
