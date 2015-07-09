@@ -19,6 +19,7 @@ namespace QA_Helper
     public partial class Form1 : Form
     {
         public static List<FieldNode> nodes = new List<FieldNode>();
+        BackgroundWorker worker = new BackgroundWorker();
         public static string mode = "add";
         string pathToFile = "";
         public static int editable = 0;
@@ -38,12 +39,20 @@ namespace QA_Helper
 
         private int unnamedIndex = 1;
         private static Form1 temp;
+        MyDBContext db;
 
         public Form1()
         {
             InitializeComponent();
             this.CenterToScreen();
             temp = this;
+
+            worker.DoWork += new DoWorkEventHandler(worker_DoWork);
+            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_Completed);
+            progressBar.Visible = true;
+            progressBar.Style = ProgressBarStyle.Marquee;
+            tooltip.Text = "Загружается база данных..";
+            worker.RunWorkerAsync();
         }
 
         private void defaultButtons()
@@ -891,6 +900,7 @@ namespace QA_Helper
 
         private void button2_Click(object sender, EventArgs e)
         {
+
             //обозреватель шаблонов
             int i = 0;
             TemplateBtnArray.Clear();
@@ -1081,6 +1091,18 @@ namespace QA_Helper
             f2.Close();
         }
 
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            db = new MyDBContext();
+            db.Templates.Count();
+        }
+        private void worker_Completed(object sender, RunWorkerCompletedEventArgs e)
+        {
+            progressBar.Style = ProgressBarStyle.Blocks;
+            tooltip.Text = "Добавьте поля для генерирования записей";
+            progressBar.Visible = false;
+        }
+
         private void deleteBtnT_Click(object sender, EventArgs e)
         {
 
@@ -1175,6 +1197,5 @@ namespace QA_Helper
             }
             catch (Exception) { }
         }
-       
     }
 }

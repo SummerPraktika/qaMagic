@@ -33,6 +33,7 @@ namespace QA_Helper
             this.components = new System.ComponentModel.Container();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.tooltip = new System.Windows.Forms.ToolStripStatusLabel();
+            this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.infoButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.developers = new System.Windows.Forms.ToolStripMenuItem();
             this.help = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,6 +87,7 @@ namespace QA_Helper
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tooltip,
+            this.progressBar,
             this.infoButton});
             this.statusStrip.Location = new System.Drawing.Point(0, 447);
             this.statusStrip.Name = "statusStrip";
@@ -99,9 +101,17 @@ namespace QA_Helper
             this.tooltip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tooltip.Margin = new System.Windows.Forms.Padding(3, 3, 0, 2);
             this.tooltip.Name = "tooltip";
-            this.tooltip.Size = new System.Drawing.Size(584, 17);
+            this.tooltip.Size = new System.Drawing.Size(482, 17);
             this.tooltip.Spring = true;
             this.tooltip.Text = "Добавьте поля для генерирования записей";
+            // 
+            // progressBar
+            // 
+            this.progressBar.MarqueeAnimationSpeed = 40;
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(100, 16);
+            this.progressBar.Step = 1;
+            this.progressBar.Visible = false;
             // 
             // infoButton
             // 
@@ -117,14 +127,14 @@ namespace QA_Helper
             // developers
             // 
             this.developers.Name = "developers";
-            this.developers.Size = new System.Drawing.Size(152, 22);
+            this.developers.Size = new System.Drawing.Size(149, 22);
             this.developers.Text = "О программе";
             this.developers.Click += new System.EventHandler(this.developers_Click);
             // 
             // help
             // 
             this.help.Name = "help";
-            this.help.Size = new System.Drawing.Size(152, 22);
+            this.help.Size = new System.Drawing.Size(149, 22);
             this.help.Text = "Справка";
             this.help.Click += new System.EventHandler(this.help_Click);
             // 
@@ -656,6 +666,7 @@ namespace QA_Helper
         private ToolStripDropDownButton infoButton;
         private ToolStripMenuItem developers;
         private ToolStripMenuItem help;
+        private ToolStripProgressBar progressBar;
     }
 }
 
