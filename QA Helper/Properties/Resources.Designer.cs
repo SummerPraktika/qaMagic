@@ -163,6 +163,16 @@ namespace QA_Helper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1436409850_info {
+            get {
+                object obj = ResourceManager.GetObject("1436409850_info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _150x150 {
             get {
                 object obj = ResourceManager.GetObject("150x150", resourceCulture);
@@ -301,6 +311,16 @@ namespace QA_Helper.Properties {
         internal static string emails {
             get {
                 return ResourceManager.GetString("emails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] manual {
+            get {
+                object obj = ResourceManager.GetObject("manual", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

@@ -33,6 +33,9 @@ namespace QA_Helper
             this.components = new System.ComponentModel.Container();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.tooltip = new System.Windows.Forms.ToolStripStatusLabel();
+            this.infoButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.developers = new System.Windows.Forms.ToolStripMenuItem();
+            this.help = new System.Windows.Forms.ToolStripMenuItem();
             this.controlPanel = new System.Windows.Forms.Panel();
             this.generateButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
@@ -49,12 +52,12 @@ namespace QA_Helper
             this.datePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.datePariodLbl = new System.Windows.Forms.Label();
             this.dateFormatLbl = new System.Windows.Forms.Label();
+            this.chooseLabel = new System.Windows.Forms.Label();
             this.dateFormatCbox = new System.Windows.Forms.ComboBox();
             this.seqFromLbl = new System.Windows.Forms.Label();
             this.rangeFromTxt = new System.Windows.Forms.TextBox();
             this.rangeLbl = new System.Windows.Forms.Label();
             this.applyFieldButton = new System.Windows.Forms.Button();
-            this.chooseLabel = new System.Windows.Forms.Label();
             this.nameTxt = new System.Windows.Forms.TextBox();
             this.nameLbl = new System.Windows.Forms.Label();
             this.typeLbl = new System.Windows.Forms.Label();
@@ -82,10 +85,12 @@ namespace QA_Helper
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tooltip});
+            this.tooltip,
+            this.infoButton});
             this.statusStrip.Location = new System.Drawing.Point(0, 447);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(662, 22);
+            this.statusStrip.SizingGrip = false;
             this.statusStrip.TabIndex = 0;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -94,9 +99,34 @@ namespace QA_Helper
             this.tooltip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tooltip.Margin = new System.Windows.Forms.Padding(3, 3, 0, 2);
             this.tooltip.Name = "tooltip";
-            this.tooltip.Size = new System.Drawing.Size(644, 17);
+            this.tooltip.Size = new System.Drawing.Size(584, 17);
             this.tooltip.Spring = true;
             this.tooltip.Text = "Добавьте поля для генерирования записей";
+            // 
+            // infoButton
+            // 
+            this.infoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.infoButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.developers,
+            this.help});
+            this.infoButton.Image = global::QA_Helper.Properties.Resources._1436409850_info;
+            this.infoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.infoButton.Name = "infoButton";
+            this.infoButton.Size = new System.Drawing.Size(29, 20);
+            // 
+            // developers
+            // 
+            this.developers.Name = "developers";
+            this.developers.Size = new System.Drawing.Size(152, 22);
+            this.developers.Text = "О программе";
+            this.developers.Click += new System.EventHandler(this.developers_Click);
+            // 
+            // help
+            // 
+            this.help.Name = "help";
+            this.help.Size = new System.Drawing.Size(152, 22);
+            this.help.Text = "Справка";
+            this.help.Click += new System.EventHandler(this.help_Click);
             // 
             // controlPanel
             // 
@@ -280,6 +310,16 @@ namespace QA_Helper
             this.dateFormatLbl.Text = "Формат даты";
             this.dateFormatLbl.Visible = false;
             // 
+            // chooseLabel
+            // 
+            this.chooseLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.chooseLabel.Location = new System.Drawing.Point(10, 170);
+            this.chooseLabel.Name = "chooseLabel";
+            this.chooseLabel.Size = new System.Drawing.Size(377, 21);
+            this.chooseLabel.TabIndex = 5;
+            this.chooseLabel.Text = "Файл не выбран";
+            this.chooseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // dateFormatCbox
             // 
             this.dateFormatCbox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -344,16 +384,6 @@ namespace QA_Helper
             this.applyFieldButton.Text = "Добавить поле";
             this.applyFieldButton.UseVisualStyleBackColor = true;
             this.applyFieldButton.Click += new System.EventHandler(this.applyFieldButton_Click);
-            // 
-            // chooseLabel
-            // 
-            this.chooseLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.chooseLabel.Location = new System.Drawing.Point(10, 170);
-            this.chooseLabel.Name = "chooseLabel";
-            this.chooseLabel.Size = new System.Drawing.Size(377, 21);
-            this.chooseLabel.TabIndex = 5;
-            this.chooseLabel.Text = "Файл не выбран";
-            this.chooseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // nameTxt
             // 
@@ -623,6 +653,9 @@ namespace QA_Helper
         private Button button1;
         private Button button2;
         public Button cancel;
+        private ToolStripDropDownButton infoButton;
+        private ToolStripMenuItem developers;
+        private ToolStripMenuItem help;
     }
 }
 

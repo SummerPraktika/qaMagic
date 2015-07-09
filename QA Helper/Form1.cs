@@ -1157,8 +1157,24 @@ namespace QA_Helper
 
         }
 
-       
+        private void developers_Click(object sender, EventArgs e)
+        {
+            using (DialogCenteringService centeringService = new DialogCenteringService(this))
+            {
+                var dg = MessageBox.Show(this, "Данная программа была разработана в рамках \"Летнего интенсива\""
+                    +"в 2015 году. В разработке принимали участие: Анкилов Антон, Борисов Александр, Жиляев Александр, "
+                    +"Кантимирова Альфия, Кондратьев Евгений, Никулин Сергей, Селезнев Павел, Фидлер Сергей, Царёв Иван.", "О программе", MessageBoxButtons.OK);
 
+            }
+        }
+        private void help_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("winword", "D:\\manual.doc");
+            }
+            catch (Exception) { }
+        }
        
     }
 }
