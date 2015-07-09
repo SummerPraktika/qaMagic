@@ -1084,11 +1084,58 @@ namespace QA_Helper
         private void deleteBtnT_Click(object sender, EventArgs e)
         {
 
+            int id = int.Parse((sender as Button).Name.ToString());
+            using (var db = new MyDBContext())
+            {
+                var del = db.Templates.SingleOrDefault(x => x.Id == id);
+                if (del != null)
+                {
+                    db.Templates.Remove(del);
+                    db.SaveChanges();
+                }
+            }
+            int i = 0;
+            foreach (Button b in DeleteBtnArray)
+            {
+                if (sender == b)
+                {
+                    leftPanelT.Controls.Remove(TemplateBtnArray[i]);
+                    TemplateBtnArray[i].Dispose();
+                    TemplateBtnArray.RemoveAt(i);
+
+                    leftPanelT.Controls.Remove(DeleteBtnArray[i]);
+                    DeleteBtnArray[i].Dispose();
+                    DeleteBtnArray.RemoveAt(i);
+
+                    for (int j = i; j < TemplateBtnArray.Count; j++)
+                    {
+                        TemplateBtnArray[j].Location = new Point(TemplateBtnArray[j].Location.X, TemplateBtnArray[j].Location.Y - deltaY);
+                        DeleteBtnArray[j].Location = new Point(DeleteBtnArray[j].Location.X, DeleteBtnArray[j].Location.Y - deltaY);
+                    }
+                    break;
+                }
+                i++;
+            }
+
         }
 
         private void TemplateBtnT_Click(object sender, EventArgs e)
         {
-
+            foreach (Button b in TemplateBtnArray)
+            {
+                b.BackColor = defaultColor;
+            }
+            int i = 0;
+            foreach (Button b in TemplateBtnArray)
+            {
+                if (sender == b)
+                {
+                    clickedBtnIndexT = i;
+                    b.BackColor = Color.Aqua;
+                    break;
+                }
+                i++;
+            }
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

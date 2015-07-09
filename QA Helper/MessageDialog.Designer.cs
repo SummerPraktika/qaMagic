@@ -37,7 +37,7 @@
             // continueButton
             // 
             this.continueButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.continueButton.Location = new System.Drawing.Point(57, 106);
+            this.continueButton.Location = new System.Drawing.Point(72, 106);
             this.continueButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
             this.continueButton.Name = "continueButton";
             this.continueButton.Size = new System.Drawing.Size(124, 23);
@@ -62,7 +62,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(66, 23);
+            this.label1.Location = new System.Drawing.Point(81, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 20);
             this.label1.TabIndex = 3;
@@ -72,9 +72,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(57, 62);
+            this.textBox1.Location = new System.Drawing.Point(57, 58);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(124, 22);
+            this.textBox1.Size = new System.Drawing.Size(157, 22);
             this.textBox1.TabIndex = 4;
             this.textBox1.Visible = false;
             // 
@@ -82,7 +82,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(245, 146);
+            this.ClientSize = new System.Drawing.Size(274, 146);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.continueButton);
             this.Controls.Add(this.textBox1);
