@@ -38,6 +38,7 @@ namespace QA_Helper
             this.encodingLbl = new System.Windows.Forms.Label();
             this.delimeterLbl = new System.Windows.Forms.Label();
             this.saveSettingsButton = new System.Windows.Forms.Button();
+            this.cancelBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // formatBox
@@ -134,7 +135,7 @@ namespace QA_Helper
             // 
             // saveSettingsButton
             // 
-            this.saveSettingsButton.Location = new System.Drawing.Point(50, 121);
+            this.saveSettingsButton.Location = new System.Drawing.Point(12, 121);
             this.saveSettingsButton.Name = "saveSettingsButton";
             this.saveSettingsButton.Size = new System.Drawing.Size(139, 23);
             this.saveSettingsButton.TabIndex = 10;
@@ -142,13 +143,22 @@ namespace QA_Helper
             this.saveSettingsButton.UseVisualStyleBackColor = true;
             this.saveSettingsButton.Click += new System.EventHandler(this.saveSettingsButton_Click);
             // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Location = new System.Drawing.Point(168, 121);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(71, 23);
+            this.cancelBtn.TabIndex = 15;
+            this.cancelBtn.Text = "Отмена";
+            this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            // 
             // settingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(253, 153);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.saveSettingsButton);
             this.Controls.Add(this.delimeterLbl);
             this.Controls.Add(this.encodingLbl);
@@ -159,6 +169,8 @@ namespace QA_Helper
             this.Controls.Add(this.encodingBox);
             this.Controls.Add(this.formatBox);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "settingsForm";
             this.Text = "Настройки";
             this.Load += new System.EventHandler(this.settingsForm_Load);
@@ -178,5 +190,6 @@ namespace QA_Helper
         private System.Windows.Forms.Label encodingLbl;
         private System.Windows.Forms.Label delimeterLbl;
         private System.Windows.Forms.Button saveSettingsButton;
+        private Button cancelBtn;
     }
 }

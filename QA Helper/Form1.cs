@@ -653,7 +653,7 @@ namespace QA_Helper
             }
             catch (FormatException)
             {
-                val = Regex.Replace(val, @"[^0-9]", "");
+                val = Regex.Replace(val, @"-?[^0-9]", "");
 
                 ((TextBox)sender).Text = val;
             }
@@ -1010,6 +1010,7 @@ namespace QA_Helper
                 Message mess = new Message(this, "Oшибка", "Выберите шаблон!", MessageBoxIcon.Warning);
                 mess.switchMessage();
                 cancelT_Click(sender, e);
+                return;
             }
             nodes.Clear();
             foreach (Button b in FieldBtn)
@@ -1027,6 +1028,7 @@ namespace QA_Helper
                 Message mess = new Message(this, "Oшибка", "Выберите шаблон!", MessageBoxIcon.Warning);
                 mess.switchMessage();
                 cancelT_Click(sender, e);
+                return;
             }
             string f = "";
             try
@@ -1201,5 +1203,6 @@ namespace QA_Helper
             }
             catch (Exception) { }
         }
+
     }
 }

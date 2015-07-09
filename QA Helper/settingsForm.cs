@@ -88,6 +88,11 @@ namespace QA_Helper
             }
         }
 
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
 
        
     }

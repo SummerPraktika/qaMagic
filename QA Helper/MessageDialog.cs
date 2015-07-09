@@ -86,7 +86,7 @@ namespace QA_Helper
         private void MessageDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
             closing = true;
-            if (cancelCheked)
+            if (type != 0 && cancelCheked)
             {
                 Message mess = new Message(this, "Подтверждение", "Вы действительно хотите выйти?", e);
                 mess.switchMessage();
