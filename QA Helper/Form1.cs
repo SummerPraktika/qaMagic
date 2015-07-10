@@ -1199,7 +1199,7 @@ namespace QA_Helper
         {
             try
             {
-                System.Diagnostics.Process.Start("winword", "D:\\manual.doc");
+                System.Diagnostics.Process.Start("winword", "manual.doc");
             }
             catch (Exception) { }
         }
