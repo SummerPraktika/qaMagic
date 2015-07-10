@@ -653,7 +653,7 @@ namespace QA_Helper
             }
             catch (FormatException)
             {
-                val = Regex.Replace(val, @"-?[^0-9]", "");
+                val = Regex.Replace(val, @"-?[^0-9&.-]", "");
 
                 ((TextBox)sender).Text = val;
             }
